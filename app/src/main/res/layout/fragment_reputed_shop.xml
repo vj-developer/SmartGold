@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/shop_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Reputed Shop near by 5 km"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/textdark"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+
+            android:id="@+id/gram_offer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Rs. 500 less per gram"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/textdark"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/wastage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5% wastage"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/textdark"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/users_solid" />
+
+            <TextView
+                android:id="@+id/member_locked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="15 locked"
+                android:textColor="@color/textdark"
+                android:textSize="10sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/map_marker" />
+
+            <TextView
+                android:id="@+id/distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Near 5 km"
+                android:textColor="@color/textdark"
+                android:textSize="8sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/five_star" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

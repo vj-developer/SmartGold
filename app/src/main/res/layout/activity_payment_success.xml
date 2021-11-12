@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.PaymentSuccessActivity">
+
+    <LinearLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:src="@drawable/backbtn" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Payment"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/profiletxt"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_gravity="center"
+            android:src="@drawable/logo" />
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/success_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/pay_success" />
+    <TextView
+        android:id="@+id/success_message"
+        android:layout_margin="10dp"
+        android:textSize="24dp"
+        android:layout_below="@+id/success_pic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary"
+        android:textAlignment="center"
+        android:text="Your invoice was paid successfully."/>
+
+    <TextView
+        android:layout_below="@+id/success_message"
+        android:id="@+id/ref_id_tv"
+        android:textSize="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ref id: 61154825"
+        android:textColor="@color/profiletxt"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"/>
+    <TextView
+        android:layout_below="@+id/ref_id_tv"
+        android:id="@+id/shop_name_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Shop name: AKS Jewell"
+        android:textColor="@color/profiletxt"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/shop_location_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/shop_name_tv"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Location: 195 Link Road, G.V. Residency, Coimbatore - 641 015"
+        android:textColor="@color/profiletxt"
+        android:textSize="20dp" />
+    <TextView
+        android:layout_below="@+id/shop_location_tv"
+        android:id="@+id/shop_validity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Valid Till:  1 oct 2021"
+        android:textColor="@color/profiletxt"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Continue shopping"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>
