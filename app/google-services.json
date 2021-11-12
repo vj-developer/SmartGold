@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "900414686957",
+    "project_id": "smartgold-a0c76",
+    "storage_bucket": "smartgold-a0c76.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900414686957:android:47c1dd02a3cae5984feee4",
+        "android_client_info": {
+          "package_name": "com.greymatter.smartgold"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900414686957-si2mvlfkrquaj51eolsu9j4miicad6mj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6RHA4ZfCR86ono9jxXr9dS5545-ZLKpE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "900414686957-si2mvlfkrquaj51eolsu9j4miicad6mj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
