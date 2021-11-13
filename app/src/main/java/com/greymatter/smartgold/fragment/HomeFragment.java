@@ -30,6 +30,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.greymatter.smartgold.MainActivity.tabLayout;
+
 public class HomeFragment extends Fragment {
 
     SliderView sliderView;
@@ -47,6 +49,7 @@ public class HomeFragment extends Fragment {
 
         sliderView = view.findViewById(R.id.banner_slider);
         bannerSliderApi();
+
         view.findViewById(R.id.filter_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,34 +57,9 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        /*view.findViewById(R.id.Smartbuy_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showAlertDialogButtonClicked(view);
-            }
-        });*/
-
-
 
         return view;
     }
-    /*public void showAlertDialogButtonClicked(View view)
-    {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        final View customLayout = getLayoutInflater().inflate(R.layout.smartbuy_location, null);
-        builder.setView(customLayout);
-        AlertDialog dialog = builder.create();
-        dialog.show();
-        customLayout.findViewById(R.id.location_submit_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MainActivity.fragmentManager.beginTransaction().replace(R.id.container,smartbuyFragment).addToBackStack(null).commit();
-                dialog.dismiss();
-            }
-        });
-
-    }*/
 
     private void viewBanner() {
         SliderAdapter adapter = new SliderAdapter(getActivity(), sliderDataArrayList);

@@ -40,23 +40,24 @@ public class SmartOffersAdapter extends RecyclerView.Adapter <SmartOffersAdapter
         SmartOffersResponse.Datum shop = smartOffer.get(position);
         String wastage = shop.getWastage() + "% wastage";
         String members_locked = shop.getMaxLocked() + " locked";
-        String distance = "Near "+shop.getDistance() + " m";
+        String distance = "Near "+shop.getDistance() + " km";
         String gram_price = "Gram price: "+shop.getGramPrice();
         holder.shopNickName.setText(shop.getNickName());
         holder.gram_price.setText(gram_price);
         holder.wastage.setText(wastage);
         holder.members_locked.setText(members_locked);
         holder.distance.setText(distance);
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, SelectedShopOfferActivity.class);
-                context.startActivity(intent);
                 intent.putExtra(Constants.NICKNAME,shop.getNickName());
                 intent.putExtra(Constants.GRAMPRICE,shop.getGramPrice());
                 intent.putExtra(Constants.WASTAGE,shop.getWastage());
                 intent.putExtra(Constants.MAXLOCKED,shop.getMaxLocked());
                 intent.putExtra(Constants.DISTANCE,shop.getDistance());
+                context.startActivity(intent);
             }
         });
     }

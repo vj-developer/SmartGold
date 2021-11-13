@@ -6,7 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:id="@+id/top"
         android:gravity="center"
@@ -38,6 +37,7 @@
             android:layout_gravity="center"
             android:src="@drawable/logo" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/search_bar"
         android:layout_below="@+id/top"
@@ -54,13 +54,14 @@
             android:layout_weight="1"
             android:hint="Search for gold"
             android:textColorHint="@color/primarydark"
-            app:startIconContentDescription=""
+            app:startIconTint="@color/primarydark"
             app:startIconDrawable="@drawable/search_icon">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/search_bar_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <ImageView
             android:id="@+id/filter_btn"
             android:layout_margin="5dp"
@@ -69,12 +70,13 @@
             android:src="@drawable/filter_icon"
             android:layout_gravity="center"
             />
+
     </LinearLayout>
 
     <com.smarteist.autoimageslider.SliderView
         android:id="@+id/banner_slider"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="200dp"
         android:layout_below="@+id/search_bar"
         android:layout_centerInParent="true"
         android:layout_margin="12dp"
@@ -86,14 +88,13 @@
         app:sliderIndicatorMargin="15dp"
         app:sliderIndicatorOrientation="horizontal"
         app:sliderIndicatorPadding="3dp"
-        app:sliderIndicatorRadius="2dp"
+        app:sliderIndicatorRadius="1dp"
         app:sliderIndicatorSelectedColor="@color/primary"
         app:sliderIndicatorUnselectedColor="#FFF"
         app:sliderScrollTimeInSec="1" />
 
     <Button
-        android:visibility="gone"
-        android:id="@+id/Smartbuy_btn"
+        android:id="@+id/smartbuy_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/banner_slider"
@@ -102,10 +103,11 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="12dp"
-        android:backgroundTint="@color/primary"
-        android:onClick="showAlertDialogButtonClicked"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:text="Buy Gold in a Smart Way"
-        android:textAllCaps="false"
+        android:textAllCaps="true"
         android:textColor="@color/profiletxt"
         android:textStyle="bold" />
+
 </RelativeLayout>

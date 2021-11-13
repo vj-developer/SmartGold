@@ -1,5 +1,6 @@
 package com.greymatter.smartgold.fragment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -85,8 +86,11 @@ public class SmartbuyFragment extends Fragment {
     }
 
     private void budgetRangeApi() {
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setTitle("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-
         Call<BudgetRangeResponse> call = apiInterface.budget_range();
 
         call.enqueue(new Callback<BudgetRangeResponse>() {
@@ -94,20 +98,24 @@ public class SmartbuyFragment extends Fragment {
             public void onResponse(Call<BudgetRangeResponse> call, Response<BudgetRangeResponse> response) {
                 BudgetRangeResponse budgetRangeResponse = response.body();
                 if(budgetRangeResponse.getSuccess()){
-
+                    progressDialog.dismiss();
                     budgetRangeArray = new ArrayList<>();
                     budgetRangeIdArray = new ArrayList<>();
                     for(int i=0; i<budgetRangeResponse.getData().size(); i++){
                         budgetRangeArray.add(budgetRangeResponse.getData().get(i).getBudget());
                         budgetRangeIdArray.add(budgetRangeResponse.getData().get(i).getId());
-                        ArrayAdapter spinnerArrayAdapter = new ArrayAdapter(getActivity(),
-                                android.R.layout.simple_spinner_item, budgetRangeArray);
-                        budgetArraySpinnner.setAdapter(spinnerArrayAdapter)     ;               }
+
+                        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, budgetRangeArray);
+                        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+                        budgetArraySpinnner.setAdapter(spinnerArrayAdapter);
+
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<BudgetRangeResponse> call, Throwable t) {
+                progressDialog.dismiss();
                 Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -133,11 +141,9 @@ public class SmartbuyFragment extends Fragment {
                     "addressline1"
                     "addressline2"
                      */
-                    location_tv.setText(new StringBuilder().append("addressline2: ").append
-                            (completeAddress.getString("addressline2")).append("\ncity: ").append
-                            (completeAddress.getString("city")).append("\npostalcode: ").append
-                            (completeAddress.getString("postalcode")).append("\nstate: ").append
-                            (completeAddress.getString("state")).toString());
+                    location_tv.setText(new StringBuilder().append
+                            (completeAddress.getString("city")).append(" - ").append
+                            (completeAddress.getString("postalcode")).toString());
                     
                     latitude = String.valueOf(currentLatitude);
                     longitude = String.valueOf(currentLongitude);

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activity.SelectedShopOfferActivity">
 
     <LinearLayout
@@ -37,12 +38,14 @@
             android:layout_gravity="center"
             android:src="@drawable/logo" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_below="@+id/top"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="20dp"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,23 +54,119 @@
             android:textStyle="bold"
             android:textColor="@color/profiletxt"
             android:text="Selected Offer from a shop nearby.."/>
+
         <TextView
             android:textColor="@color/profiletxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=". 9  Products in this offer"/>
+
         <TextView
             android:id="@+id/gram_price"
             android:textColor="@color/profiletxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=". Rs.500 less per gram"/>
+
         <TextView
             android:id="@+id/wastage"
             android:textColor="@color/profiletxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=". No Wastage"/>
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Note:-"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/primarydark"/>
+
+        <TextView
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primarydark"
+            android:text="Lock the price by paying price Rs:-500"/>
+
+        <TextView
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primarydark"
+            android:text="Items can be locked for 7 days"/>
+
+        <TextView
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primarydark"
+            android:text="Locking cost will be refunded if item is not purchased after visiting the store."/>
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/profiletxt"
+            android:text="Discount"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="10dp">
+
+                <TextView
+                    android:id="@+id/wastage_card_tv"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginVertical="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5% wastage"
+                    android:textColor="@color/primary"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="10dp">
+
+                <TextView
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginVertical="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Free shipping"
+                    android:textColor="@color/primary"/>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/profiletxt"
+            android:text="Available Products"/>
+
     </LinearLayout>
 
     <Button
@@ -79,9 +178,9 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:text="Lock this Smart offer"
-        android:textAllCaps="false"
         android:textColor="@color/profiletxt" />
-
 
 </RelativeLayout>

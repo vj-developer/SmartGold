@@ -29,6 +29,7 @@ public class ReputedShopListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reputed_shop_list);
+
         budget_id = getIntent().getStringExtra(Constants.BUDGET_ID);
         latitude = getIntent().getStringExtra(Constants.LATITUDE);
         longitude = getIntent().getStringExtra(Constants.LONGITUDE);
@@ -50,6 +51,7 @@ public class ReputedShopListActivity extends AppCompatActivity {
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Loading...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
 
         Call<SmartOffersResponse> call = apiInterface.smart_offers(budget_id,latitude,longitude);
