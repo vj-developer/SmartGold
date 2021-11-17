@@ -1,7 +1,5 @@
 package com.greymatter.smartgold.fragment;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -10,12 +8,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
-import com.greymatter.smartgold.FilterActivity;
-import com.greymatter.smartgold.MainActivity;
+import com.greymatter.smartgold.activity.FilterActivity;
 import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.adapter.SliderAdapter;
 import com.greymatter.smartgold.model.BannerListResponse;
@@ -29,8 +24,6 @@ import java.util.ArrayList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static com.greymatter.smartgold.MainActivity.tabLayout;
 
 public class HomeFragment extends Fragment {
 
@@ -57,7 +50,6 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
         return view;
     }
 
@@ -77,7 +69,7 @@ public class HomeFragment extends Fragment {
         call.enqueue(new Callback<BannerListResponse>() {
             @Override
             public void onResponse(Call<BannerListResponse> call, Response<BannerListResponse> response) {
-
+                sliderDataArrayList.clear();
                 BannerListResponse bannerListResponse = response.body();
                 if(bannerListResponse.getSuccess()){
 
@@ -87,9 +79,7 @@ public class HomeFragment extends Fragment {
                     }
                     viewBanner();
                 }
-
             }
-
             @Override
             public void onFailure(Call<BannerListResponse> call, Throwable t) {
                 Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();

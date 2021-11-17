@@ -37,6 +37,8 @@ public class ProfileFragment extends Fragment {
         user_num = root.findViewById(R.id.user_num);
         sign_out = root.findViewById(R.id.signout_btn);
 
+
+
         user_name.setText(MyFunctions.getStringFromSharedPref(getActivity(), Constants.NAME,""));
         user_num.setText(MyFunctions.getStringFromSharedPref(getActivity(), Constants.MOBILE,""));
 

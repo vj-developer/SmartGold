@@ -21,12 +21,12 @@
             android:src="@drawable/logo" />
 
         <TextView
-            android:layout_centerVertical="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_weight="2"
-            android:text="Thank You"
             android:gravity="center"
+            android:text="Thank You"
             android:textColor="@color/profiletxt"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -35,51 +35,52 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:paddingStart="20dp"
         android:id="@+id/payment_success"
-        android:layout_below="@+id/top"
-        android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_below="@+id/top"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        tools:visibility="gone">
 
         <ImageView
-            android:layout_gravity="center"
             android:id="@+id/success_pic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:src="@drawable/pay_success" />
 
         <TextView
             android:id="@+id/success_message"
-            android:layout_margin="10dp"
-            android:textSize="24dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/primary"
+            android:layout_margin="10dp"
+            android:text="Your Smart Gold is Locked"
             android:textAlignment="center"
-            android:text="Your Smart Gold is Locked"/>
+            android:textColor="@color/primary"
+            android:textSize="24dp" />
 
         <TextView
             android:id="@+id/ref_id_tv"
-            android:textSize="18sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:text="Ref id: 61154825"
             android:textColor="@color/profiletxt"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"/>
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/shop_name_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:text="Shop name: AKS Jewell"
             android:textColor="@color/profiletxt"
-            android:textSize="18sp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"/>
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/shop_location_tv"
@@ -95,13 +96,40 @@
             android:id="@+id/shop_validity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:text="Valid Till:  1 oct 2021"
             android:textColor="@color/profiletxt"
-            android:textSize="18sp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"/>
+            android:textSize="18sp" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/payment_fail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/cancel_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/pay_cancel" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:text="The payment process was canceled or encountered a problem."
+            android:textAlignment="center"
+            android:textColor="@color/red"
+            android:textSize="24dp" />
+
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/continue_btn"

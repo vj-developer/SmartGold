@@ -1,9 +1,11 @@
-package com.greymatter.smartgold;
+package com.greymatter.smartgold.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+
+import com.greymatter.smartgold.R;
 
 public class FilterActivity extends AppCompatActivity {
 

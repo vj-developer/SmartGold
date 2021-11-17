@@ -17,7 +17,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".activity.SmartGoldLockedActivity"></activity>
         <activity
-            android:name=".FilterActivity"
+            android:name=".activity.FilterActivity"
             android:exported="true" />
         <activity
             android:name=".activity.ReputedShopListActivity"

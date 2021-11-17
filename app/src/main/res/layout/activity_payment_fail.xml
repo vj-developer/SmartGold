@@ -37,33 +37,40 @@
             android:src="@drawable/logo" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/cancel_pic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/top"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/pay_cancel" />
-
-    <TextView
-        android:layout_margin="30dp"
-        android:textSize="24dp"
-        android:layout_below="@+id/cancel_pic"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/red"
-        android:textAlignment="center"
-        android:text="The payment process was canceled or encountered a problem."/>
+        android:orientation="vertical"
+        android:layout_below="@+id/top">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/red"
-        android:text="Try again" />
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/cancel_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/pay_cancel" />
+
+        <TextView
+            android:layout_margin="30dp"
+            android:textSize="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:textAlignment="center"
+            android:text="The payment process was canceled or encountered a problem."/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/red"
+            android:text="Try again" />
+
+    </LinearLayout>
+
+
 </RelativeLayout>
