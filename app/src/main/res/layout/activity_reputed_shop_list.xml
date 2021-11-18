@@ -27,7 +27,7 @@
             android:text="Smart Buy"
             android:layout_gravity="center"
             android:textAlignment="center"
-            android:textColor="@color/profiletxt"
+            android:textColor="@color/brown"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Selected Offer from a shop nearby..."
-            android:textColor="@color/profiletxt"
+            android:textColor="@color/brown"
             android:textSize="20sp"
             android:textStyle="bold"/>
         <androidx.recyclerview.widget.RecyclerView

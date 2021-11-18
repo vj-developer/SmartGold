@@ -13,13 +13,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Smart Buy"
-        android:textColor="@color/profiletxt"/>
+        android:textColor="@color/brown"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="Set location"
-        android:textColor="@color/profiletxt"
+        android:textColor="@color/brown"
         android:textAllCaps="false"/>
     <TextView
         android:visibility="gone"
@@ -29,13 +29,13 @@
         android:text="Or"
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"
-        android:textColor="@color/profiletxt"/>
+        android:textColor="@color/brown"/>
     <com.google.android.material.textfield.TextInputLayout
         android:visibility="gone"
         android:id="@+id/outlinedTextField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:hintTextColor="@color/profiletxt"
+        app:hintTextColor="@color/brown"
         android:hint="Enter pincode"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -55,5 +55,5 @@
         android:text="Submit"
         android:layout_marginTop="20dp"
         android:textAllCaps="false"
-        android:textColor="@color/profiletxt"/>
+        android:textColor="@color/brown"/>
 </LinearLayout>

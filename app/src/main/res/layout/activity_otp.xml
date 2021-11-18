@@ -23,7 +23,7 @@ tools:context=".activity.OtpActivity">
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:text="Verify OTP"
-            android:textColor="@color/profiletxt"
+            android:textColor="@color/brown"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -33,7 +33,7 @@ tools:context=".activity.OtpActivity">
             android:layout_margin="10dp"
             android:layout_gravity="center"
             android:text="Please enter the OTP sent to your mobile number"
-            android:textColor="@color/profiletxt" />
+            android:textColor="@color/brown" />
 
 
         <LinearLayout
@@ -68,7 +68,7 @@ tools:context=".activity.OtpActivity">
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:text="Didn't receive an OTP? "
-            android:textColor="@color/profiletxt" />
+            android:textColor="@color/brown" />
 
         <TextView
             android:id="@+id/resend_otp"
@@ -77,7 +77,7 @@ tools:context=".activity.OtpActivity">
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:text="@string/resend_otp"
-            android:textColor="@color/profiletxt"
+            android:textColor="@color/brown"
             android:textStyle="bold" />
 
         <Button

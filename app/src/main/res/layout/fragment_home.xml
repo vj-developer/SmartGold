@@ -27,7 +27,7 @@
             android:layout_weight="1"
             android:text=" "
             android:textAlignment="center"
-            android:textColor="@color/profiletxt"
+            android:textColor="@color/brown"
             android:textSize="35dp"
             android:textStyle="bold" />
 
@@ -107,7 +107,35 @@
         android:insetBottom="0dp"
         android:text="Buy Gold in a Smart Way"
         android:textAllCaps="true"
-        android:textColor="@color/profiletxt"
+        android:textColor="@color/brown"
         android:textStyle="bold" />
+    <RelativeLayout
+        android:id="@+id/catehead"
+        android:layout_below="@+id/smartbuy_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary"
+            android:textStyle="bold"
+            android:layout_marginStart="12dp"
+            android:textSize="18dp"
+            android:text="Category"/>
 
+    </RelativeLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerviewcategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@null"
+        android:orientation="horizontal"
+        android:layout_below="@+id/catehead"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/category_layout"
+        >
+
+    </androidx.recyclerview.widget.RecyclerView>
 </RelativeLayout>

@@ -28,7 +28,7 @@
             android:text="Smart Buy"
             android:layout_gravity="center"
             android:textAlignment="center"
-            android:textColor="@color/profiletxt"
+            android:textColor="@color/brown"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="Selected Offer from a shop nearby.."
-            android:textColor="@color/profiletxt"
+            android:textColor="@color/brown"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -59,21 +59,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=". 9  Products in this offer"
-            android:textColor="@color/profiletxt" />
+            android:textColor="@color/brown" />
 
         <TextView
             android:id="@+id/gram_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=". Rs.500 less per gram"
-            android:textColor="@color/profiletxt" />
+            android:textColor="@color/brown" />
 
         <TextView
             android:id="@+id/wastage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=". No Wastage"
-            android:textColor="@color/profiletxt" />
+            android:textColor="@color/brown" />
 
         <TextView
             android:layout_width="match_parent"
@@ -111,7 +111,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginBottom="10dp"
             android:text="Discount"
-            android:textColor="@color/profiletxt"
+            android:textColor="@color/brown"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -163,7 +163,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:text="Available Products"
-            android:textColor="@color/profiletxt"
+            android:textColor="@color/brown"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -189,6 +189,6 @@
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:text="Lock this Smart offer"
-        android:textColor="@color/profiletxt" />
+        android:textColor="@color/brown" />
 
 </RelativeLayout>

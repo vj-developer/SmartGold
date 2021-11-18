@@ -23,7 +23,7 @@
 
                 <TextView
                     android:textStyle="bold"
-                    android:textColor="@color/profiletxt"
+                    android:textColor="@color/brown"
                     android:id="@+id/address_heading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
                     android:layout_marginTop="8dp"
                     android:text="Trichy"
                     android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="@color/profiletxt" />
+                    android:textColor="@color/brown" />
 
                 <TextView
                     android:id="@+id/pincode"
@@ -47,7 +47,7 @@
                     android:layout_marginTop="16dp"
                     android:text="765787"
                     android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="@color/profiletxt" />
+                    android:textColor="@color/brown" />
 
             </LinearLayout>
 

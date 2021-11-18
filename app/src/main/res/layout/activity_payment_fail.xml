@@ -26,7 +26,7 @@
             android:text="Payment"
             android:layout_gravity="center"
             android:textAlignment="center"
-            android:textColor="@color/profiletxt"
+            android:textColor="@color/brown"
             android:textSize="22sp"
             android:textStyle="bold" />
 
