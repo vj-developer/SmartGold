@@ -4,19 +4,27 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.greymatter.smartgold.activity.AddressActivity;
 import com.greymatter.smartgold.activity.FilterActivity;
 import com.greymatter.smartgold.R;
+import com.greymatter.smartgold.adapter.AddressAdapter;
+import com.greymatter.smartgold.adapter.CategoryAdapter;
 import com.greymatter.smartgold.adapter.SliderAdapter;
+import com.greymatter.smartgold.model.AddressListResponse;
 import com.greymatter.smartgold.model.BannerListResponse;
+import com.greymatter.smartgold.model.CategoryResponse;
 import com.greymatter.smartgold.model.SliderData;
 import com.greymatter.smartgold.retrofit.APIInterface;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
+import com.greymatter.smartgold.utils.Constants;
+import com.greymatter.smartgold.utils.MyFunctions;
 import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
@@ -29,7 +37,8 @@ public class HomeFragment extends Fragment {
 
     SliderView sliderView;
     ArrayList<SliderData> sliderDataArrayList;
-    SmartbuyFragment smartbuyFragment = new SmartbuyFragment();
+    RecyclerView category_recycler;
+    CategoryAdapter categoryAdapter;
 
     public HomeFragment() {
     }
@@ -41,7 +50,9 @@ public class HomeFragment extends Fragment {
         sliderDataArrayList = new ArrayList<>();
 
         sliderView = view.findViewById(R.id.banner_slider);
+        category_recycler = view.findViewById(R.id.recyclerviewcategory);
         bannerSliderApi();
+        CategoryList();
 
         view.findViewById(R.id.filter_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +62,30 @@ public class HomeFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    private void CategoryList()
+    {
+        APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
+
+        Call<CategoryResponse> call = apiInterface.category();
+        call.enqueue(new Callback<CategoryResponse>() {
+            @Override
+            public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
+                CategoryResponse categoryResponse = response.body();
+                if(categoryResponse.getSuccess()){
+                    categoryAdapter = new CategoryAdapter(categoryResponse.getData(),getActivity());
+                    category_recycler.setAdapter(categoryAdapter);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<CategoryResponse> call, Throwable t) {
+
+                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void viewBanner() {

@@ -4,6 +4,7 @@ import com.greymatter.smartgold.model.AddAddressResponse;
 import com.greymatter.smartgold.model.AddressListResponse;
 import com.greymatter.smartgold.model.BannerListResponse;
 import com.greymatter.smartgold.model.BudgetRangeResponse;
+import com.greymatter.smartgold.model.CategoryResponse;
 import com.greymatter.smartgold.model.LoginResponse;
 import com.greymatter.smartgold.model.RegisterResponse;
 import com.greymatter.smartgold.model.SmartOffersResponse;
@@ -45,6 +46,8 @@ public interface APIInterface {
 
     @GET("budget-range.php")
     Call<BudgetRangeResponse> budget_range();
+    @GET("categorylist.php")
+    Call<CategoryResponse> category();
 
     @FormUrlEncoded
     @POST("smart-offers.php")
