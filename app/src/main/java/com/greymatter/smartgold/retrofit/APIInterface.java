@@ -6,6 +6,8 @@ import com.greymatter.smartgold.model.BannerListResponse;
 import com.greymatter.smartgold.model.BudgetRangeResponse;
 import com.greymatter.smartgold.model.CategoryResponse;
 import com.greymatter.smartgold.model.LoginResponse;
+import com.greymatter.smartgold.model.OfferLockResponse;
+import com.greymatter.smartgold.model.PriceDurationResponse;
 import com.greymatter.smartgold.model.RegisterResponse;
 import com.greymatter.smartgold.model.SmartOffersResponse;
 import com.greymatter.smartgold.utils.Constants;
@@ -46,8 +48,24 @@ public interface APIInterface {
 
     @GET("budget-range.php")
     Call<BudgetRangeResponse> budget_range();
+
     @GET("categorylist.php")
     Call<CategoryResponse> category();
+
+    @FormUrlEncoded
+    @POST("productlist-seller.php")
+    Call<CategoryResponse> available_products(@Field(Constants.SELLER_ID) String shop_id);
+
+    @FormUrlEncoded
+    @POST("offer-lock.php")
+    Call<OfferLockResponse> lock_offer(@Field(Constants.USERID) String user_id,
+                                       @Field(Constants.SELLER_ID) String seller_id,
+                                       @Field(Constants.OFFER_ID) String offer_id,
+                                       @Field(Constants.PAID_AMT) String paid_amt
+                                              );
+
+    @GET("price-duration.php")
+    Call<PriceDurationResponse> price_duration();
 
     @FormUrlEncoded
     @POST("smart-offers.php")

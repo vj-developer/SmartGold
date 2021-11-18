@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.greymatter.smartgold.activity.AddressActivity;
 import com.greymatter.smartgold.activity.FilterActivity;
 import com.greymatter.smartgold.R;
+import com.greymatter.smartgold.activity.SmartBuyActivity;
 import com.greymatter.smartgold.adapter.AddressAdapter;
 import com.greymatter.smartgold.adapter.CategoryAdapter;
 import com.greymatter.smartgold.adapter.SliderAdapter;
@@ -61,11 +62,18 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        view.findViewById(R.id.smartbuy_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SmartBuyActivity.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
-    private void CategoryList()
-    {
+    private void CategoryList() {
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
 
         Call<CategoryResponse> call = apiInterface.category();
@@ -82,7 +90,6 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(Call<CategoryResponse> call, Throwable t) {
-
                 Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

@@ -35,6 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:gravity="center"
+            android:textSize="18sp"
             android:text="We need to send OTP to authenticate your number"
             android:textColor="@color/brown" />
 
@@ -62,6 +63,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="25dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
             android:text="Sign In" />
 
         <LinearLayout
@@ -75,6 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:textSize="18sp"
                 android:text="Don't have an account?"
                 android:textColor="@color/brown" />
 
@@ -84,6 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="Sign up"
+                android:textSize="18sp"
                 android:textColor="@color/primarydark" />
 
         </LinearLayout>

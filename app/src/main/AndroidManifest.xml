@@ -15,15 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartGold"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.SmartGoldLockedActivity"></activity>
+        <activity android:name=".activity.SmartBuyActivity"></activity>
+        <activity android:name=".activity.OfferLockResultActivity" />
         <activity
             android:name=".activity.FilterActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.ReputedShopListActivity"
+            android:name=".activity.ShopListActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.SelectedShopOfferActivity"
+            android:name=".activity.ShopOfferDetailsActivity"
             android:exported="true" />
         <activity
             android:name=".activity.PaymentSuccessActivity"
@@ -60,6 +61,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/your_api_key" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

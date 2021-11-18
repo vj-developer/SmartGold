@@ -4,8 +4,8 @@ public class Constants {
 
     public static final String ISLOGGEDIN = "isLoggedin";
     public static final String MOBILE = "mobile";
-    //public static final String BASE_URL = "https://carecollege.000webhostapp.com/api-firebase/";
-    public static final String BASE_URL = "http://192.168.43.122/smartgold/api-firebase/";
+    //public static final String BASE_URL = "http://192.168.43.122/smartgold/api-firebase/";
+    public static final String BASE_URL = "http://test.booksbear.in/api-firebase/";
     public static final String NAME = "name";
     public static final String EMAIL = "email";
     public static final String USERID = "user_id";
@@ -31,4 +31,16 @@ public class Constants {
     public static final String PAYMENT = "payment";
     public static final String SUCCESS = "success";
     public static final String FAIL = "fail";
+    public static final String SMART_LOCK_DAY = "smart_lock_day";
+    public static final String SMART_LOCK_PRICE = "smart_lock_price";
+    public static final String SELLER_ID = "seller_id";
+    public static final String OFFER_ID = "offer_id";
+    public static final String PAID_AMT = "paid_amt";
+    public static final String LOCK_PRICE_INSTRUCTION = "Lock the price by paying price Rs: ";
+    public static final String LOCK_DURATION_INSTRUCTION = "Items can be locked for ";
+    public static final String AVAILABLE_PRODUCT_COUNT = " Products in this offer";
+    public static final String REF_ID = "ref_id";
+    public static final String STORE_NAME = "store_name";
+    public static final String STORE_ADDRESS = "STORE_ADDRESS";
+    public static final String VALID_TILL = "valid_till";
 }

@@ -19,7 +19,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ReputedShopListActivity extends AppCompatActivity {
+public class ShopListActivity extends AppCompatActivity {
 
     SmartOffersAdapter smartOffersAdapter;
     RecyclerView smartoffers_recycler;
@@ -28,7 +28,7 @@ public class ReputedShopListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reputed_shop_list);
+        setContentView(R.layout.activity_shop_list);
 
         budget_id = getIntent().getStringExtra(Constants.BUDGET_ID);
         latitude = getIntent().getStringExtra(Constants.LATITUDE);
@@ -61,8 +61,10 @@ public class ReputedShopListActivity extends AppCompatActivity {
                 progressDialog.dismiss();
                 SmartOffersResponse smartOffersResponse = response.body();
                 if(smartOffersResponse.getSuccess()){
-                    smartOffersAdapter = new SmartOffersAdapter(smartOffersResponse.getData(),ReputedShopListActivity.this);
+                    smartOffersAdapter = new SmartOffersAdapter(smartOffersResponse.getData(), ShopListActivity.this);
                     smartoffers_recycler.setAdapter(smartOffersAdapter);
+                }else {
+                    Toast.makeText(ShopListActivity.this, smartOffersResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 

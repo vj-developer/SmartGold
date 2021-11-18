@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".activity.ReputedShopListActivity">
+    tools:context=".activity.ShopListActivity">
     <LinearLayout
         android:id="@+id/top"
         android:layout_width="match_parent"
@@ -51,6 +51,7 @@
             android:textColor="@color/brown"
             android:textSize="20sp"
             android:textStyle="bold"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/shop_recycleview"
             android:layout_width="match_parent"

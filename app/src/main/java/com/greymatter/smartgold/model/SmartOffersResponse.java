@@ -65,6 +65,12 @@ public class SmartOffersResponse {
         @SerializedName("distance")
         @Expose
         private Double distance;
+        @SerializedName("seller_id")
+        @Expose
+        private String seller_id;
+        @SerializedName("id")
+        @Expose
+        private String id;
 
         public String getNickName() {
             return nickName;
@@ -130,5 +136,20 @@ public class SmartOffersResponse {
             this.distance = distance;
         }
 
+        public String getSeller_id() {
+            return seller_id;
+        }
+
+        public void setSeller_id(String seller_id) {
+            this.seller_id = seller_id;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
     }
 }

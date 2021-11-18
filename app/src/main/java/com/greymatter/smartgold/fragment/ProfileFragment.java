@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.greymatter.smartgold.activity.AddressActivity;
 import com.greymatter.smartgold.MainActivity;
 import com.greymatter.smartgold.R;
+import com.greymatter.smartgold.activity.SigninActivity;
 import com.greymatter.smartgold.utils.Constants;
 import com.greymatter.smartgold.utils.MyFunctions;
 
@@ -38,6 +39,11 @@ public class ProfileFragment extends Fragment {
         sign_out = root.findViewById(R.id.signout_btn);
 
 
+        if (!MyFunctions.getBooleanFromSharedPref(getActivity(),Constants.ISLOGGEDIN, false)){
+            Intent intent = new Intent(getActivity(), SigninActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+        }
 
         user_name.setText(MyFunctions.getStringFromSharedPref(getActivity(), Constants.NAME,""));
         user_num.setText(MyFunctions.getStringFromSharedPref(getActivity(), Constants.MOBILE,""));

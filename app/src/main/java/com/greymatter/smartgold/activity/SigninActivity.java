@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.greymatter.smartgold.MainActivity;
 import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.model.LoginResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
@@ -100,6 +101,12 @@ public class SigninActivity extends AppCompatActivity {
         Intent intent = new Intent(SigninActivity.this, OtpActivity.class);
         intent.putExtra("type","login");
         startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
         finish();
     }
 }

@@ -11,9 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.greymatter.smartgold.R;
-import com.greymatter.smartgold.activity.ReputedShopListActivity;
-import com.greymatter.smartgold.activity.SelectedShopOfferActivity;
-import com.greymatter.smartgold.model.AddressListResponse;
+import com.greymatter.smartgold.activity.ShopOfferDetailsActivity;
 import com.greymatter.smartgold.model.SmartOffersResponse;
 import com.greymatter.smartgold.utils.Constants;
 
@@ -51,12 +49,14 @@ public class SmartOffersAdapter extends RecyclerView.Adapter <SmartOffersAdapter
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, SelectedShopOfferActivity.class);
+                Intent intent = new Intent(context, ShopOfferDetailsActivity.class);
                 intent.putExtra(Constants.NICKNAME,shop.getNickName());
                 intent.putExtra(Constants.GRAMPRICE,shop.getGramPrice());
                 intent.putExtra(Constants.WASTAGE,shop.getWastage());
                 intent.putExtra(Constants.MAXLOCKED,shop.getMaxLocked());
                 intent.putExtra(Constants.DISTANCE,shop.getDistance());
+                intent.putExtra(Constants.SELLER_ID,shop.getSeller_id());
+                intent.putExtra(Constants.OFFER_ID,shop.getId());
                 context.startActivity(intent);
             }
         });
