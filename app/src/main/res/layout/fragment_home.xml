@@ -7,7 +7,7 @@
     tools:context=".fragment.HomeFragment">
 
     <LinearLayout
-        android:id="@+id/top"
+        android:id="@+id/toolbar"
         android:gravity="center"
         android:padding="10dp"
         android:layout_width="match_parent"
@@ -36,105 +36,119 @@
             android:layout_height="65dp"
             android:layout_gravity="center"
             android:src="@drawable/logo" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/search_bar"
-        android:layout_below="@+id/top"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_margin="12dp"
-        android:orientation="horizontal">
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:hint="Search for gold"
-            android:textColorHint="@color/primarydark"
-            app:startIconTint="@color/primarydark"
-            app:startIconDrawable="@drawable/search_icon">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/search_bar_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <ImageView
-            android:id="@+id/filter_btn"
-            android:layout_margin="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/filter_icon"
-            android:layout_gravity="center"
-            />
 
     </LinearLayout>
 
-    <com.smarteist.autoimageslider.SliderView
-        android:id="@+id/banner_slider"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@+id/search_bar"
-        android:layout_centerInParent="true"
-        android:layout_margin="12dp"
-        app:sliderAnimationDuration="600"
-        app:sliderAutoCycleDirection="back_and_forth"
-        app:sliderIndicatorAnimationDuration="600"
-        app:sliderIndicatorEnabled="true"
-        app:sliderIndicatorGravity="center_horizontal|bottom"
-        app:sliderIndicatorMargin="15dp"
-        app:sliderIndicatorOrientation="horizontal"
-        app:sliderIndicatorPadding="3dp"
-        app:sliderIndicatorRadius="1dp"
-        app:sliderIndicatorSelectedColor="@color/primary"
-        app:sliderIndicatorUnselectedColor="#FFF"
-        app:sliderScrollTimeInSec="1" />
-
-    <Button
-        android:id="@+id/smartbuy_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/banner_slider"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="12dp"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:text="Buy Gold in a Smart Way"
-        android:textAllCaps="true"
-        android:textColor="@color/brown"
-        android:textStyle="bold" />
-    <RelativeLayout
-        android:id="@+id/catehead"
-        android:layout_below="@+id/smartbuy_btn"
+    <androidx.core.widget.NestedScrollView
+        android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/primarydark"
-            android:textStyle="bold"
-            android:layout_marginStart="12dp"
-            android:textSize="18dp"
-            android:text="Shop by Category"/>
+            android:orientation="vertical">
 
-    </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="12dp"
+                android:orientation="horizontal">
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:hint="Search for gold"
+                    android:textColorHint="@color/primarydark"
+                    app:startIconTint="@color/primarydark"
+                    app:startIconDrawable="@drawable/search_icon">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/search_bar_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
 
+                <ImageView
+                    android:id="@+id/filter_btn"
+                    android:layout_margin="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/filter_icon"
+                    android:layout_gravity="center"
+                    />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerviewcategory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="@null"
-        android:orientation="horizontal"
-        android:layout_below="@+id/catehead"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/category_layout">
-    </androidx.recyclerview.widget.RecyclerView>
+            </LinearLayout>
+
+            <com.smarteist.autoimageslider.SliderView
+                android:id="@+id/banner_slider"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/search_bar"
+                android:layout_centerInParent="true"
+                android:layout_margin="12dp"
+                app:sliderAnimationDuration="600"
+                app:sliderAutoCycleDirection="back_and_forth"
+                app:sliderIndicatorAnimationDuration="600"
+                app:sliderIndicatorEnabled="true"
+                app:sliderIndicatorGravity="center_horizontal|bottom"
+                app:sliderIndicatorMargin="15dp"
+                app:sliderIndicatorOrientation="horizontal"
+                app:sliderIndicatorPadding="3dp"
+                app:sliderIndicatorRadius="1dp"
+                app:sliderIndicatorSelectedColor="@color/primary"
+                app:sliderIndicatorUnselectedColor="#FFF"
+                app:sliderScrollTimeInSec="1" />
+
+            <Button
+                android:id="@+id/smartbuy_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/banner_slider"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Buy Gold in a Smart Way"
+                android:textAllCaps="true"
+                android:textColor="@color/brown"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/catehead"
+                android:layout_below="@+id/smartbuy_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primarydark"
+                    android:textStyle="bold"
+                    android:layout_marginStart="12dp"
+                    android:textSize="18dp"
+                    android:text="Shop by Category"/>
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerviewcategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@null"
+                android:orientation="horizontal"
+                android:layout_below="@+id/catehead"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/category_layout">
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>

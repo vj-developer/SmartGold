@@ -27,7 +27,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    boolean isLoggedin;
     private FrameLayout frameLayout;
     public static TabLayout tabLayout;
     private List<Fragment> fragmentList;
@@ -37,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        isLoggedin = MyFunctions.getBooleanFromSharedPref(MainActivity.this, Constants.ISLOGGEDIN,false);
 
         //tab layout
         frameLayout = findViewById(R.id.framelayout);
@@ -63,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
+                //setFragment(tab.getPosition());
             }
         });
 
