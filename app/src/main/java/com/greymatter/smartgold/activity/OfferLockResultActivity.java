@@ -43,8 +43,12 @@ public class OfferLockResultActivity extends AppCompatActivity {
         findViewById(R.id.continue_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                finish();
+                if (payment_details.equals(Constants.SUCCESS)){
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    finish();
+                }else {
+                    finish();
+                }
             }
         });
     }

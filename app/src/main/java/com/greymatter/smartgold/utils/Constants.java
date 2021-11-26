@@ -43,4 +43,10 @@ public class Constants {
     public static final String STORE_NAME = "store_name";
     public static final String STORE_ADDRESS = "STORE_ADDRESS";
     public static final String VALID_TILL = "valid_till";
+    public static final String RUPEES = "Rs: ";
+    public static final String DISCOUNT_PRICE = "discount_price";
+    public static final String DESCRIPTION = "description";
+    public static final String PRICE = "price";
+    public static final String PRODUCT_NAME = "product_name";
+    public static final String PRODUCT_ID = "product_id";
 }

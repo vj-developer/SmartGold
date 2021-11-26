@@ -8,6 +8,7 @@ import com.greymatter.smartgold.model.CategoryResponse;
 import com.greymatter.smartgold.model.LoginResponse;
 import com.greymatter.smartgold.model.OfferLockResponse;
 import com.greymatter.smartgold.model.PriceDurationResponse;
+import com.greymatter.smartgold.model.ProductListResponse;
 import com.greymatter.smartgold.model.RegisterResponse;
 import com.greymatter.smartgold.model.SmartOffersResponse;
 import com.greymatter.smartgold.utils.Constants;
@@ -51,6 +52,8 @@ public interface APIInterface {
 
     @GET("categorylist.php")
     Call<CategoryResponse> category();
+    @GET("allproducts.php")
+    Call<ProductListResponse> product();
 
     @FormUrlEncoded
     @POST("productlist-seller.php")

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.greymatter.smartgold">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,8 +15,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartGold"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".activity.SmartBuyActivity"></activity>
+        android:usesCleartextTraffic="true"
+        tools:replace="android:theme">
+        <activity android:name=".activity.ProductDetailActivity"></activity>
+        <activity android:name=".activity.SmartBuyActivity" />
         <activity android:name=".activity.OfferLockResultActivity" />
         <activity
             android:name=".activity.FilterActivity"
