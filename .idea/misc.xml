@@ -7,6 +7,7 @@
         <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/drawable/bottom_corners.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/activity_add_address.xml" value="0.22" />
         <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/activity_address.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/activity_checkout.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/activity_filter.xml" value="0.22" />
         <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/activity_otp.xml" value="0.13333333333333333" />
@@ -14,12 +15,15 @@
         <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/activity_payment_success.xml" value="0.1796875" />
         <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/activity_reputed_shop_list.xml" value="0.22" />
         <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/activity_selected_shop_offer.xml" value="0.22" />
+        <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/activity_shop_list.xml" value="0.46482758620689657" />
+        <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/activity_shop_offer_details.xml" value="0.22" />
         <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/activity_signin.xml" value="0.22" />
         <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/activity_signup.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/activity_smart_gold_locked.xml" value="0.22" />
         <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/activity_splash.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/address_item.xml" value="0.22" />
-        <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/available_products_list.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/available_products_list.xml" value="0.7333333333333334" />
+        <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/cart_item.xml" value="0.22" />
         <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/fragment_cart.xml" value="0.22" />
         <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/fragment_otp.xml" value="0.3333333333333333" />
@@ -33,6 +37,7 @@
         <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/fragment_sign_up.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/fragment_smartbuy.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/fragment_smartgold.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/product_layout.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/rounded_edge.xml" value="0.1796875" />
         <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/slider_layout.xml" value="0.1796875" />
         <entry key="..\:/Users/MADHU/AndroidStudioProjects/SmartGold/app/src/main/res/layout/smartbuy_location.xml" value="0.22" />
@@ -43,7 +48,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

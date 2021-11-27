@@ -115,7 +115,6 @@ public class HomeFragment extends Fragment {
                     categoryAdapter = new CategoryAdapter(categoryResponse.getData(),getActivity());
                     category_recycler.setAdapter(categoryAdapter);
                 }
-
             }
 
             @Override
