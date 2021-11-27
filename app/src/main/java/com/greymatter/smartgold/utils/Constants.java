@@ -49,4 +49,7 @@ public class Constants {
     public static final String PRICE = "price";
     public static final String PRODUCT_NAME = "product_name";
     public static final String PRODUCT_ID = "product_id";
+    public static final String LOADING = "Loading...";
+    public static final String QUANTITY = "quantity";
+    public static final String CARTID = "cart_id";
 }

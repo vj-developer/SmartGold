@@ -2,17 +2,28 @@ package com.greymatter.smartgold.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.greymatter.smartgold.R;
+import com.greymatter.smartgold.model.AddAddressResponse;
+import com.greymatter.smartgold.model.AddToCartResponse;
+import com.greymatter.smartgold.retrofit.APIInterface;
+import com.greymatter.smartgold.retrofit.RetrofitBuilder;
 import com.greymatter.smartgold.utils.Constants;
+import com.greymatter.smartgold.utils.MyFunctions;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.content.ContentValues.TAG;
 
@@ -80,6 +91,46 @@ public class ProductDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 quantity = Integer.parseInt(elegantNumberButton.getNumber());
+            }
+        });
+
+        findViewById(R.id.add_to_cart).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addToCart();
+            }
+        });
+    }
+
+    private void addToCart() {
+        MyFunctions.showLoading(ProductDetailActivity.this);
+        String user_id = MyFunctions.getStringFromSharedPref(ProductDetailActivity.this,Constants.USERID,"");
+
+        APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
+        Call<AddToCartResponse> call = apiInterface.add_to_cart(user_id,product_id, String.valueOf(quantity));
+        call.enqueue(new Callback<AddToCartResponse>() {
+            @Override
+            public void onResponse(Call<AddToCartResponse> call, Response<AddToCartResponse> response) {
+                MyFunctions.cancelLoading();
+
+                if (response.isSuccessful()){
+
+                    AddToCartResponse addToCartResponse = response.body();
+                    Toast.makeText(getApplicationContext(), addToCartResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    if(addToCartResponse.getSuccess()){
+                        startActivity(new Intent(getApplicationContext(),CartActivity.class));
+                    }
+
+                }else {
+                    Toast.makeText(getApplicationContext(), response.message(), Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<AddToCartResponse> call, Throwable t) {
+                MyFunctions.cancelLoading();
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

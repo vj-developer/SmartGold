@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,20 +14,25 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
+                android:layout_margin="10dp"
+                app:cardElevation="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_width="75dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/business_male_icon"/>
-            </LinearLayout>
+                    android:id="@+id/product_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/smartgold_logo" />
+
+            </androidx.cardview.widget.CardView>
 
             <LinearLayout
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="vertical"
                 android:padding="16dp">
 
@@ -42,45 +48,52 @@
 
                 <TextView
 
-                    android:id="@+id/prodct_price"
+                    android:id="@+id/product_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Rs. 199.00"
-                    android:textStyle="bold"
                     android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="@color/primarydark" />
+                    android:textColor="@color/primarydark"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_marginTop="8dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:id="@+id/minus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/decrement"/>
+                        android:src="@drawable/ic_baseline_remove_circle_outline_24" />
 
                     <TextView
+                        android:id="@+id/quantity"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
-                        android:text="3"
-                        android:textColor="@color/primarydark"/>
+                        android:text="1"
+                        android:textColor="@color/primarydark" />
 
                     <ImageView
+                        android:id="@+id/plus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/increment"/>
+                        android:src="@drawable/ic_baseline_add_circle_outline_24" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/trash_solid"
-                        android:gravity="right"
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"/>
+
+                    <ImageView
+                        android:id="@+id/remove"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_delete_24" />
                 </LinearLayout>
 
 

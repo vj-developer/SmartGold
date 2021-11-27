@@ -17,6 +17,7 @@
         android:theme="@style/Theme.SmartGold"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
+        <activity android:name=".activity.CartActivity"></activity>
         <activity
             android:name=".activity.CheckoutActivity"
             android:exported="true" />

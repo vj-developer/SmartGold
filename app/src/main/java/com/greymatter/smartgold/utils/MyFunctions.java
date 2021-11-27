@@ -2,12 +2,17 @@ package com.greymatter.smartgold.utils;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.greymatter.smartgold.activity.ProductDetailActivity;
+
 public class MyFunctions {
 
-    public static boolean getBooleanFromSharedPref(Context context,String key, boolean defValue) {
+    private static ProgressDialog progressDialog;
+
+    public static boolean getBooleanFromSharedPref(Context context, String key, boolean defValue) {
         SharedPreferences sh = context.getSharedPreferences("MySharedPref", MODE_PRIVATE);
         return sh.getBoolean(key,defValue);
     }
@@ -31,4 +36,14 @@ public class MyFunctions {
         return sh.getString(key,defValue);
     }
 
+    public static void showLoading(Context context) {
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle(Constants.LOADING);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+    }
+
+    public static void cancelLoading() {
+        progressDialog.dismiss();
+    }
 }

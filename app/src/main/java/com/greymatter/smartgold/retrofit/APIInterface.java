@@ -1,9 +1,11 @@
 package com.greymatter.smartgold.retrofit;
 
 import com.greymatter.smartgold.model.AddAddressResponse;
+import com.greymatter.smartgold.model.AddToCartResponse;
 import com.greymatter.smartgold.model.AddressListResponse;
 import com.greymatter.smartgold.model.BannerListResponse;
 import com.greymatter.smartgold.model.BudgetRangeResponse;
+import com.greymatter.smartgold.model.CartListResponse;
 import com.greymatter.smartgold.model.CategoryResponse;
 import com.greymatter.smartgold.model.LoginResponse;
 import com.greymatter.smartgold.model.OfferLockResponse;
@@ -75,4 +77,19 @@ public interface APIInterface {
     Call<SmartOffersResponse> smart_offers(@Field(Constants.BUDGET_ID) String budget_range_id,
                                            @Field(Constants.LATITUDE) String latitude,
                                            @Field(Constants.LONGITUDE) String longitude) ;
+
+    @FormUrlEncoded
+    @POST("add_to_cart.php")
+    Call<AddToCartResponse> add_to_cart(@Field(Constants.USERID) String user_id,
+                                        @Field(Constants.PRODUCT_ID) String product_id,
+                                        @Field(Constants.QUANTITY) String quantity);
+
+    @FormUrlEncoded
+    @POST("cart_list.php")
+    Call<CartListResponse> cart_list(@Field(Constants.USERID) String user_id);
+
+    @FormUrlEncoded
+    @POST("remove_cart_item.php")
+    Call<AddToCartResponse> remove_from_cart(@Field(Constants.USERID) String user_id,
+                                            @Field(Constants.CARTID) String cart_id);
 }
