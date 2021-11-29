@@ -52,4 +52,11 @@ public class Constants {
     public static final String LOADING = "Loading...";
     public static final String QUANTITY = "quantity";
     public static final String CARTID = "cart_id";
+    public static final String ADDRESS_ID = "address_id";
+    public static final String TRUE = "1";
+    public static final String FALSE = "0";
+    public static final String PAYMENT_METHOD = "payment_method";
+
+    /* 1- Pickup at store
+       2- Delivery at Home */
 }

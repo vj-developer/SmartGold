@@ -51,6 +51,54 @@
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/address_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="vertical"
+                app:cardBackgroundColor="#F8F6F5"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+
+                    <TextView
+                        android:id="@+id/address_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Address"
+                        android:textColor="@color/textdark"
+                        android:textSize="22dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/address_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="195 Link Road, G.V. Residency,"
+                        android:textColor="@color/textdark" />
+
+                    <TextView
+                        android:id="@+id/pincode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Coimbatore - 641 015"
+                        android:textColor="@color/textdark" />
+
+                    <Button
+                        android:id="@+id/change_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Change or Add Address"
+                        android:textColor="@color/textdark" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -80,11 +128,14 @@
                         android:layout_marginTop="20dp">
 
                         <RadioButton
+                            android:id="@+id/pickup_at_store"
+                            android:checked="true"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Pick up at the store" />
 
                         <RadioButton
+                            android:id="@+id/delivery_at_home"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Delivery at home" />
@@ -96,49 +147,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:orientation="vertical"
-                app:cardBackgroundColor="#F8F6F5"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="8dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="15dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Address"
-                        android:textColor="@color/textdark"
-                        android:textSize="22dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="195 Link Road, G.V. Residency,"
-                        android:textColor="@color/textdark" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Coimbatore - 641 015"
-                        android:textColor="@color/textdark" />
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Change or Add Address"
-                        android:textColor="@color/textdark" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -185,7 +194,6 @@
 
             </androidx.cardview.widget.CardView>
 
-
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -216,13 +224,33 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Price ( 1 item ) "
+                            android:text="Total No of Products"
                             android:layout_weight="1"
                             android:textColor="@color/textdark"/>
                         <TextView
+                            android:id="@+id/product_count"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rs. 3000"
+                            android:text="4"
+                            android:textColor="@color/textdark"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Original Total "
+                            android:layout_weight="1"
+                            android:textColor="@color/textdark"/>
+                        <TextView
+                            android:id="@+id/original_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₹2000"
                             android:textColor="@color/textdark"/>
 
                     </LinearLayout>
@@ -238,9 +266,10 @@
                             android:layout_weight="1"
                             android:textColor="@color/textdark"/>
                         <TextView
+                            android:id="@+id/discount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rs. 1500"
+                            android:text="₹1500"
                             android:textColor="@color/textdark"/>
 
                     </LinearLayout>
@@ -256,52 +285,38 @@
                             android:layout_weight="1"
                             android:textColor="@color/textdark"/>
                         <TextView
+                            android:id="@+id/delivery_charge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rs. 0       "
+                            android:text="₹0"
                             android:textColor="@color/textdark"/>
 
                     </LinearLayout>
 
                     <LinearLayout
+                        android:layout_marginTop="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Total weight"
-                            android:layout_weight="1"
-                            android:textColor="@color/textdark"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="20 grams"
-                            android:textColor="@color/textdark"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Total amount"
+                            android:text="Grand Total"
                             android:textStyle="bold"
                             android:layout_weight="1"
                             android:textColor="@color/textdark"/>
                         <TextView
+                            android:id="@+id/order_total"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Rs. 28500"
+                            android:text="₹28500"
                             android:textStyle="bold"
                             android:textColor="@color/textdark"/>
 
                     </LinearLayout>
 
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
 
 
@@ -321,7 +336,7 @@
         android:layout_marginBottom="12dp"
         android:insetTop="0dp"
         android:insetBottom="0dp"
-        android:text="Proceed to Checkout"
+        android:text="Place Order"
         android:textColor="@color/brown"
         android:textStyle="bold" />
 

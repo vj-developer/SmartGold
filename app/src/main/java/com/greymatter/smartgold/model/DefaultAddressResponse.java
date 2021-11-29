@@ -5,7 +5,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class AddressListResponse {
+public class DefaultAddressResponse {
+
     @SerializedName("success")
     @Expose
     private Boolean success;
@@ -41,15 +42,16 @@ public class AddressListResponse {
     }
 
     public class Datum {
+
         @SerializedName("id")
         @Expose
         private String id;
-        @SerializedName("user_id")
-        @Expose
-        private String userId;
         @SerializedName("name")
         @Expose
         private String name;
+        @SerializedName("user_id")
+        @Expose
+        private String userId;
         @SerializedName("address")
         @Expose
         private String address;
@@ -67,7 +69,7 @@ public class AddressListResponse {
         private String pincode;
         @SerializedName("default_address")
         @Expose
-        private String default_address;
+        private String defaultAddress;
 
         public String getId() {
             return id;
@@ -77,20 +79,20 @@ public class AddressListResponse {
             this.id = id;
         }
 
-        public String getUserId() {
-            return userId;
-        }
-
-        public void setUserId(String userId) {
-            this.userId = userId;
-        }
-
         public String getName() {
             return name;
         }
 
         public void setName(String name) {
             this.name = name;
+        }
+
+        public String getUserId() {
+            return userId;
+        }
+
+        public void setUserId(String userId) {
+            this.userId = userId;
         }
 
         public String getAddress() {
@@ -133,12 +135,13 @@ public class AddressListResponse {
             this.pincode = pincode;
         }
 
-        public String getDefault_address() {
-            return default_address;
+        public String getDefaultAddress() {
+            return defaultAddress;
         }
 
-        public void setDefault_address(String default_address) {
-            this.default_address = default_address;
+        public void setDefaultAddress(String defaultAddress) {
+            this.defaultAddress = defaultAddress;
         }
+
     }
 }

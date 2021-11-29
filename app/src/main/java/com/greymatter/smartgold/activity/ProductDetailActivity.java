@@ -138,6 +138,6 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     private void calculateTotal() {
         total = quantity * Integer.parseInt(discounted_price_str);
-        total_price.setText("Total Price = ₹"+total);
+        total_price.setText("₹"+total);
     }
 }

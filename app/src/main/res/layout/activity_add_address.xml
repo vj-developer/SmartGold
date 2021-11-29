@@ -56,6 +56,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 android:id="@+id/name" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -73,6 +74,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 android:id="@+id/address" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -89,6 +91,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 android:id="@+id/address_optional" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -105,6 +108,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 android:id="@+id/area" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -121,6 +125,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 android:id="@+id/city" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -139,6 +144,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/pincode"
                 android:inputType="number"
+                android:singleLine="true"
                 android:maxLength="6"/>
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
@@ -147,6 +153,8 @@
         android:id="@+id/add_address_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_margin="15dp"

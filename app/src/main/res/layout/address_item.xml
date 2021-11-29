@@ -56,4 +56,14 @@
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
+
+    <ImageView
+        android:id="@+id/primary_address"
+        android:layout_alignParentRight="true"
+        android:layout_margin="20dp"
+        android:elevation="12dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/pay_success"/>
+
 </RelativeLayout>

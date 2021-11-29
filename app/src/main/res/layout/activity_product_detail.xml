@@ -102,19 +102,39 @@
                 android:id="@+id/elegantNumberButton"
                 app:textColor="@color/textdark" />
 
-            <TextView
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:id="@+id/total_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total Price = Rs.100.00"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:textColor="@color/brown"/>
 
         </LinearLayout>
 
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/total_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/add_to_cart"
+        android:orientation="horizontal"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total price"
+            android:textColor="@color/primarydark"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="Rs: 20000"
+            android:textColor="@color/primarydark"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

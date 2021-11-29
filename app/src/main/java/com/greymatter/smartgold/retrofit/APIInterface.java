@@ -7,6 +7,8 @@ import com.greymatter.smartgold.model.BannerListResponse;
 import com.greymatter.smartgold.model.BudgetRangeResponse;
 import com.greymatter.smartgold.model.CartListResponse;
 import com.greymatter.smartgold.model.CategoryResponse;
+import com.greymatter.smartgold.model.CheckoutResponse;
+import com.greymatter.smartgold.model.DefaultAddressResponse;
 import com.greymatter.smartgold.model.LoginResponse;
 import com.greymatter.smartgold.model.OfferLockResponse;
 import com.greymatter.smartgold.model.PriceDurationResponse;
@@ -92,4 +94,18 @@ public interface APIInterface {
     @POST("remove_cart_item.php")
     Call<AddToCartResponse> remove_from_cart(@Field(Constants.USERID) String user_id,
                                             @Field(Constants.CARTID) String cart_id);
+
+    @FormUrlEncoded
+    @POST("make_address_default.php")
+    Call<AddToCartResponse> make_address_default(@Field(Constants.USERID) String user_id,
+                                            @Field(Constants.ADDRESS_ID) String address_id);
+
+    @FormUrlEncoded
+    @POST("check_out.php")
+    Call<CheckoutResponse> check_out(@Field(Constants.USERID) String user_id,
+                                     @Field(Constants.PAYMENT_METHOD) String payment_method );
+
+    @FormUrlEncoded
+    @POST("get_default_address.php")
+    Call<DefaultAddressResponse> get_default_address(@Field(Constants.USERID) String user_id);
 }
