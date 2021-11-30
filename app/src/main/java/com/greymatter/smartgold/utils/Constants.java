@@ -56,6 +56,7 @@ public class Constants {
     public static final String TRUE = "1";
     public static final String FALSE = "0";
     public static final String PAYMENT_METHOD = "payment_method";
+    public static final String CATEGORY_ID = "category_id";
 
     /* 1- Pickup at store
        2- Delivery at Home */
