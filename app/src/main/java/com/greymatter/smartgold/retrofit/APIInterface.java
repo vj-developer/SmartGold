@@ -60,6 +60,16 @@ public interface APIInterface {
     Call<ProductListResponse> product();
 
     @FormUrlEncoded
+    @POST("get-offer-lock-by-id.php")
+    Call<OfferLockResponse> offer_locked(@Field(Constants.USERID) String user_id);
+
+    @FormUrlEncoded
+    @POST("allproducts.php")
+    Call<ProductListResponse> category_products(@Field(Constants.CATEGORY_ID) String category_id);
+
+
+
+    @FormUrlEncoded
     @POST("productlist-seller.php")
     Call<CategoryResponse> available_products(@Field(Constants.SELLER_ID) String shop_id);
 

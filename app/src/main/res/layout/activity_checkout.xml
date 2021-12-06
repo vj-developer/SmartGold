@@ -79,14 +79,14 @@
                         android:id="@+id/address_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="195 Link Road, G.V. Residency,"
+                        android:text=""
                         android:textColor="@color/textdark" />
 
                     <TextView
                         android:id="@+id/pincode"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Coimbatore - 641 015"
+                        android:text=""
                         android:textColor="@color/textdark" />
 
                     <Button
@@ -129,9 +129,9 @@
 
                         <RadioButton
                             android:id="@+id/pickup_at_store"
-                            android:checked="true"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:checked="true"
                             android:text="Pick up at the store" />
 
                         <RadioButton
@@ -147,11 +147,11 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:orientation="vertical"
+                android:visibility="gone"
                 app:cardBackgroundColor="#F8F6F5"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="8dp">
@@ -169,21 +169,25 @@
                         android:textColor="@color/textdark"
                         android:textSize="22dp"
                         android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="22kt"
                         android:textColor="@color/textdark" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Seller: Malabar gold and Diamonds"
                         android:textColor="@color/textdark" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="5% off"
                         android:textColor="@color/textdark" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -206,8 +210,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -221,18 +225,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Total No of Products"
                             android:layout_weight="1"
-                            android:textColor="@color/textdark"/>
+                            android:text="Total No of Products"
+                            android:textColor="@color/textdark" />
+
                         <TextView
                             android:id="@+id/product_count"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="4"
-                            android:textColor="@color/textdark"/>
+                            android:textColor="@color/textdark" />
 
                     </LinearLayout>
 
@@ -240,18 +246,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Original Total "
                             android:layout_weight="1"
-                            android:textColor="@color/textdark"/>
+                            android:text="Original Total "
+                            android:textColor="@color/textdark" />
+
                         <TextView
                             android:id="@+id/original_price"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="₹2000"
-                            android:textColor="@color/textdark"/>
+                            android:textColor="@color/textdark" />
 
                     </LinearLayout>
 
@@ -259,18 +267,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Discount"
                             android:layout_weight="1"
-                            android:textColor="@color/textdark"/>
+                            android:text="Discount"
+                            android:textColor="@color/textdark" />
+
                         <TextView
                             android:id="@+id/discount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="₹1500"
-                            android:textColor="@color/textdark"/>
+                            android:textColor="@color/textdark" />
 
                     </LinearLayout>
 
@@ -278,40 +288,44 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Delivery charges"
                             android:layout_weight="1"
-                            android:textColor="@color/textdark"/>
+                            android:text="Delivery charges"
+                            android:textColor="@color/textdark" />
+
                         <TextView
                             android:id="@+id/delivery_charge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="₹0"
-                            android:textColor="@color/textdark"/>
+                            android:textColor="@color/textdark" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_marginTop="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Grand Total"
-                            android:textStyle="bold"
                             android:layout_weight="1"
-                            android:textColor="@color/textdark"/>
+                            android:text="Grand Total"
+                            android:textColor="@color/textdark"
+                            android:textStyle="bold" />
+
                         <TextView
                             android:id="@+id/order_total"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="₹28500"
-                            android:textStyle="bold"
-                            android:textColor="@color/textdark"/>
+                            android:textColor="@color/textdark"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 

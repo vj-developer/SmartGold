@@ -76,7 +76,7 @@ public class CartActivity extends AppCompatActivity {
         findViewById(R.id.proceed).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),CheckoutActivity.class));
+                startActivity(new Intent(CartActivity.this,CheckoutActivity.class));
             }
         });
 

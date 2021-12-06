@@ -10,12 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.greymatter.smartgold.activity.AddressActivity;
 import com.greymatter.smartgold.MainActivity;
 import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.activity.SigninActivity;
+import com.greymatter.smartgold.activity.ViewOfferLockActivity;
 import com.greymatter.smartgold.utils.Constants;
 import com.greymatter.smartgold.utils.MyFunctions;
 
@@ -23,6 +25,7 @@ public class ProfileFragment extends Fragment {
     ImageView profileImage;
     TextView user_name,user_num;
     Button sign_out;
+    LinearLayout Trans;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -37,6 +40,7 @@ public class ProfileFragment extends Fragment {
         user_name = root.findViewById(R.id.user_name);
         user_num = root.findViewById(R.id.user_num);
         sign_out = root.findViewById(R.id.signout_btn);
+        Trans = root.findViewById(R.id.trans);
 
 
         if (!MyFunctions.getBooleanFromSharedPref(getActivity(),Constants.ISLOGGEDIN, false)){
@@ -55,6 +59,13 @@ public class ProfileFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
                 getActivity().finish();
+            }
+        });
+        Trans.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ViewOfferLockActivity.class);
+                startActivity(intent);
             }
         });
         root.findViewById(R.id.add).setOnClickListener(new View.OnClickListener() {
