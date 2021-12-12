@@ -11,6 +11,7 @@ import com.greymatter.smartgold.model.CheckoutResponse;
 import com.greymatter.smartgold.model.DefaultAddressResponse;
 import com.greymatter.smartgold.model.LoginResponse;
 import com.greymatter.smartgold.model.OfferLockResponse;
+import com.greymatter.smartgold.model.OrderResponse;
 import com.greymatter.smartgold.model.PriceDurationResponse;
 import com.greymatter.smartgold.model.ProductListResponse;
 import com.greymatter.smartgold.model.RegisterResponse;
@@ -118,4 +119,13 @@ public interface APIInterface {
     @FormUrlEncoded
     @POST("get_default_address.php")
     Call<DefaultAddressResponse> get_default_address(@Field(Constants.USERID) String user_id);
+
+    @FormUrlEncoded
+    @POST("place_order.php")
+    Call<CheckoutResponse> place_order(@Field(Constants.USERID) String user_id,
+                                       @Field(Constants.BUY_METHOD) String payment_method );
+
+    @FormUrlEncoded
+    @POST("orders_list.php")
+    Call<OrderResponse> order_list(@Field(Constants.USERID) String user_id);
 }

@@ -16,6 +16,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -165,7 +166,7 @@
             android:background="@color/brown" />
 
         <LinearLayout
-            android:id="@+id/ord"
+            android:id="@+id/order"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"

@@ -33,12 +33,14 @@ public class ViewOfferLockActivity extends AppCompatActivity {
         user_id = MyFunctions.getStringFromSharedPref(getApplicationContext(), Constants.USERID,"null");
 
         offer_lock_recycler = findViewById(R.id.recyclerviewofferlock);
-        findViewById(R.id.backbtn).setOnClickListener(new View.OnClickListener() {
+
+        findViewById(R.id.back_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
             }
         });
+
         OfferLockedList();
     }
 

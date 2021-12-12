@@ -93,6 +93,24 @@ public class CartAdapter extends RecyclerView.Adapter <CartAdapter.ViewHolder>{
                 mCallback.remove(cart.getId());
             }
         });
+
+/*
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ProductDetailActivity.class);
+                intent.putExtra(Constants.PRODUCT_NAME,cart.getName());
+                intent.putExtra(Constants.PRODUCT_ID,cart.getId());
+                intent.putExtra(Constants.PRICE,cart.getPrice());
+                intent.putExtra(Constants.DESCRIPTION,cart.getDescription());
+                intent.putExtra(Constants.IMGURL,cart.getImage());
+                intent.putExtra(Constants.DISCOUNT_PRICE,cart.getDiscountedPrice());
+                context.startActivity(intent);
+
+            }
+        });
+*/
+
     }
 
     @Override

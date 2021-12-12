@@ -7,6 +7,7 @@
     tools:context=".fragment.HomeFragment">
 
     <LinearLayout
+        android:visibility="gone"
         android:id="@+id/toolbar"
         android:gravity="center"
         android:padding="10dp"
@@ -14,18 +15,11 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="5dp"
-            android:src="@drawable/bars_solid" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=" "
+            android:text="Smart Gold"
             android:textAlignment="center"
             android:textColor="@color/brown"
             android:textSize="35dp"
@@ -109,10 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/banner_slider"
                 android:layout_centerHorizontal="true"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginBottom="12dp"
+               android:layout_margin="12dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:text="Buy Gold in a Smart Way"

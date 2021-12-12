@@ -17,6 +17,8 @@
         android:theme="@style/Theme.SmartGold"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
+        <activity android:name=".activity.OrderListActivity"></activity>
+        <activity android:name=".activity.OrderResultActivity" />
         <activity
             android:name=".activity.ViewOfferLockActivity"
             android:exported="false" />

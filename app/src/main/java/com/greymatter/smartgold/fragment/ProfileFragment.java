@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.greymatter.smartgold.activity.AddressActivity;
 import com.greymatter.smartgold.MainActivity;
 import com.greymatter.smartgold.R;
+import com.greymatter.smartgold.activity.OrderListActivity;
 import com.greymatter.smartgold.activity.SigninActivity;
 import com.greymatter.smartgold.activity.ViewOfferLockActivity;
 import com.greymatter.smartgold.utils.Constants;
@@ -72,6 +73,14 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AddressActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        root.findViewById(R.id.order).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), OrderListActivity.class);
                 startActivity(intent);
             }
         });
