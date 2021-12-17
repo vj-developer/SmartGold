@@ -68,6 +68,17 @@ public interface APIInterface {
     @POST("allproducts.php")
     Call<ProductListResponse> category_products(@Field(Constants.CATEGORY_ID) String category_id);
 
+    @FormUrlEncoded
+    @POST("filter_products.php")
+    Call<ProductListResponse> filter_products(@Field(Constants.FROM_PRICE_RANGE) String from_price_range,
+                                                @Field(Constants.TO_PRICE_RANGE) String to_price_range,
+                                                @Field(Constants.ORDER_BY) String sort,
+                                              @Field(Constants.CATEGORY_ID) String category_id);
+
+    @FormUrlEncoded
+    @POST("search_products.php")
+    Call<ProductListResponse> search_products(@Field(Constants.SEARCH_TERM) String query);
+
 
 
     @FormUrlEncoded

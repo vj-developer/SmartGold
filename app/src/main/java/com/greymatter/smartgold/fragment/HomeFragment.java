@@ -7,14 +7,19 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.greymatter.smartgold.activity.AddressActivity;
 import com.greymatter.smartgold.activity.FilterActivity;
 import com.greymatter.smartgold.R;
+import com.greymatter.smartgold.activity.FilteredProductsActivity;
 import com.greymatter.smartgold.activity.SmartBuyActivity;
 import com.greymatter.smartgold.adapter.AddressAdapter;
 import com.greymatter.smartgold.adapter.CategoryAdapter;
@@ -45,6 +50,7 @@ public class HomeFragment extends Fragment {
     RecyclerView product_recycler;
     CategoryAdapter categoryAdapter;
     ProductsAdapter productAdapter;
+    EditText search_bar_et;
 
     public HomeFragment() {
     }
@@ -58,6 +64,8 @@ public class HomeFragment extends Fragment {
         sliderView = view.findViewById(R.id.banner_slider);
         category_recycler = view.findViewById(R.id.recyclerviewcategory);
         product_recycler = view.findViewById(R.id.recyclerviewproduct);
+        search_bar_et = view.findViewById(R.id.search_bar_et);
+
         bannerSliderApi();
         CategoryList();
         ProductList();
@@ -77,6 +85,23 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        search_bar_et.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    //do here your stuff f
+
+                    startActivity(new Intent(getActivity(), FilteredProductsActivity.class)
+                            .putExtra(Constants.SEARCH_TERM, search_bar_et.getText().toString().trim())
+                    );
+
+                    return true;
+                }
+                return false;
+            }
+        });
+
         return view;
     }
 

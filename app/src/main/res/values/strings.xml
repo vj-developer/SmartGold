@@ -12,15 +12,26 @@
         <item>5 lakhs to 10 lakhs</item>
         <item>above 10 lakhs</item>
     </string-array>
+
+    <string-array name="initial_slider_values">
+        <item>Upto 1 lakh</item>
+        <item>1 lakh to 5 lakhs</item>
+        <item>5 lakhs to 10 lakhs</item>
+        <item>above 10 lakhs</item>
+    </string-array>
+
+
     <string-array name="weight_array">
         <item>Upto 5 grams</item>
         <item>5 to 25 grams</item>
         <item>25 to 50 grams</item>
         <item>above 50 grams</item>
     </string-array>
+
     <string-array name="categories_array">
         <item>Chain</item>
     </string-array>
+
     <string-array name="product_array">
         <item>Earrings</item>
         <item>Rings</item>
@@ -32,12 +43,12 @@
         <item>Mangalsutra</item>
         <item>Anklet</item>
     </string-array>
+
     <string-array name="sort_array">
-        <item>Best Sellers</item>
-        <item>Latest Models</item>
         <item>Price: Low to High</item>
         <item>Price: High to Low</item>
     </string-array>
+
     <string-array name="filter_weight_array">
         <item>1 gram to 4 grams</item>
         <item>4 grams to 8 grams</item>
@@ -46,4 +57,5 @@
         <item>32 grams - 64 grams</item>
         <item>64 grams and above</item>
     </string-array>
+
 </resources>

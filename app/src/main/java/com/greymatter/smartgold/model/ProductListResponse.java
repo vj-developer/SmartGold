@@ -49,6 +49,10 @@ public class ProductListResponse {
         @Expose
         private String seller_id;
 
+        @SerializedName("store_name")
+        @Expose
+        private String store_name;
+
         @SerializedName("name")
         @Expose
         private String name;
@@ -135,6 +139,14 @@ public class ProductListResponse {
 
         public void setPrice(String price) {
             this.price = price;
+        }
+
+        public String getStore_name() {
+            return store_name;
+        }
+
+        public void setStore_name(String store_name) {
+            this.store_name = store_name;
         }
     }
 

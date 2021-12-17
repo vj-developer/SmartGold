@@ -59,6 +59,11 @@ public class Constants {
     public static final String BUY_METHOD = "buy_method";
     public static final String CATEGORY_ID = "category_id";
     public static final String CATEGORY_NAME = "category_name";
+    public static final String SHOP_NAME = "shop_name";
+    public static final String TO_PRICE_RANGE = "to_price_range";
+    public static final String FROM_PRICE_RANGE = "from_price_range";
+    public static final String ORDER_BY = "sort";
+    public static final String SEARCH_TERM = "search_term";
 
     /* 1- Pickup at store
        2- Delivery at Home */

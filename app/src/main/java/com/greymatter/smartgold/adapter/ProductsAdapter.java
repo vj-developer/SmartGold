@@ -58,6 +58,8 @@ public class ProductsAdapter extends RecyclerView.Adapter <ProductsAdapter.ViewH
                 intent.putExtra(Constants.DESCRIPTION,products.getDescription());
                 intent.putExtra(Constants.IMGURL,products.getImage());
                 intent.putExtra(Constants.DISCOUNT_PRICE,products.getDiscounted_price());
+                intent.putExtra(Constants.SHOP_NAME,products.getStore_name());
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
 
             }

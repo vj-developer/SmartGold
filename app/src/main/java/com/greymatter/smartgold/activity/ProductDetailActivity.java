@@ -28,9 +28,10 @@ import retrofit2.Response;
 import static android.content.ContentValues.TAG;
 
 public class ProductDetailActivity extends AppCompatActivity {
-    TextView pname,pprice,pdescription,product_title,discounted_price,total_price;
+
+    TextView pname,pprice,pdescription,product_title,discounted_price,total_price,shop_name_tv;
     ImageView imageView,backbtn;
-    String namestr,pricestr,descstr,imagestr,discounted_price_str,product_id;
+    String namestr,pricestr,descstr,imagestr,discounted_price_str,product_id,shop_name;
     ElegantNumberButton elegantNumberButton;
     int quantity=1,total;
 
@@ -45,6 +46,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         descstr = getIntent().getStringExtra(Constants.DESCRIPTION);
         imagestr = getIntent().getStringExtra(Constants.IMGURL);
         discounted_price_str = getIntent().getStringExtra(Constants.DISCOUNT_PRICE);
+        shop_name = getIntent().getStringExtra(Constants.SHOP_NAME);
 
         pname = findViewById(R.id.product_name);
         product_title = findViewById(R.id.product_title);
@@ -55,6 +57,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         backbtn = findViewById(R.id.backbtn);
         elegantNumberButton = findViewById(R.id.elegantNumberButton);
         total_price = findViewById(R.id.total_price);
+        shop_name_tv = findViewById(R.id.shop_name_tv);
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +70,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         product_title.setText(namestr);
         pprice.setText(Constants.RUPEES+pricestr);
         discounted_price.setText(Constants.RUPEES+discounted_price_str);
+        shop_name_tv.setText(shop_name);
 
         //striked text
         pprice.setPaintFlags(pprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
