@@ -62,7 +62,7 @@ public class CartAdapter extends RecyclerView.Adapter <CartAdapter.ViewHolder>{
         CartListResponse.Datum cart = cartList.get(position);
 
         holder.product_name.setText(cart.getName());
-        holder.product_price.setText(Constants.RUPEES+cart.getDiscountedPrice());
+        holder.product_price.setText(MyFunctions.ConvertToINR(String.valueOf(cart.getDiscountedPrice())));
         holder.quantity.setText(cart.getQuantity());
         Glide.with(holder.itemView)
                 .load(cart.getImage())

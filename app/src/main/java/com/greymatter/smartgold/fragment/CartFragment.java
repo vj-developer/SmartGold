@@ -131,7 +131,7 @@ public class CartFragment extends Fragment {
             total_amount += cartArrayList.get(i).getDiscountedPrice();
         }
 
-        total.setText(Constants.RUPEES+total_amount);
+        total.setText(MyFunctions.ConvertToINR(String.valueOf(total_amount)));
     }
 
     private void addToCart(String product_id,String quantity) {

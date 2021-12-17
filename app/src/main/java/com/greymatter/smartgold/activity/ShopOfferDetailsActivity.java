@@ -31,7 +31,7 @@ import retrofit2.Response;
 
 public class ShopOfferDetailsActivity extends AppCompatActivity implements PaymentResultListener {
 
-    TextView wastage,wastage_card_tv,amount_tv,day_tv,product_count;
+    TextView wastage,wastage_card_tv,amount_tv,day_tv,product_count,gram_price;
     String amount_string,duration_day,shop_id,user_id,offer_id;
     RecyclerView available_products;
     CategoryAdapter categoryAdapter;
@@ -47,6 +47,7 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
         amount_tv = findViewById(R.id.amount_tv);
         day_tv = findViewById(R.id.day_tv);
         product_count = findViewById(R.id.product_count);
+        gram_price = findViewById(R.id.gram_price);
 
         duration_day = MyFunctions.getStringFromSharedPref(getApplicationContext(),Constants.SMART_LOCK_DAY,duration_day);
         amount_string = MyFunctions.getStringFromSharedPref(getApplicationContext(),Constants.SMART_LOCK_PRICE,amount_string);
@@ -63,6 +64,7 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
 
         wastage.setText(". "+getIntent().getStringExtra(Constants.WASTAGE)+ "% wastage");
         wastage_card_tv.setText(getIntent().getStringExtra(Constants.WASTAGE)+ "% wastage");
+        gram_price.setText(". "+Constants.PER_GRAM_PRICE +MyFunctions.ConvertToINR(getIntent().getStringExtra(Constants.GRAMPRICE)));
 
         findViewById(R.id.back_btn).setOnClickListener(new View.OnClickListener() {
             @Override

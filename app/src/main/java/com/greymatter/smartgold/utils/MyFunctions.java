@@ -8,6 +8,9 @@ import android.content.SharedPreferences;
 
 import com.greymatter.smartgold.activity.ProductDetailActivity;
 
+import java.text.NumberFormat;
+import java.util.Currency;
+
 public class MyFunctions {
 
     private static ProgressDialog progressDialog;
@@ -45,5 +48,12 @@ public class MyFunctions {
 
     public static void cancelLoading() {
         progressDialog.dismiss();
+    }
+
+    public static String ConvertToINR(String price) {
+        NumberFormat format = NumberFormat.getCurrencyInstance();
+        format.setMaximumFractionDigits(0);
+        format.setCurrency(Currency.getInstance(Constants.INR));
+        return format.format(Integer.parseInt(price));
     }
 }

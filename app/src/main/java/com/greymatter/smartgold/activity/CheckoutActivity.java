@@ -199,10 +199,10 @@ public class CheckoutActivity extends AppCompatActivity {
 
     private void updateValues(CheckoutResponse.Data data) {
         product_count.setText(""+data.getNoOfProducts());
-        original_price.setText("₹"+data.getTotalprice());
-        discount.setText("₹"+data.getSaved());
-        delivery_charge.setText("₹"+data.getDeliveryPrice());
-        order_total.setText("₹"+data.getGrandtotal());
+        original_price.setText(MyFunctions.ConvertToINR(String.valueOf(data.getTotalprice())));
+        discount.setText(MyFunctions.ConvertToINR(String.valueOf(data.getSaved())));
+        delivery_charge.setText(MyFunctions.ConvertToINR(String.valueOf(data.getDeliveryPrice())));
+        order_total.setText(MyFunctions.ConvertToINR(String.valueOf(data.getGrandtotal())));
     }
 
     @Override

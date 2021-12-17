@@ -15,6 +15,7 @@ import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.model.CartListResponse;
 import com.greymatter.smartgold.model.OrderResponse;
 import com.greymatter.smartgold.utils.Constants;
+import com.greymatter.smartgold.utils.MyFunctions;
 
 import java.util.List;
 
@@ -40,7 +41,8 @@ public class OrderAdapter extends RecyclerView.Adapter <OrderAdapter.ViewHolder>
         OrderResponse.Datum cart = datumList.get(position);
 
         holder.product_name.setText(cart.getName());
-        holder.product_price.setText(Constants.RUPEES+cart.getDiscountedPrice());
+        holder.order_id.setText(cart.getId());
+        holder.product_price.setText(MyFunctions.ConvertToINR(cart.getDiscountedPrice()));
         holder.quantity.setText(cart.getQuantity());
         if (cart.equals("1")){
             holder.method.setText("Pickup at store");
@@ -78,7 +80,7 @@ public class OrderAdapter extends RecyclerView.Adapter <OrderAdapter.ViewHolder>
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView product_name,product_price,quantity,method;
+        TextView product_name,product_price,quantity,method,order_id;
         ImageView product_image;
 
         public ViewHolder(@NonNull View itemView) {
@@ -89,6 +91,7 @@ public class OrderAdapter extends RecyclerView.Adapter <OrderAdapter.ViewHolder>
             product_price = itemView.findViewById(R.id.product_price);
             quantity = itemView.findViewById(R.id.quantity);
             method = itemView.findViewById(R.id.method);
+            order_id = itemView.findViewById(R.id.order_id);
 
 
         }

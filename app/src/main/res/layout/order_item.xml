@@ -1,8 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textdark"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="ORDER ID   :"/>
+
+        <TextView
+            android:layout_marginStart="15dp"
+            android:layout_weight="1"
+            android:id="@+id/order_id"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/textdark"
+            tools:text="1"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -79,4 +105,4 @@
     </LinearLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

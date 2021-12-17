@@ -14,6 +14,7 @@ import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.activity.ShopOfferDetailsActivity;
 import com.greymatter.smartgold.model.SmartOffersResponse;
 import com.greymatter.smartgold.utils.Constants;
+import com.greymatter.smartgold.utils.MyFunctions;
 
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class SmartOffersAdapter extends RecyclerView.Adapter <SmartOffersAdapter
         String wastage = shop.getWastage() + "% wastage";
         String members_locked = shop.getMaxLocked() + " locked";
         String distance = "Near "+shop.getDistance() + " km";
-        String gram_price = "Gram price: "+shop.getGramPrice();
+        String gram_price = Constants.PER_GRAM_PRICE+MyFunctions.ConvertToINR(shop.getGramPrice());
         holder.shopNickName.setText(shop.getNickName());
         holder.gram_price.setText(gram_price);
         holder.wastage.setText(wastage);

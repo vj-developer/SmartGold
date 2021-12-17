@@ -133,7 +133,7 @@
                     app:finalNumber="50"
                     app:initialNumber="1"
                     android:id="@+id/elegantNumberButton"
-                    app:textColor="@color/textdark" />
+                    app:textColor="@color/brown_btn_txt_color" />
 
 
             </LinearLayout>
@@ -183,7 +183,7 @@
         android:insetBottom="0dp"
         android:text="Add to Cart"
         android:textAllCaps="true"
-        android:textColor="@color/brown"
+        android:textColor="@color/brown_btn_txt_color"
         android:textStyle="bold" />
 
 </RelativeLayout>

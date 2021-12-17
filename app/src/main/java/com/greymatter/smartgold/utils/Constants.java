@@ -43,7 +43,7 @@ public class Constants {
     public static final String STORE_NAME = "store_name";
     public static final String STORE_ADDRESS = "STORE_ADDRESS";
     public static final String VALID_TILL = "valid_till";
-    public static final String RUPEES = "Rs: ";
+    public static final String RUPEES = "₹";
     public static final String DISCOUNT_PRICE = "discount_price";
     public static final String DESCRIPTION = "description";
     public static final String PRICE = "price";
@@ -64,6 +64,8 @@ public class Constants {
     public static final String FROM_PRICE_RANGE = "from_price_range";
     public static final String ORDER_BY = "sort";
     public static final String SEARCH_TERM = "search_term";
+    public static final String INR = "INR";
+    public static final String PER_GRAM_PRICE = "Gram price: ";
 
     /* 1- Pickup at store
        2- Delivery at Home */

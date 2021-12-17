@@ -102,7 +102,7 @@
                     android:id="@+id/end_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="₹50000"
+                    android:text="₹50,000"
                     android:textColor="@color/primary"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -183,7 +183,7 @@
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:text="Search"
-        android:textColor="@color/brown" />
+        android:textColor="@color/brown_btn_txt_color" />
 
 
 </RelativeLayout>

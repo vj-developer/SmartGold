@@ -68,8 +68,8 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         pname.setText(namestr);
         product_title.setText(namestr);
-        pprice.setText(Constants.RUPEES+pricestr);
-        discounted_price.setText(Constants.RUPEES+discounted_price_str);
+        pprice.setText(MyFunctions.ConvertToINR(pricestr));
+        discounted_price.setText(MyFunctions.ConvertToINR(discounted_price_str));
         shop_name_tv.setText(shop_name);
 
         //striked text
@@ -142,6 +142,6 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     private void calculateTotal() {
         total = quantity * Integer.parseInt(discounted_price_str);
-        total_price.setText("₹"+total);
+        total_price.setText(MyFunctions.ConvertToINR(String.valueOf(total)));
     }
 }

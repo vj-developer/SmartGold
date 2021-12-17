@@ -17,6 +17,7 @@ import com.greymatter.smartgold.activity.ProductDetailActivity;
 import com.greymatter.smartgold.model.AddressListResponse;
 import com.greymatter.smartgold.model.ProductListResponse;
 import com.greymatter.smartgold.utils.Constants;
+import com.greymatter.smartgold.utils.MyFunctions;
 
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class ProductsAdapter extends RecyclerView.Adapter <ProductsAdapter.ViewH
         //String add_position = address.getName();
 
         holder.pname.setText(products.getName());
-        holder.price.setText(Constants.RUPEES+products.getDiscounted_price());
+        holder.price.setText(MyFunctions.ConvertToINR(products.getDiscounted_price()));
         Glide.with(holder.itemView)
                 .load(products.getImage())
                 .fitCenter()

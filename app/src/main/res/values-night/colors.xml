@@ -15,7 +15,6 @@
     <color name="black_txt">#000000</color>
 
     <!--Dark mode-->
-    <color name="brown">#401410</color>
-    <color name="textdark">#59310E</color>
-
+    <color name="brown">#F2CF8D</color>
+    <color name="textdark">#F2CF8D</color>
 </resources>

@@ -97,7 +97,7 @@
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:text="Proceed to Checkout >"
-            android:textColor="@color/brown"
+            android:textColor="@color/brown_btn_txt_color"
             android:textStyle="bold" />
 
     </RelativeLayout>

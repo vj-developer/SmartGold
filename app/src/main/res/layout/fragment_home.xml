@@ -111,7 +111,7 @@
                 android:insetBottom="0dp"
                 android:text="Buy Gold in a Smart Way"
                 android:textAllCaps="true"
-                android:textColor="@color/brown"
+                android:textColor="@color/brown_btn_txt_color"
                 android:textStyle="bold" />
 
             <RelativeLayout

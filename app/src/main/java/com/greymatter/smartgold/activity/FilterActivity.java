@@ -123,7 +123,7 @@ public class FilterActivity extends AppCompatActivity implements OnRangeSeekBarL
 
         NumberFormat format = NumberFormat.getCurrencyInstance();
         format.setMaximumFractionDigits(0);
-        format.setCurrency(Currency.getInstance("INR"));
+        format.setCurrency(Currency.getInstance(Constants.INR));
 
         //start price    default = 0
         from_price = String.valueOf(start*1000);
