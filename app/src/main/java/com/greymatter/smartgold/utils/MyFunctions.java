@@ -2,10 +2,16 @@ package com.greymatter.smartgold.utils;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
+import android.view.Window;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.activity.ProductDetailActivity;
 
 import java.text.NumberFormat;
@@ -14,6 +20,7 @@ import java.util.Currency;
 public class MyFunctions {
 
     private static ProgressDialog progressDialog;
+    private static Dialog dialog;
 
     public static boolean getBooleanFromSharedPref(Context context, String key, boolean defValue) {
         SharedPreferences sh = context.getSharedPreferences("MySharedPref", MODE_PRIVATE);
@@ -40,14 +47,23 @@ public class MyFunctions {
     }
 
     public static void showLoading(Context context) {
-        progressDialog = new ProgressDialog(context);
-        progressDialog.setTitle(Constants.LOADING);
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+        dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.viewload);
+        dialog.setCancelable(false);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        ImageView load = dialog.findViewById(R.id.loadgif);
+        Glide.with(context).asGif().load(R.raw.load).into(load);
+        dialog.show();
+//        progressDialog = new ProgressDialog(context);
+//        progressDialog.setTitle(Constants.LOADING);
+//        progressDialog.setCancelable(false);
+//        progressDialog.show();
     }
 
     public static void cancelLoading() {
-        progressDialog.dismiss();
+        dialog.dismiss();
+//        progressDialog.dismiss();
     }
 
     public static String ConvertToINR(String price) {
