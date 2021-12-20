@@ -3,8 +3,10 @@ package com.greymatter.smartgold.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -51,6 +53,18 @@ public class FilterActivity extends AppCompatActivity implements OnRangeSeekBarL
         rangeSeekBar.setEndProgress(80); // default is 50*/
 
         CategoryList();
+
+        category_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.spinner_txt));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         findViewById(R.id.back_btn).setOnClickListener(new View.OnClickListener() {
             @Override

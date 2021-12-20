@@ -17,4 +17,6 @@
     <!--Dark mode-->
     <color name="brown">#F2CF8D</color>
     <color name="textdark">#F2CF8D</color>
+    <color name="spinner_txt">#FFFFFF</color>
+
 </resources>
