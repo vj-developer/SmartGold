@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,10 +19,14 @@ import com.greymatter.smartgold.model.BudgetRangeResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
 import com.greymatter.smartgold.utils.Constants;
+import com.greymatter.smartgold.utils.MyFunctions;
 import com.shivtechs.maplocationpicker.LocationPickerActivity;
 import com.shivtechs.maplocationpicker.MapUtility;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,6 +49,16 @@ public class SmartBuyActivity extends AppCompatActivity {
         location_tv = findViewById(R.id.location_tv);
 
         MapUtility.apiKey = getResources().getString(R.string.your_api_key);
+
+        latitude = MyFunctions.getStringFromSharedPref(getApplicationContext(),Constants.LATITUDE,"null");
+        longitude = MyFunctions.getStringFromSharedPref(getApplicationContext(),Constants.LONGITUDE,"null");
+        if (!latitude.equals("null")){
+            try {
+                getAddressFromLatLng(latitude,longitude);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         findViewById(R.id.budget_gram_apply_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,19 +113,17 @@ public class SmartBuyActivity extends AppCompatActivity {
     }
 
     private void budgetRangeApi() {
-        ProgressDialog progressDialog = new ProgressDialog(SmartBuyActivity.this);
-        progressDialog.setTitle("Loading...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+
+        MyFunctions.showLoading(SmartBuyActivity.this);
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
         Call<BudgetRangeResponse> call = apiInterface.budget_range();
 
         call.enqueue(new Callback<BudgetRangeResponse>() {
             @Override
             public void onResponse(Call<BudgetRangeResponse> call, Response<BudgetRangeResponse> response) {
+                MyFunctions.cancelLoading();
                 BudgetRangeResponse budgetRangeResponse = response.body();
                 if(budgetRangeResponse.getSuccess()){
-                    progressDialog.dismiss();
                     budgetRangeArray = new ArrayList<>();
                     budgetRangeIdArray = new ArrayList<>();
                     for(int i=0; i<budgetRangeResponse.getData().size(); i++){
@@ -126,7 +140,7 @@ public class SmartBuyActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<BudgetRangeResponse> call, Throwable t) {
-                progressDialog.dismiss();
+                MyFunctions.cancelLoading();
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -152,6 +166,7 @@ public class SmartBuyActivity extends AppCompatActivity {
                     "addressline1"
                     "addressline2"
                      */
+
                     location_tv.setText(new StringBuilder().append
                             (completeAddress.getString("city")).append(" - ").append
                             (completeAddress.getString("postalcode")).toString());
@@ -159,10 +174,33 @@ public class SmartBuyActivity extends AppCompatActivity {
                     latitude = String.valueOf(currentLatitude);
                     longitude = String.valueOf(currentLongitude);
 
+                    MyFunctions.saveStringToSharedPref(getApplicationContext(),Constants.LATITUDE,latitude);
+                    MyFunctions.saveStringToSharedPref(getApplicationContext(),Constants.LONGITUDE,longitude);
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
+    }
+
+    private void getAddressFromLatLng(String latitude, String longitude) throws IOException {
+
+        Geocoder geocoder;
+        List<Address> addresses;
+        geocoder = new Geocoder(this, Locale.getDefault());
+
+        addresses = geocoder.getFromLocation(Double.parseDouble(latitude), Double.parseDouble(longitude), 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+
+        String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+        String city = addresses.get(0).getLocality();
+        String state = addresses.get(0).getAdminArea();
+        String country = addresses.get(0).getCountryName();
+        String postalCode = addresses.get(0).getPostalCode();
+        String knownName = addresses.get(0).getFeatureName();
+
+        location_tv.setText(new StringBuilder().append
+                (city).append(" - ").append
+                (postalCode).toString());
+
     }
 }

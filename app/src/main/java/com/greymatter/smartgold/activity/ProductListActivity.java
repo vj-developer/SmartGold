@@ -15,6 +15,7 @@ import com.greymatter.smartgold.model.ProductListResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
 import com.greymatter.smartgold.utils.Constants;
+import com.greymatter.smartgold.utils.MyFunctions;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,7 +38,7 @@ public class ProductListActivity extends AppCompatActivity {
         CategoryTitle.setText(category_name);
         ProductList();
 
-        findViewById(R.id.backbtn).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.back_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
@@ -45,23 +46,31 @@ public class ProductListActivity extends AppCompatActivity {
         });
     }
     private void ProductList() {
+        MyFunctions.showLoading(ProductListActivity.this);
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
         Call<ProductListResponse> call = apiInterface.category_products(category_id);
         call.enqueue(new Callback<ProductListResponse>() {
             @Override
             public void onResponse(Call<ProductListResponse> call, Response<ProductListResponse> response) {
+                MyFunctions.cancelLoading();
                 ProductListResponse productResponse = response.body();
                 if(productResponse.getSuccess()){
                     productAdapter = new ProductsAdapter(productResponse.getData(),ProductListActivity.this);
                     product_recycler.setAdapter(productAdapter);
+
+                    findViewById(R.id.order_empty).setVisibility(View.GONE);
+                    product_recycler.setVisibility(View.VISIBLE);
+                }else {
+                    findViewById(R.id.order_empty).setVisibility(View.VISIBLE);
+                    product_recycler.setVisibility(View.GONE);
                 }
 
             }
 
             @Override
             public void onFailure(Call<ProductListResponse> call, Throwable t) {
+                MyFunctions.cancelLoading();
                 Toast.makeText(ProductListActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-
             }
         });
 

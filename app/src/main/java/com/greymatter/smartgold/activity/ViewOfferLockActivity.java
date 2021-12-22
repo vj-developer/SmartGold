@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.adapter.OfferLockAdapter;
 import com.greymatter.smartgold.adapter.ProductsAdapter;
+import com.greymatter.smartgold.model.LockedOfferResponse;
 import com.greymatter.smartgold.model.OfferLockResponse;
 import com.greymatter.smartgold.model.ProductListResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
@@ -46,20 +47,20 @@ public class ViewOfferLockActivity extends AppCompatActivity {
 
     private void OfferLockedList() {
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<OfferLockResponse> call = apiInterface.offer_locked(user_id);
-        call.enqueue(new Callback<OfferLockResponse>() {
+        Call<LockedOfferResponse> call = apiInterface.offer_locked(user_id);
+        call.enqueue(new Callback<LockedOfferResponse>() {
             @Override
-            public void onResponse(Call<OfferLockResponse> call, Response<OfferLockResponse> response) {
-                OfferLockResponse productResponse = response.body();
-                if(productResponse.getSuccess()){
-                    offerlockAdapter = new OfferLockAdapter(productResponse.getData(),ViewOfferLockActivity.this);
+            public void onResponse(Call<LockedOfferResponse> call, Response<LockedOfferResponse> response) {
+                LockedOfferResponse lockedOfferResponse = response.body();
+                if(lockedOfferResponse.getSuccess()){
+                    offerlockAdapter = new OfferLockAdapter(lockedOfferResponse.getData(),ViewOfferLockActivity.this);
                     offer_lock_recycler.setAdapter(offerlockAdapter);
                 }
 
             }
 
             @Override
-            public void onFailure(Call<OfferLockResponse> call, Throwable t) {
+            public void onFailure(Call<LockedOfferResponse> call, Throwable t) {
                 Toast.makeText(ViewOfferLockActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
 
             }

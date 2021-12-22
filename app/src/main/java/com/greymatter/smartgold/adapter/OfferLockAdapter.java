@@ -1,7 +1,9 @@
 package com.greymatter.smartgold.adapter;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +17,23 @@ import com.bumptech.glide.Glide;
 import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.activity.CategoryDetailActivity;
 import com.greymatter.smartgold.activity.ProductListActivity;
+import com.greymatter.smartgold.model.LockedOfferResponse;
 import com.greymatter.smartgold.model.OfferLockResponse;
 import com.greymatter.smartgold.utils.Constants;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.util.List;
+import java.util.Locale;
 
 public class OfferLockAdapter extends RecyclerView.Adapter <OfferLockAdapter.ViewHolder>{
-    List<OfferLockResponse.Datum> offerlockList;
+    List<LockedOfferResponse.Data> offerlockList;
     Context context;
-    public OfferLockAdapter(List<OfferLockResponse.Datum> offerlockList, Context context) {
+    public OfferLockAdapter(List<LockedOfferResponse.Data> offerlockList, Context context) {
         this.offerlockList = offerlockList;
         this.context = context;
     }
@@ -36,11 +46,38 @@ public class OfferLockAdapter extends RecyclerView.Adapter <OfferLockAdapter.Vie
 
     @Override
     public void onBindViewHolder(@NonNull OfferLockAdapter.ViewHolder holder, int position) {
-        OfferLockResponse.Datum offerlock = offerlockList.get(position);
+        LockedOfferResponse.Data offerlock = offerlockList.get(position);
         //String add_position = address.getName();
         holder.offer_lock_id.setText(offerlock.getId());
         holder.valid_date.setText(offerlock.getValidTill());
-        holder.seller_details.setText(offerlock.getStoreName() + ","+offerlock.getStreet() +","+offerlock.getCity()+","+offerlock.getPincode()+","+offerlock.getState()+","+offerlock.getMobile());
+        holder.shop_name_tv.setText(offerlock.getStoreName());
+        holder.shop_address_tv.setText(offerlock.getStreet() +",\n"+offerlock.getCity()+" - "+offerlock.getPincode());
+
+        holder.call.setOnClickListener(v -> makePhoneCall(offerlock.getMobile()));
+        holder.location.setOnClickListener(v -> openLocation(offerlock.getLatitude(),offerlock.getLongitude()));
+    }
+
+    private void openLocation(String latitude, String longitude) {
+        String uri = String.format(Locale.ENGLISH, "geo:%f,%f", Float.parseFloat(latitude), Float.parseFloat(longitude));
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        context.startActivity(intent);
+    }
+
+    private void makePhoneCall(String mobile) {
+
+        Dexter.withContext(context)
+                .withPermission(Manifest.permission.CALL_PHONE)
+                .withListener(new PermissionListener() {
+                    @Override public void onPermissionGranted(PermissionGrantedResponse response) {
+                        String number = "tel:"+mobile;
+                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+                        callIntent.setData(Uri.parse(number));
+                        context.startActivity(callIntent);
+                    }
+                    @Override public void onPermissionDenied(PermissionDeniedResponse response) {/* ... */}
+                    @Override public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {/* ... */}
+                }).check();
+
 
     }
 
@@ -48,15 +85,20 @@ public class OfferLockAdapter extends RecyclerView.Adapter <OfferLockAdapter.Vie
     public int getItemCount() {
         return offerlockList.size();
     }
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView offer_lock_id,valid_date,seller_details;
 
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        TextView offer_lock_id,valid_date,shop_name_tv,shop_address_tv;
+        ImageView call,location;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             offer_lock_id = itemView.findViewById(R.id.offer_lock_id);
             valid_date = itemView.findViewById(R.id.valid_date);
-            seller_details = itemView.findViewById(R.id.seller_details);
+            shop_name_tv = itemView.findViewById(R.id.shop_name_tv);
+            shop_address_tv = itemView.findViewById(R.id.shop_address_tv);
+            call = itemView.findViewById(R.id.call);
+            location = itemView.findViewById(R.id.location);
 
         }
     }

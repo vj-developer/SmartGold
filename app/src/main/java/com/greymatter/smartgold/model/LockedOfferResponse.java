@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class OfferLockResponse {
+public class LockedOfferResponse {
 
     @SerializedName("success")
     @Expose
@@ -15,7 +15,7 @@ public class OfferLockResponse {
     private String message;
     @SerializedName("data")
     @Expose
-    private Data data;
+    private List<Data> data;
 
     public Boolean getSuccess() {
         return success;
@@ -33,11 +33,11 @@ public class OfferLockResponse {
         this.message = message;
     }
 
-    public Data getData() {
+    public List<Data> getData() {
         return data;
     }
 
-    public void setData(Data data) {
+    public void setData(List<Data> data) {
         this.data = data;
     }
 
@@ -85,7 +85,7 @@ public class OfferLockResponse {
         @SerializedName("longitude")
         @Expose
         private String longitude;
-        @SerializedName("valid_till")
+        @SerializedName("valid_date")
         @Expose
         private String validTill;
 

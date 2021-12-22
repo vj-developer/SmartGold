@@ -9,6 +9,7 @@ import com.greymatter.smartgold.model.CartListResponse;
 import com.greymatter.smartgold.model.CategoryResponse;
 import com.greymatter.smartgold.model.CheckoutResponse;
 import com.greymatter.smartgold.model.DefaultAddressResponse;
+import com.greymatter.smartgold.model.LockedOfferResponse;
 import com.greymatter.smartgold.model.LoginResponse;
 import com.greymatter.smartgold.model.OfferLockResponse;
 import com.greymatter.smartgold.model.OrderResponse;
@@ -57,12 +58,13 @@ public interface APIInterface {
 
     @GET("categorylist.php")
     Call<CategoryResponse> category();
+
     @GET("allproducts.php")
     Call<ProductListResponse> product();
 
     @FormUrlEncoded
     @POST("get-offer-lock-by-id.php")
-    Call<OfferLockResponse> offer_locked(@Field(Constants.USERID) String user_id);
+    Call<LockedOfferResponse> offer_locked(@Field(Constants.USERID) String user_id);
 
     @FormUrlEncoded
     @POST("allproducts.php")

@@ -63,7 +63,7 @@ public class AddressAdapter extends RecyclerView.Adapter <AddressAdapter.ViewHol
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                makeAddressDefault(address.getId());
+                if (!address.getDefault_address().equals(Constants.TRUE)) makeAddressDefault(address.getId());
             }
         });
     }

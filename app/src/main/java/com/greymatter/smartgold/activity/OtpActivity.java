@@ -198,9 +198,7 @@ public class OtpActivity extends AppCompatActivity {
 
     private void registerApicall() {
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("loading...");
-        progressDialog.show();
+        MyFunctions.showLoading(OtpActivity.this);
 
         String name = MyFunctions.getStringFromSharedPref(OtpActivity.this, Constants.NAME,"");
         String email = MyFunctions.getStringFromSharedPref(OtpActivity.this, Constants.EMAIL,"");
@@ -210,7 +208,7 @@ public class OtpActivity extends AppCompatActivity {
         call.enqueue(new Callback<RegisterResponse>() {
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
-                progressDialog.dismiss();
+                MyFunctions.cancelLoading();
                 RegisterResponse registerResponse = response.body();
                 Toast.makeText(getApplicationContext(),registerResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 if(registerResponse.getSuccess()){
@@ -224,7 +222,7 @@ public class OtpActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<RegisterResponse> call, Throwable t) {
-                progressDialog.dismiss();
+                MyFunctions.cancelLoading();
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

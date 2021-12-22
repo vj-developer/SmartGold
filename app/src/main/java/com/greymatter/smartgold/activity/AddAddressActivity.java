@@ -64,17 +64,15 @@ public class AddAddressActivity extends AppCompatActivity {
     }
 
     private void AddressApiCall() {
-        APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Loading...");
-        progressDialog.show();
-        String user_id = MyFunctions.getStringFromSharedPref(AddAddressActivity.this,Constants.USERID,"");
 
+        MyFunctions.showLoading(AddAddressActivity.this);
+        APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
+        String user_id = MyFunctions.getStringFromSharedPref(AddAddressActivity.this,Constants.USERID,"");
         Call<AddAddressResponse> call = apiInterface.add_address(user_id,user_name,address,address_optional,city,area,pin_code);
         call.enqueue(new Callback<AddAddressResponse>() {
             @Override
             public void onResponse(Call<AddAddressResponse> call, Response<AddAddressResponse> response) {
-                progressDialog.dismiss();
+                MyFunctions.cancelLoading();
                 AddAddressResponse addAddressResponse = response.body();
                 Toast.makeText(getApplicationContext(), addAddressResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 if(addAddressResponse.getSuccess()){
@@ -86,7 +84,7 @@ public class AddAddressActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<AddAddressResponse> call, Throwable t) {
-                progressDialog.dismiss();
+                MyFunctions.cancelLoading();
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

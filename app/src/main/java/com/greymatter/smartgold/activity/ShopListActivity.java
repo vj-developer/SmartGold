@@ -14,6 +14,7 @@ import com.greymatter.smartgold.model.SmartOffersResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
 import com.greymatter.smartgold.utils.Constants;
+import com.greymatter.smartgold.utils.MyFunctions;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,17 +49,15 @@ public class ShopListActivity extends AppCompatActivity {
     }
 
     private void SmartOffersApi() {
-        APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Loading...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
 
+        MyFunctions.showLoading(ShopListActivity.this);
+        APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
         Call<SmartOffersResponse> call = apiInterface.smart_offers(budget_id,latitude,longitude);
         call.enqueue(new Callback<SmartOffersResponse>() {
             @Override
             public void onResponse(Call<SmartOffersResponse> call, Response<SmartOffersResponse> response) {
-                progressDialog.dismiss();
+                MyFunctions.cancelLoading();
+
                 SmartOffersResponse smartOffersResponse = response.body();
                 if(smartOffersResponse.getSuccess()){
                     smartOffersAdapter = new SmartOffersAdapter(smartOffersResponse.getData(), ShopListActivity.this);
@@ -70,7 +69,7 @@ public class ShopListActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<SmartOffersResponse> call, Throwable t) {
-                progressDialog.dismiss();
+                MyFunctions.cancelLoading();
                 Toast.makeText(getApplicationContext() ,t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

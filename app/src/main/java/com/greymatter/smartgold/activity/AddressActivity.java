@@ -44,16 +44,14 @@ public class AddressActivity extends AppCompatActivity {
     }
 
     private void addressListApi() {
+        MyFunctions.showLoading(AddressActivity.this);
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Loading...");
-        progressDialog.show();
 
         Call<AddressListResponse> call = apiInterface.address_list(MyFunctions.getStringFromSharedPref(AddressActivity.this,Constants.USERID,""));
         call.enqueue(new Callback<AddressListResponse>() {
             @Override
             public void onResponse(Call<AddressListResponse> call, Response<AddressListResponse> response) {
-                progressDialog.dismiss();
+                MyFunctions.cancelLoading();
                 AddressListResponse addressListResponse = response.body();
                 if(addressListResponse.getSuccess()){
                    addressAdapter = new AddressAdapter(addressListResponse.getData(),AddressActivity.this);
@@ -63,7 +61,7 @@ public class AddressActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<AddressListResponse> call, Throwable t) {
-                progressDialog.dismiss();
+                MyFunctions.cancelLoading();
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

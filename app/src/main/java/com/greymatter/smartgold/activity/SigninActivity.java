@@ -57,16 +57,13 @@ public class SigninActivity extends AppCompatActivity {
     }
 
     private void loginApiCall(String mobile_number) {
+        MyFunctions.showLoading(SigninActivity.this);
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("loading...");
-        progressDialog.show();
-
         Call<LoginResponse> call = apiInterface.login(mobile_number);
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                progressDialog.dismiss();
+                MyFunctions.cancelLoading();
                 LoginResponse loginResponse = response.body();
                 if(loginResponse.getSuccess()){
                     MyFunctions.saveStringToSharedPref(SigninActivity.this, Constants.USERID,loginResponse.getData().get(0).getId());
@@ -82,7 +79,7 @@ public class SigninActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                progressDialog.dismiss();
+                MyFunctions.cancelLoading();
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

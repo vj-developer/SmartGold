@@ -53,6 +53,7 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <LinearLayout
+        android:visibility="gone"
         android:layout_centerInParent="true"
         android:orientation="vertical"
         android:id="@+id/order_empty"

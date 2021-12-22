@@ -110,17 +110,15 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
     }
 
     private void getAvailableProducts() {
-        ProgressDialog progressDialog = new ProgressDialog(ShopOfferDetailsActivity.this);
-        progressDialog.setTitle("Loading...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+
+        MyFunctions.showLoading(ShopOfferDetailsActivity.this);
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
 
         Call<CategoryResponse> call = apiInterface.available_products(shop_id);
         call.enqueue(new Callback<CategoryResponse>() {
             @Override
             public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
-                progressDialog.dismiss();
+                MyFunctions.cancelLoading();
                 CategoryResponse categoryResponse = response.body();
                 if(categoryResponse.getSuccess()){
                     categoryAdapter = new CategoryAdapter(categoryResponse.getData(),ShopOfferDetailsActivity.this);
@@ -132,24 +130,20 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
 
             @Override
             public void onFailure(Call<CategoryResponse> call, Throwable t) {
-                progressDialog.dismiss();
+                MyFunctions.cancelLoading();
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void getPriceDuration() {
-        ProgressDialog progressDialog = new ProgressDialog(ShopOfferDetailsActivity.this);
-        progressDialog.setTitle("Loading...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
         Call<PriceDurationResponse> call = apiInterface.price_duration();
 
         call.enqueue(new Callback<PriceDurationResponse>() {
             @Override
             public void onResponse(Call<PriceDurationResponse> call, Response<PriceDurationResponse> response) {
-                progressDialog.dismiss();
                 PriceDurationResponse priceDurationResponse = response.body();
 
                 if(priceDurationResponse.getSuccess()){
@@ -166,7 +160,6 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
 
             @Override
             public void onFailure(Call<PriceDurationResponse> call, Throwable t) {
-                progressDialog.dismiss();
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -174,33 +167,29 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
     }
 
     private void lockOffer() {
+
+        MyFunctions.showLoading(ShopOfferDetailsActivity.this);
         user_id = MyFunctions.getStringFromSharedPref(getApplicationContext(),Constants.USERID,"null");
-
-        ProgressDialog progressDialog = new ProgressDialog(ShopOfferDetailsActivity.this);
-        progressDialog.setTitle("Loading...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-
         Call<OfferLockResponse> call = apiInterface.lock_offer(user_id,shop_id,offer_id,amount_string);
         call.enqueue(new Callback<OfferLockResponse>() {
             @Override
             public void onResponse(Call<OfferLockResponse> call, Response<OfferLockResponse> response) {
-                progressDialog.dismiss();
+                MyFunctions.cancelLoading();
 
                 OfferLockResponse offerLockResponse = response.body();
                 if (offerLockResponse.getSuccess()){
                     Intent intent = new Intent(getApplicationContext(), OfferLockResultActivity.class);
                     intent.putExtra(Constants.PAYMENT,Constants.SUCCESS);
-                    intent.putExtra(Constants.REF_ID,offerLockResponse.getData().get(0).getId());
-                    intent.putExtra(Constants.STORE_NAME,offerLockResponse.getData().get(0).getStoreName());
+                    intent.putExtra(Constants.REF_ID,offerLockResponse.getData().getId());
+                    intent.putExtra(Constants.STORE_NAME,offerLockResponse.getData().getStoreName());
 
-                    String address = offerLockResponse.getData().get(0).getStreet()+
-                            ", "+offerLockResponse.getData().get(0).getCity()+
-                            " - "+offerLockResponse.getData().get(0).getPincode();
+                    String address = offerLockResponse.getData().getStreet()+
+                            ", "+offerLockResponse.getData().getCity()+
+                            " - "+offerLockResponse.getData().getPincode();
 
                     intent.putExtra(Constants.STORE_ADDRESS,address);
-                    intent.putExtra(Constants.VALID_TILL,offerLockResponse.getData().get(0).getValidTill());
+                    intent.putExtra(Constants.VALID_TILL,offerLockResponse.getData().getValidTill());
                     startActivity(intent);
                     finish();
                 }
@@ -209,7 +198,7 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
 
             @Override
             public void onFailure(Call<OfferLockResponse> call, Throwable t) {
-                progressDialog.dismiss();
+                MyFunctions.cancelLoading();
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

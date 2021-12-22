@@ -101,7 +101,11 @@ public class ProductDetailActivity extends AppCompatActivity {
         findViewById(R.id.add_to_cart).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToCart();
+                if (MyFunctions.getBooleanFromSharedPref(getApplicationContext(),Constants.ISLOGGEDIN,false)){
+                    addToCart();
+                }else {
+                    startActivity(new Intent(getApplicationContext(),SigninActivity.class));
+                }
             }
         });
     }
