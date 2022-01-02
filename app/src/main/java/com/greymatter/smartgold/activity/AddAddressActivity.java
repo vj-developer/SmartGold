@@ -76,8 +76,6 @@ public class AddAddressActivity extends AppCompatActivity {
                 AddAddressResponse addAddressResponse = response.body();
                 Toast.makeText(getApplicationContext(), addAddressResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 if(addAddressResponse.getSuccess()){
-                    Intent intent = new Intent(AddAddressActivity.this, AddressActivity.class);
-                    startActivity(intent);
                     finish();
                 }
             }

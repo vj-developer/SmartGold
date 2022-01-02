@@ -66,6 +66,7 @@ public class Constants {
     public static final String SEARCH_TERM = "search_term";
     public static final String INR = "INR";
     public static final String PER_GRAM_PRICE = "Gram price: ";
+    public static final String IS_PAID = "is_paid";
 
     /* 1- Pickup at store
        2- Delivery at Home */

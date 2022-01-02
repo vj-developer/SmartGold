@@ -60,10 +60,17 @@ public class ShopListActivity extends AppCompatActivity {
 
                 SmartOffersResponse smartOffersResponse = response.body();
                 if(smartOffersResponse.getSuccess()){
+
+                    findViewById(R.id.order_empty).setVisibility(View.GONE);
+                    findViewById(R.id.container).setVisibility(View.VISIBLE);
+
                     smartOffersAdapter = new SmartOffersAdapter(smartOffersResponse.getData(), ShopListActivity.this);
                     smartoffers_recycler.setAdapter(smartOffersAdapter);
                 }else {
-                    Toast.makeText(ShopListActivity.this, smartOffersResponse.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    findViewById(R.id.order_empty).setVisibility(View.VISIBLE);
+                    findViewById(R.id.container).setVisibility(View.GONE);
+                    //Toast.makeText(ShopListActivity.this, smartOffersResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 

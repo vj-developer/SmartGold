@@ -51,7 +51,7 @@ public class AddressAdapter extends RecyclerView.Adapter <AddressAdapter.ViewHol
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         AddressListResponse.Datum address = addressList.get(position);
         //String add_position = address.getName();
-        String address_details = address.getAddress()+" , "+ address.getLandmark()+" , "+address.getArea()+ " , ";
+        String address_details = address.getAddress()+" , "+address.getArea()+ " , ";
         String pincode_city = address.getCity()+" - "+address.getPincode();
         holder.add_heading.setText(address.getName());
         holder.address.setText(address_details);

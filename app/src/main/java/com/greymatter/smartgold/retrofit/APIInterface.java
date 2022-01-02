@@ -136,7 +136,8 @@ public interface APIInterface {
     @FormUrlEncoded
     @POST("place_order.php")
     Call<CheckoutResponse> place_order(@Field(Constants.USERID) String user_id,
-                                       @Field(Constants.BUY_METHOD) String payment_method );
+                                       @Field(Constants.BUY_METHOD) String payment_method,
+                                       @Field(Constants.IS_PAID) boolean is_paid );
 
     @FormUrlEncoded
     @POST("orders_list.php")

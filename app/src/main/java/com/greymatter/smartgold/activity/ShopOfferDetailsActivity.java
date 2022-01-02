@@ -213,7 +213,7 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
 
     @Override
     public void onPaymentError(int i, String s) {
-        Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, OfferLockResultActivity.class);
         intent.putExtra(Constants.PAYMENT,Constants.FAIL);
         startActivity(intent);

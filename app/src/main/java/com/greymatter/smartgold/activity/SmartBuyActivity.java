@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.model.BudgetRangeResponse;
+import com.greymatter.smartgold.model.DefaultAddressResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
 import com.greymatter.smartgold.utils.Constants;
@@ -38,6 +40,7 @@ public class SmartBuyActivity extends AppCompatActivity {
     Spinner budgetArraySpinnner;
     private int ADDRESS_PICKER_REQUEST = 123;
     TextView location_tv;
+    TextView address_name,address_tv,pincode;
     String latitude= "null",longitude = "null";
 
     @Override
@@ -46,12 +49,13 @@ public class SmartBuyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_smart_buy);
 
         budgetArraySpinnner = findViewById(R.id.budget_spinner);
+        address_name = findViewById(R.id.address_name);
+        address_tv = findViewById(R.id.address_tv);
+        pincode = findViewById(R.id.pincode);
         location_tv = findViewById(R.id.location_tv);
 
         MapUtility.apiKey = getResources().getString(R.string.your_api_key);
 
-        latitude = MyFunctions.getStringFromSharedPref(getApplicationContext(),Constants.LATITUDE,"null");
-        longitude = MyFunctions.getStringFromSharedPref(getApplicationContext(),Constants.LONGITUDE,"null");
         if (!latitude.equals("null")){
             try {
                 getAddressFromLatLng(latitude,longitude);
@@ -63,11 +67,7 @@ public class SmartBuyActivity extends AppCompatActivity {
         findViewById(R.id.budget_gram_apply_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!latitude.equals("null")){
-                    openShopList();
-                }
-                else
-                    Toast.makeText(getApplicationContext(), "Select the location", Toast.LENGTH_SHORT).show();
+                openShopList();
             }
         });
 
@@ -92,6 +92,13 @@ public class SmartBuyActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.change_address).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),AddressActivity.class));
+            }
+        });
+
         findViewById(R.id.back_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,6 +108,58 @@ public class SmartBuyActivity extends AppCompatActivity {
 
         budgetRangeApi();
 
+    }
+
+    private void getDefaultAddress() {
+        String user_id = MyFunctions.getStringFromSharedPref(SmartBuyActivity.this,Constants.USERID,"");
+
+        APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
+        Call<DefaultAddressResponse> call = apiInterface.get_default_address(user_id);
+        call.enqueue(new Callback<DefaultAddressResponse>() {
+            @Override
+            public void onResponse(Call<DefaultAddressResponse> call, Response<DefaultAddressResponse> response) {
+                if (response.isSuccessful()){
+                    DefaultAddressResponse defaultAddressResponse = response.body();
+                    if(defaultAddressResponse.getSuccess()){
+                        updateAddress(defaultAddressResponse.getData().get(0));
+                    }else {
+                        startActivity(new Intent(getApplicationContext(),AddAddressActivity.class));
+                    }
+
+                }else {
+                    Toast.makeText(SmartBuyActivity.this, response.message(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DefaultAddressResponse> call, Throwable t) {
+                Toast.makeText(SmartBuyActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void updateAddress(DefaultAddressResponse.Datum address) {
+        String address_details = address.getAddress()+" , "+address.getArea()+ " , ";
+        String pincode_city = address.getCity()+" - "+address.getPincode();
+        address_name.setText(address.getName());
+        address_tv.setText(address_details);
+        pincode.setText(pincode_city);
+
+        /*Get lat lng from address*/
+        String formated_address = address_details +pincode_city;
+        Geocoder coder = new Geocoder(SmartBuyActivity.this);
+        try {
+            List<Address> addressList = coder.getFromLocationName(formated_address, 1);
+            if (addressList != null && addressList.size() > 0) {
+                double lat = addressList.get(0).getLatitude();
+                double lng = addressList.get(0).getLongitude();
+                Log.d("LATLNG","lat : "+lat+" lng : "+lng);
+                latitude = String.valueOf(lat);
+                longitude = String.valueOf(lng);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void openShopList() {
@@ -203,4 +262,12 @@ public class SmartBuyActivity extends AppCompatActivity {
                 (postalCode).toString());
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        getDefaultAddress();
+    }
+    
 }
