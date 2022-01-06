@@ -67,6 +67,7 @@ public class Constants {
     public static final String INR = "INR";
     public static final String PER_GRAM_PRICE = "Gram price: ";
     public static final String IS_PAID = "is_paid";
+    public static final String API_FAILURE_MSG = "Please, try after sometime";
 
     /* 1- Pickup at store
        2- Delivery at Home */

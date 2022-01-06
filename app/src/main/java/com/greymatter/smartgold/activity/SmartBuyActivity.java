@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,12 +37,14 @@ import retrofit2.Response;
 
 public class SmartBuyActivity extends AppCompatActivity {
 
+    EditText address_et, area_et, city_et, pin_code_et;
     ArrayList<String> budgetRangeArray,budgetRangeIdArray;
     Spinner budgetArraySpinnner;
     private int ADDRESS_PICKER_REQUEST = 123;
     TextView location_tv;
     TextView address_name,address_tv,pincode;
     String latitude= "null",longitude = "null";
+    String address , area, city, pin_code;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +54,12 @@ public class SmartBuyActivity extends AppCompatActivity {
         budgetArraySpinnner = findViewById(R.id.budget_spinner);
         address_name = findViewById(R.id.address_name);
         address_tv = findViewById(R.id.address_tv);
-        pincode = findViewById(R.id.pincode);
+        pincode = findViewById(R.id.pincode_tv);
         location_tv = findViewById(R.id.location_tv);
+        address_et = findViewById(R.id.address);
+        area_et = findViewById(R.id.area);
+        city_et = findViewById(R.id.city);
+        pin_code_et = findViewById(R.id.pincode);
 
         MapUtility.apiKey = getResources().getString(R.string.your_api_key);
 
@@ -67,7 +74,22 @@ public class SmartBuyActivity extends AppCompatActivity {
         findViewById(R.id.budget_gram_apply_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openShopList();
+                if (MyFunctions.getBooleanFromSharedPref(getApplicationContext(),Constants.ISLOGGEDIN,false)){
+                    openShopList();
+                }else {
+                    address = address_et.getText().toString().trim();
+                    area = area_et.getText().toString().trim();
+                    city = city_et.getText().toString().trim();
+                    pin_code = pin_code_et.getText().toString().trim();
+                    if(isValid()){
+                        String address_details = address+" , "+area+ " , ";
+                        String pincode_city = city+" - "+pin_code;
+                        String formated_address = address_details +pincode_city;
+                        getLatLngFromAddress(formated_address);
+
+                        openShopList();
+                    }
+                }
             }
         });
 
@@ -110,6 +132,26 @@ public class SmartBuyActivity extends AppCompatActivity {
 
     }
 
+    private boolean isValid() {
+        if(address.isEmpty()){
+            address_et.setError("Invalid address");
+            return false;
+        }
+        if(area.isEmpty()){
+            area_et.setError("Invalid area");
+            return false;
+        }
+        if(city.isEmpty()){
+            city_et.setError("Invalid city");
+            return false;
+        }
+        if(pin_code.length() !=6){
+            pin_code_et.setError("Invalid pincode");
+            return false;
+        }
+        return true;
+    }
+
     private void getDefaultAddress() {
         String user_id = MyFunctions.getStringFromSharedPref(SmartBuyActivity.this,Constants.USERID,"");
 
@@ -147,13 +189,18 @@ public class SmartBuyActivity extends AppCompatActivity {
 
         /*Get lat lng from address*/
         String formated_address = address_details +pincode_city;
+        getLatLngFromAddress(formated_address);
+    }
+
+    private void getLatLngFromAddress(String formated_address) {
+
         Geocoder coder = new Geocoder(SmartBuyActivity.this);
         try {
             List<Address> addressList = coder.getFromLocationName(formated_address, 1);
             if (addressList != null && addressList.size() > 0) {
                 double lat = addressList.get(0).getLatitude();
                 double lng = addressList.get(0).getLongitude();
-                Log.d("LATLNG","lat : "+lat+" lng : "+lng);
+                Log.d("LATLNG","lat : "+lat+" lng : "+lng+" formated: "+formated_address);
                 latitude = String.valueOf(lat);
                 longitude = String.valueOf(lng);
             }
@@ -200,7 +247,7 @@ public class SmartBuyActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<BudgetRangeResponse> call, Throwable t) {
                 MyFunctions.cancelLoading();
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), Constants.API_FAILURE_MSG, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -267,7 +314,14 @@ public class SmartBuyActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        getDefaultAddress();
+        if (MyFunctions.getBooleanFromSharedPref(getApplicationContext(),Constants.ISLOGGEDIN,false)){
+            getDefaultAddress();
+            findViewById(R.id.address_container).setVisibility(View.VISIBLE);
+            findViewById(R.id.guest_user_container).setVisibility(View.GONE);
+        }else {
+            findViewById(R.id.address_container).setVisibility(View.GONE);
+            findViewById(R.id.guest_user_container).setVisibility(View.VISIBLE);
+        }
     }
     
 }
