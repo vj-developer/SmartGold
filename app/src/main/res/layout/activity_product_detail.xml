@@ -26,13 +26,33 @@
             android:textSize="20dp"
             android:layout_centerHorizontal="true"
             android:text="Classic ring"/>
-        <ImageView
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:padding="10dp"
-            android:layout_gravity="center"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/shoppingbag_solid" />
+
+        <RelativeLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true">
+
+            <ImageView
+                android:layout_centerInParent="true"
+                android:id="@+id/cart"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/shoppingbag_solid" />
+
+            <TextView
+                android:id="@+id/cart_count"
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="5dp"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/round_badge"
+                android:text="1"/>
+
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
@@ -43,6 +63,7 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:paddingBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -64,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:text="Sold By"
                 android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textColor="@color/spinner_txt"/>
 
             <TextView
                 android:id="@+id/shop_name_tv"

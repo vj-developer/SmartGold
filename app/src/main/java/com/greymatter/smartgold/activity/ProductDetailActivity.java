@@ -29,7 +29,7 @@ import static android.content.ContentValues.TAG;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
-    TextView pname,pprice,pdescription,product_title,discounted_price,total_price,shop_name_tv;
+    TextView pname,pprice,pdescription,product_title,discounted_price,total_price,shop_name_tv,cart_count;
     ImageView imageView,backbtn;
     String namestr,pricestr,descstr,imagestr,discounted_price_str,product_id,shop_name;
     ElegantNumberButton elegantNumberButton;
@@ -58,6 +58,11 @@ public class ProductDetailActivity extends AppCompatActivity {
         elegantNumberButton = findViewById(R.id.elegantNumberButton);
         total_price = findViewById(R.id.total_price);
         shop_name_tv = findViewById(R.id.shop_name_tv);
+        cart_count = findViewById(R.id.cart_count);
+
+        /*Cart count*/
+        int count = Integer.parseInt(MyFunctions.getStringFromSharedPref(getApplicationContext(),Constants.CART_COUNT,"0"));
+        if (count > 0 ) cart_count.setText(count+"");
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,6 +111,13 @@ public class ProductDetailActivity extends AppCompatActivity {
                 }else {
                     startActivity(new Intent(getApplicationContext(),SigninActivity.class));
                 }
+            }
+        });
+
+        findViewById(R.id.cart).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),CartActivity.class));
             }
         });
     }

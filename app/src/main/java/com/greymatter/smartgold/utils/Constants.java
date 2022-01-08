@@ -68,6 +68,9 @@ public class Constants {
     public static final String PER_GRAM_PRICE = "Gram price: ";
     public static final String IS_PAID = "is_paid";
     public static final String API_FAILURE_MSG = "Please, try after sometime";
+    public static final String NOT_AVAILABLE = "Not Available";
+    public static final String AVAILABLE = "Available";
+    public static final String CART_COUNT = "cart_count";
 
     /* 1- Pickup at store
        2- Delivery at Home */

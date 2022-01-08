@@ -77,7 +77,15 @@ public class CartFragment extends Fragment {
         view.findViewById(R.id.proceed).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), CheckoutActivity.class));
+                boolean isAvailable = true;
+                for (int i=0; i<cartArrayList.size(); i++){
+                    if (cartArrayList.get(i).getStatus().equals(Constants.NOT_AVAILABLE)) isAvailable = false;
+                }
+
+                if (isAvailable)
+                    startActivity(new Intent(getActivity(),CheckoutActivity.class));
+                else
+                    Toast.makeText(getActivity(), "Oops! Some of Products are currently unavailable", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -110,6 +118,7 @@ public class CartFragment extends Fragment {
                         cart_empty.setVisibility(View.VISIBLE);
                         cart_container.setVisibility(View.GONE);
                     }
+                    MyFunctions.saveStringToSharedPref(getActivity(),Constants.CART_COUNT,cartArrayList.size()+"");
 
                 }else {
                     Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();

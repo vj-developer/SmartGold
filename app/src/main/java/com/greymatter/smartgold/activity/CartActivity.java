@@ -76,7 +76,15 @@ public class CartActivity extends AppCompatActivity {
         findViewById(R.id.proceed).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CartActivity.this,CheckoutActivity.class));
+                boolean isAvailable = true;
+                for (int i=0; i<cartArrayList.size(); i++){
+                    if (cartArrayList.get(i).getStatus().equals(Constants.NOT_AVAILABLE)) isAvailable = false;
+                }
+
+                if (isAvailable)
+                    startActivity(new Intent(getApplicationContext(),CheckoutActivity.class));
+                else
+                    Toast.makeText(getApplicationContext(), "Oops! Some of Products are currently unavailable", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -108,6 +116,7 @@ public class CartActivity extends AppCompatActivity {
                         cart_empty.setVisibility(View.VISIBLE);
                         cart_container.setVisibility(View.GONE);
                     }
+                    MyFunctions.saveStringToSharedPref(getApplicationContext(),Constants.CART_COUNT,cartArrayList.size()+"");
 
                 }else {
                     Toast.makeText(CartActivity.this, response.message(), Toast.LENGTH_SHORT).show();

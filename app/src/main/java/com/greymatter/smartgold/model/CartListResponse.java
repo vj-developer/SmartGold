@@ -69,6 +69,9 @@ public class CartListResponse {
         @SerializedName("price")
         @Expose
         private Integer price;
+        @SerializedName("status")
+        @Expose
+        private String status;
 
         public String getId() {
             return id;
@@ -140,6 +143,14 @@ public class CartListResponse {
 
         public void setProduct_id(String product_id) {
             this.product_id = product_id;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
         }
     }
 

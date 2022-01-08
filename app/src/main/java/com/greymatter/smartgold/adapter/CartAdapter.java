@@ -61,6 +61,12 @@ public class CartAdapter extends RecyclerView.Adapter <CartAdapter.ViewHolder>{
 
         CartListResponse.Datum cart = cartList.get(position);
 
+        if (cart.getStatus().equals(Constants.NOT_AVAILABLE)){
+            holder.not_available.setVisibility(View.VISIBLE);
+        }else {
+            holder.not_available.setVisibility(View.GONE);
+        }
+
         holder.product_name.setText(cart.getName());
         holder.product_price.setText(MyFunctions.ConvertToINR(String.valueOf(cart.getDiscountedPrice())));
         holder.quantity.setText(cart.getQuantity());
@@ -121,7 +127,7 @@ public class CartAdapter extends RecyclerView.Adapter <CartAdapter.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView product_name,product_price,quantity;
-        ImageView product_image,plus,minus,remove;
+        ImageView product_image,plus,minus,remove,not_available;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -133,6 +139,7 @@ public class CartAdapter extends RecyclerView.Adapter <CartAdapter.ViewHolder>{
             plus = itemView.findViewById(R.id.plus);
             minus = itemView.findViewById(R.id.minus);
             remove = itemView.findViewById(R.id.remove);
+            not_available = itemView.findViewById(R.id.not_available);
 
         }
     }
