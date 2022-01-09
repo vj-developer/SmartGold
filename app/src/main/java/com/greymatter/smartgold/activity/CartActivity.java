@@ -18,6 +18,7 @@ import com.greymatter.smartgold.adapter.CartAdapter;
 import com.greymatter.smartgold.model.AddToCartResponse;
 import com.greymatter.smartgold.model.CartListResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
+import com.greymatter.smartgold.retrofit.ApiConfig;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
 import com.greymatter.smartgold.utils.Constants;
 import com.greymatter.smartgold.utils.MyFunctions;
@@ -95,7 +96,7 @@ public class CartActivity extends AppCompatActivity {
         String user_id = MyFunctions.getStringFromSharedPref(CartActivity.this, Constants.USERID,"");
 
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<CartListResponse> call = apiInterface.cart_list(user_id);
+        Call<CartListResponse> call = apiInterface.cart_list(ApiConfig.SecurityKey,Constants.AccessKeyVal,user_id);
         call.enqueue(new Callback<CartListResponse>() {
             @Override
             public void onResponse(Call<CartListResponse> call, Response<CartListResponse> response) {
@@ -126,7 +127,7 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<CartListResponse> call, Throwable t) {
                 MyFunctions.cancelLoading();
-                Toast.makeText(CartActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(CartActivity.this,Constants.API_ERROR, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -136,7 +137,7 @@ public class CartActivity extends AppCompatActivity {
         String user_id = MyFunctions.getStringFromSharedPref(CartActivity.this,Constants.USERID,"");
 
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<AddToCartResponse> call = apiInterface.add_to_cart(user_id,product_id, String.valueOf(quantity));
+        Call<AddToCartResponse> call = apiInterface.add_to_cart(ApiConfig.SecurityKey,Constants.AccessKeyVal,user_id,product_id, String.valueOf(quantity));
         call.enqueue(new Callback<AddToCartResponse>() {
             @Override
             public void onResponse(Call<AddToCartResponse> call, Response<AddToCartResponse> response) {
@@ -159,7 +160,7 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<AddToCartResponse> call, Throwable t) {
                 MyFunctions.cancelLoading();
-                Toast.makeText(CartActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(CartActivity.this, Constants.API_ERROR, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -170,7 +171,7 @@ public class CartActivity extends AppCompatActivity {
         String user_id = MyFunctions.getStringFromSharedPref(CartActivity.this, Constants.USERID,"");
 
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<AddToCartResponse> call = apiInterface.remove_from_cart(user_id,cart_id);
+        Call<AddToCartResponse> call = apiInterface.remove_from_cart(ApiConfig.SecurityKey,Constants.AccessKeyVal,user_id,cart_id);
         call.enqueue(new Callback<AddToCartResponse>() {
             @Override
             public void onResponse(Call<AddToCartResponse> call, Response<AddToCartResponse> response) {
@@ -192,7 +193,7 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<AddToCartResponse> call, Throwable t) {
                 MyFunctions.cancelLoading();
-                Toast.makeText(CartActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(CartActivity.this,Constants.API_ERROR, Toast.LENGTH_SHORT).show();
             }
         });
 

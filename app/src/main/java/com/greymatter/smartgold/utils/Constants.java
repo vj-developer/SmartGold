@@ -5,8 +5,8 @@ public class Constants {
     public static final String ISLOGGEDIN = "isLoggedin";
     public static final String MOBILE = "mobile";
     //public static final String BASE_URL = "http://test.booksbear.in/api-firebase/";
-    //public static final String BASE_URL = "http://smartgold.blazeaisolutions.com/api/";
-    public static final String BASE_URL = "http://192.168.43.122/smartgold/api/";
+    public static final String BASE_URL = "http://smartgold.blazeaisolutions.com/api/";
+    //public static final String BASE_URL = "http://192.168.43.122/smartgold/api/";
     public static final String JWT_KEY = "12345678";
     public static final String AUTHORIZATION = "Authorization";
     public static final String AccessKey = "accesskey";
@@ -76,6 +76,7 @@ public class Constants {
     public static final String NOT_AVAILABLE = "Not Available";
     public static final String AVAILABLE = "Available";
     public static final String CART_COUNT = "cart_count";
+    public static final String API_ERROR = "Something went wrong,please try after sometime";
 
     /* 1- Pickup at store
        2- Delivery at Home */

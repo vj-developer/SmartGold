@@ -14,6 +14,7 @@ import com.greymatter.smartgold.model.CartListResponse;
 import com.greymatter.smartgold.model.OfferLockResponse;
 import com.greymatter.smartgold.model.OrderResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
+import com.greymatter.smartgold.retrofit.ApiConfig;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
 import com.greymatter.smartgold.utils.Constants;
 import com.greymatter.smartgold.utils.MyFunctions;
@@ -48,7 +49,7 @@ public class OrderListActivity extends AppCompatActivity {
         String user_id = MyFunctions.getStringFromSharedPref(OrderListActivity.this, Constants.USERID,"");
 
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<OrderResponse> call = apiInterface.order_list(user_id);
+        Call<OrderResponse> call = apiInterface.order_list(ApiConfig.SecurityKey,Constants.AccessKeyVal,user_id);
         call.enqueue(new Callback<OrderResponse>() {
             @Override
             public void onResponse(Call<OrderResponse> call, Response<OrderResponse> response) {
@@ -79,7 +80,7 @@ public class OrderListActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<OrderResponse> call, Throwable t) {
                 MyFunctions.cancelLoading();
-                Toast.makeText(OrderListActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(OrderListActivity.this, Constants.API_ERROR, Toast.LENGTH_SHORT).show();
             }
         });
     }

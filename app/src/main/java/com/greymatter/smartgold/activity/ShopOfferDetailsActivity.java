@@ -16,6 +16,7 @@ import com.greymatter.smartgold.model.CategoryResponse;
 import com.greymatter.smartgold.model.OfferLockResponse;
 import com.greymatter.smartgold.model.PriceDurationResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
+import com.greymatter.smartgold.retrofit.ApiConfig;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
 import com.greymatter.smartgold.utils.Constants;
 import com.greymatter.smartgold.utils.MyFunctions;
@@ -114,7 +115,7 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
         MyFunctions.showLoading(ShopOfferDetailsActivity.this);
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
 
-        Call<CategoryResponse> call = apiInterface.available_products(shop_id);
+        Call<CategoryResponse> call = apiInterface.available_products(ApiConfig.SecurityKey,Constants.AccessKeyVal,shop_id);
         call.enqueue(new Callback<CategoryResponse>() {
             @Override
             public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
@@ -131,7 +132,7 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
             @Override
             public void onFailure(Call<CategoryResponse> call, Throwable t) {
                 MyFunctions.cancelLoading();
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), Constants.API_ERROR, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -171,7 +172,7 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
         MyFunctions.showLoading(ShopOfferDetailsActivity.this);
         user_id = MyFunctions.getStringFromSharedPref(getApplicationContext(),Constants.USERID,"null");
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<OfferLockResponse> call = apiInterface.lock_offer(user_id,shop_id,offer_id,amount_string);
+        Call<OfferLockResponse> call = apiInterface.lock_offer(ApiConfig.SecurityKey,Constants.AccessKeyVal,user_id,shop_id,offer_id,amount_string);
         call.enqueue(new Callback<OfferLockResponse>() {
             @Override
             public void onResponse(Call<OfferLockResponse> call, Response<OfferLockResponse> response) {
@@ -199,7 +200,7 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
             @Override
             public void onFailure(Call<OfferLockResponse> call, Throwable t) {
                 MyFunctions.cancelLoading();
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), Constants.API_ERROR, Toast.LENGTH_SHORT).show();
             }
         });
     }

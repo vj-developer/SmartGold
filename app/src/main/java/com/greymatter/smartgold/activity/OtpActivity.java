@@ -29,6 +29,7 @@ import com.greymatter.smartgold.MainActivity;
 import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.model.RegisterResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
+import com.greymatter.smartgold.retrofit.ApiConfig;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
 import com.greymatter.smartgold.utils.Constants;
 import com.greymatter.smartgold.utils.MyFunctions;
@@ -204,7 +205,7 @@ public class OtpActivity extends AppCompatActivity {
         String email = MyFunctions.getStringFromSharedPref(OtpActivity.this, Constants.EMAIL,"");
 
 
-        Call<RegisterResponse> call = apiInterface.register(mobilenumber,name, email);
+        Call<RegisterResponse> call = apiInterface.register(ApiConfig.SecurityKey,Constants.AccessKeyVal,mobilenumber,name, email);
         call.enqueue(new Callback<RegisterResponse>() {
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
@@ -223,7 +224,7 @@ public class OtpActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<RegisterResponse> call, Throwable t) {
                 MyFunctions.cancelLoading();
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),Constants.API_ERROR, Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -14,6 +14,7 @@ import com.greymatter.smartgold.model.LockedOfferResponse;
 import com.greymatter.smartgold.model.OfferLockResponse;
 import com.greymatter.smartgold.model.ProductListResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
+import com.greymatter.smartgold.retrofit.ApiConfig;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
 import com.greymatter.smartgold.utils.Constants;
 import com.greymatter.smartgold.utils.MyFunctions;
@@ -47,7 +48,7 @@ public class ViewOfferLockActivity extends AppCompatActivity {
 
     private void OfferLockedList() {
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<LockedOfferResponse> call = apiInterface.offer_locked(user_id);
+        Call<LockedOfferResponse> call = apiInterface.offer_locked(ApiConfig.SecurityKey,Constants.AccessKeyVal,user_id);
         call.enqueue(new Callback<LockedOfferResponse>() {
             @Override
             public void onResponse(Call<LockedOfferResponse> call, Response<LockedOfferResponse> response) {
@@ -61,7 +62,7 @@ public class ViewOfferLockActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<LockedOfferResponse> call, Throwable t) {
-                Toast.makeText(ViewOfferLockActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ViewOfferLockActivity.this,Constants.API_ERROR, Toast.LENGTH_SHORT).show();
 
             }
         });

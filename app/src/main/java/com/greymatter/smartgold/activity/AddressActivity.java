@@ -13,6 +13,7 @@ import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.adapter.AddressAdapter;
 import com.greymatter.smartgold.model.AddressListResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
+import com.greymatter.smartgold.retrofit.ApiConfig;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
 import com.greymatter.smartgold.utils.Constants;
 import com.greymatter.smartgold.utils.MyFunctions;
@@ -47,7 +48,7 @@ public class AddressActivity extends AppCompatActivity {
         MyFunctions.showLoading(AddressActivity.this);
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
 
-        Call<AddressListResponse> call = apiInterface.address_list(MyFunctions.getStringFromSharedPref(AddressActivity.this,Constants.USERID,""));
+        Call<AddressListResponse> call = apiInterface.address_list(ApiConfig.SecurityKey,Constants.AccessKeyVal,MyFunctions.getStringFromSharedPref(AddressActivity.this,Constants.USERID,""));
         call.enqueue(new Callback<AddressListResponse>() {
             @Override
             public void onResponse(Call<AddressListResponse> call, Response<AddressListResponse> response) {
@@ -62,7 +63,7 @@ public class AddressActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<AddressListResponse> call, Throwable t) {
                 MyFunctions.cancelLoading();
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), Constants.API_ERROR, Toast.LENGTH_SHORT).show();
             }
         });
     }

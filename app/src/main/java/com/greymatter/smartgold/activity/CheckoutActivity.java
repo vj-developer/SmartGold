@@ -19,6 +19,7 @@ import com.greymatter.smartgold.model.AddToCartResponse;
 import com.greymatter.smartgold.model.CheckoutResponse;
 import com.greymatter.smartgold.model.DefaultAddressResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
+import com.greymatter.smartgold.retrofit.ApiConfig;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
 import com.greymatter.smartgold.utils.Constants;
 import com.greymatter.smartgold.utils.MyFunctions;
@@ -139,7 +140,7 @@ public class CheckoutActivity extends AppCompatActivity implements PaymentResult
         String user_id = MyFunctions.getStringFromSharedPref(CheckoutActivity.this,Constants.USERID,"");
 
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<CheckoutResponse> call = apiInterface.place_order(user_id,method,isPaid);
+        Call<CheckoutResponse> call = apiInterface.place_order(ApiConfig.SecurityKey,Constants.AccessKeyVal,user_id,method,isPaid);
         call.enqueue(new Callback<CheckoutResponse>() {
             @Override
             public void onResponse(Call<CheckoutResponse> call, Response<CheckoutResponse> response) {
@@ -160,7 +161,7 @@ public class CheckoutActivity extends AppCompatActivity implements PaymentResult
             @Override
             public void onFailure(Call<CheckoutResponse> call, Throwable t) {
                 MyFunctions.cancelLoading();
-                Toast.makeText(CheckoutActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(CheckoutActivity.this, Constants.API_ERROR , Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -169,7 +170,7 @@ public class CheckoutActivity extends AppCompatActivity implements PaymentResult
         String user_id = MyFunctions.getStringFromSharedPref(CheckoutActivity.this,Constants.USERID,"");
 
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<DefaultAddressResponse> call = apiInterface.get_default_address(user_id);
+        Call<DefaultAddressResponse> call = apiInterface.get_default_address(ApiConfig.SecurityKey,Constants.AccessKeyVal,user_id);
         call.enqueue(new Callback<DefaultAddressResponse>() {
             @Override
             public void onResponse(Call<DefaultAddressResponse> call, Response<DefaultAddressResponse> response) {
@@ -188,7 +189,7 @@ public class CheckoutActivity extends AppCompatActivity implements PaymentResult
 
             @Override
             public void onFailure(Call<DefaultAddressResponse> call, Throwable t) {
-                Toast.makeText(CheckoutActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(CheckoutActivity.this, Constants.API_ERROR, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -206,7 +207,7 @@ public class CheckoutActivity extends AppCompatActivity implements PaymentResult
         String user_id = MyFunctions.getStringFromSharedPref(CheckoutActivity.this,Constants.USERID,"");
 
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<CheckoutResponse> call = apiInterface.check_out(user_id,method);
+        Call<CheckoutResponse> call = apiInterface.check_out(ApiConfig.SecurityKey,Constants.AccessKeyVal,user_id,method);
         call.enqueue(new Callback<CheckoutResponse>() {
             @Override
             public void onResponse(Call<CheckoutResponse> call, Response<CheckoutResponse> response) {
@@ -227,7 +228,7 @@ public class CheckoutActivity extends AppCompatActivity implements PaymentResult
             @Override
             public void onFailure(Call<CheckoutResponse> call, Throwable t) {
                 MyFunctions.cancelLoading();
-                Toast.makeText(CheckoutActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(CheckoutActivity.this, Constants.API_ERROR, Toast.LENGTH_SHORT).show();
             }
         });
     }

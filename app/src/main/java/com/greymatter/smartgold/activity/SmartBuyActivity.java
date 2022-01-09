@@ -20,6 +20,7 @@ import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.model.BudgetRangeResponse;
 import com.greymatter.smartgold.model.DefaultAddressResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
+import com.greymatter.smartgold.retrofit.ApiConfig;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
 import com.greymatter.smartgold.utils.Constants;
 import com.greymatter.smartgold.utils.MyFunctions;
@@ -156,7 +157,7 @@ public class SmartBuyActivity extends AppCompatActivity {
         String user_id = MyFunctions.getStringFromSharedPref(SmartBuyActivity.this,Constants.USERID,"");
 
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<DefaultAddressResponse> call = apiInterface.get_default_address(user_id);
+        Call<DefaultAddressResponse> call = apiInterface.get_default_address(ApiConfig.SecurityKey,Constants.AccessKeyVal,user_id);
         call.enqueue(new Callback<DefaultAddressResponse>() {
             @Override
             public void onResponse(Call<DefaultAddressResponse> call, Response<DefaultAddressResponse> response) {
@@ -175,7 +176,7 @@ public class SmartBuyActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<DefaultAddressResponse> call, Throwable t) {
-                Toast.makeText(SmartBuyActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SmartBuyActivity.this, Constants.API_ERROR, Toast.LENGTH_SHORT).show();
             }
         });
     }

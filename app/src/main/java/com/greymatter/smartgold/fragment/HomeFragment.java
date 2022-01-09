@@ -132,7 +132,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ProductListResponse> call, Throwable t) {
-                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), Constants.API_ERROR, Toast.LENGTH_SHORT).show();
                 Log.d("PRODUCTRESPONSE",String.valueOf(t.getMessage()));
             }
         });

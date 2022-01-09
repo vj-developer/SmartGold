@@ -12,6 +12,7 @@ import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.adapter.SmartOffersAdapter;
 import com.greymatter.smartgold.model.SmartOffersResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
+import com.greymatter.smartgold.retrofit.ApiConfig;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
 import com.greymatter.smartgold.utils.Constants;
 import com.greymatter.smartgold.utils.MyFunctions;
@@ -52,7 +53,7 @@ public class ShopListActivity extends AppCompatActivity {
 
         MyFunctions.showLoading(ShopListActivity.this);
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<SmartOffersResponse> call = apiInterface.smart_offers(budget_id,latitude,longitude);
+        Call<SmartOffersResponse> call = apiInterface.smart_offers(ApiConfig.SecurityKey,Constants.AccessKeyVal,budget_id,latitude,longitude);
         call.enqueue(new Callback<SmartOffersResponse>() {
             @Override
             public void onResponse(Call<SmartOffersResponse> call, Response<SmartOffersResponse> response) {
@@ -77,7 +78,7 @@ public class ShopListActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<SmartOffersResponse> call, Throwable t) {
                 MyFunctions.cancelLoading();
-                Toast.makeText(getApplicationContext() ,t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext() ,Constants.API_ERROR, Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -13,6 +13,7 @@ import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.adapter.ProductsAdapter;
 import com.greymatter.smartgold.model.ProductListResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
+import com.greymatter.smartgold.retrofit.ApiConfig;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
 import com.greymatter.smartgold.utils.Constants;
 import com.greymatter.smartgold.utils.MyFunctions;
@@ -48,7 +49,7 @@ public class ProductListActivity extends AppCompatActivity {
     private void ProductList() {
         MyFunctions.showLoading(ProductListActivity.this);
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<ProductListResponse> call = apiInterface.category_products(category_id);
+        Call<ProductListResponse> call = apiInterface.category_products(ApiConfig.SecurityKey,Constants.AccessKeyVal,category_id);
         call.enqueue(new Callback<ProductListResponse>() {
             @Override
             public void onResponse(Call<ProductListResponse> call, Response<ProductListResponse> response) {
@@ -70,7 +71,7 @@ public class ProductListActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ProductListResponse> call, Throwable t) {
                 MyFunctions.cancelLoading();
-                Toast.makeText(ProductListActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProductListActivity.this, Constants.API_ERROR, Toast.LENGTH_SHORT).show();
             }
         });
 

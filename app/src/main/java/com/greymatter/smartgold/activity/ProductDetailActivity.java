@@ -17,6 +17,7 @@ import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.model.AddAddressResponse;
 import com.greymatter.smartgold.model.AddToCartResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
+import com.greymatter.smartgold.retrofit.ApiConfig;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
 import com.greymatter.smartgold.utils.Constants;
 import com.greymatter.smartgold.utils.MyFunctions;
@@ -63,6 +64,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         /*Cart count*/
         int count = Integer.parseInt(MyFunctions.getStringFromSharedPref(getApplicationContext(),Constants.CART_COUNT,"0"));
         if (count > 0 ) cart_count.setText(count+"");
+        else cart_count.setVisibility(View.GONE);
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,7 +129,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         String user_id = MyFunctions.getStringFromSharedPref(ProductDetailActivity.this,Constants.USERID,"");
 
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<AddToCartResponse> call = apiInterface.add_to_cart(user_id,product_id, String.valueOf(quantity));
+        Call<AddToCartResponse> call = apiInterface.add_to_cart(ApiConfig.SecurityKey,Constants.AccessKeyVal,user_id,product_id, String.valueOf(quantity));
         call.enqueue(new Callback<AddToCartResponse>() {
             @Override
             public void onResponse(Call<AddToCartResponse> call, Response<AddToCartResponse> response) {
@@ -150,7 +152,7 @@ public class ProductDetailActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<AddToCartResponse> call, Throwable t) {
                 MyFunctions.cancelLoading();
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), Constants.API_ERROR , Toast.LENGTH_SHORT).show();
             }
         });
 

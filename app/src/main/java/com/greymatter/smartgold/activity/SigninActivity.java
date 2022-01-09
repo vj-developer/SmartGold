@@ -15,6 +15,7 @@ import com.greymatter.smartgold.MainActivity;
 import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.model.LoginResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
+import com.greymatter.smartgold.retrofit.ApiConfig;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
 import com.greymatter.smartgold.utils.Constants;
 import com.greymatter.smartgold.utils.MyFunctions;
@@ -59,7 +60,7 @@ public class SigninActivity extends AppCompatActivity {
     private void loginApiCall(String mobile_number) {
         MyFunctions.showLoading(SigninActivity.this);
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<LoginResponse> call = apiInterface.login(mobile_number);
+        Call<LoginResponse> call = apiInterface.login(ApiConfig.SecurityKey,Constants.AccessKeyVal,mobile_number);
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
@@ -80,7 +81,7 @@ public class SigninActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 MyFunctions.cancelLoading();
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), Constants.API_ERROR, Toast.LENGTH_SHORT).show();
             }
         });
     }

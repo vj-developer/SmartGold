@@ -20,6 +20,7 @@ import com.greymatter.smartgold.activity.ProductDetailActivity;
 import com.greymatter.smartgold.model.AddToCartResponse;
 import com.greymatter.smartgold.model.AddressListResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
+import com.greymatter.smartgold.retrofit.ApiConfig;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
 import com.greymatter.smartgold.utils.Constants;
 import com.greymatter.smartgold.utils.MyFunctions;
@@ -73,7 +74,7 @@ public class AddressAdapter extends RecyclerView.Adapter <AddressAdapter.ViewHol
         String user_id = MyFunctions.getStringFromSharedPref(context,Constants.USERID,"");
 
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<AddToCartResponse> call = apiInterface.make_address_default(user_id,id);
+        Call<AddToCartResponse> call = apiInterface.make_address_default(ApiConfig.SecurityKey,Constants.AccessKeyVal,user_id,id);
         call.enqueue(new Callback<AddToCartResponse>() {
             @Override
             public void onResponse(Call<AddToCartResponse> call, Response<AddToCartResponse> response) {
@@ -96,7 +97,7 @@ public class AddressAdapter extends RecyclerView.Adapter <AddressAdapter.ViewHol
             @Override
             public void onFailure(Call<AddToCartResponse> call, Throwable t) {
                 MyFunctions.cancelLoading();
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, Constants.API_ERROR, Toast.LENGTH_SHORT).show();
             }
         });
     }
