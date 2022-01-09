@@ -36,6 +36,7 @@ import com.greymatter.smartgold.model.CategoryResponse;
 import com.greymatter.smartgold.model.ProductListResponse;
 import com.greymatter.smartgold.model.SliderData;
 import com.greymatter.smartgold.retrofit.APIInterface;
+import com.greymatter.smartgold.retrofit.ApiConfig;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
 import com.greymatter.smartgold.utils.Constants;
 import com.greymatter.smartgold.utils.MyFunctions;
@@ -114,7 +115,7 @@ public class HomeFragment extends Fragment {
 
     private void ProductList() {
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<ProductListResponse> call = apiInterface.product();
+        Call<ProductListResponse> call = apiInterface.product(ApiConfig.SecurityKey,Constants.AccessKeyVal);
         call.enqueue(new Callback<ProductListResponse>() {
             @Override
             public void onResponse(Call<ProductListResponse> call, Response<ProductListResponse> response) {
@@ -122,6 +123,9 @@ public class HomeFragment extends Fragment {
                 if(productResponse.getSuccess()){
                     productAdapter = new ProductsAdapter(productResponse.getData(),getActivity());
                     product_recycler.setAdapter(productAdapter);
+                }
+                else {
+                    Toast.makeText(getActivity(), productResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 }
 
             }

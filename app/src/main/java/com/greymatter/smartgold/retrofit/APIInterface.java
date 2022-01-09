@@ -23,6 +23,7 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface APIInterface {
@@ -59,8 +60,9 @@ public interface APIInterface {
     @GET("categorylist.php")
     Call<CategoryResponse> category();
 
-    @GET("allproducts.php")
-    Call<ProductListResponse> product();
+    @FormUrlEncoded
+    @POST("allproducts.php")
+    Call<ProductListResponse> product(@Header("Authorization") String auth,@Field(Constants.AccessKey) String accesskey);
 
     @FormUrlEncoded
     @POST("get-offer-lock-by-id.php")
