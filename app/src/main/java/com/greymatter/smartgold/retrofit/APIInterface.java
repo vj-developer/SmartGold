@@ -58,16 +58,16 @@ public interface APIInterface {
                                            @Field(Constants.AccessKey) String accesskey,
                                            @Field(Constants.USERID) String user_id);
 
-
-    @GET("banner-list.php")
+    @FormUrlEncoded
+    @POST("banner-list.php")
     Call<BannerListResponse> banner_list(@Header("Authorization") String auth,
                                          @Field(Constants.AccessKey) String accesskey);
-
-    @GET("budget-range.php")
+    @FormUrlEncoded
+    @POST("budget-range.php")
     Call<BudgetRangeResponse> budget_range(@Header("Authorization") String auth,
                                            @Field(Constants.AccessKey) String accesskey);
-
-    @GET("categorylist.php")
+    @FormUrlEncoded
+    @POST("categorylist.php")
     Call<CategoryResponse> category(@Header("Authorization") String auth,
                                     @Field(Constants.AccessKey) String accesskey);
 
@@ -120,7 +120,9 @@ public interface APIInterface {
                                        @Field(Constants.OFFER_ID) String offer_id,
                                        @Field(Constants.PAID_AMT) String paid_amt);
 
-    @GET("price-duration.php")
+
+    @FormUrlEncoded
+    @POST("price-duration.php")
     Call<PriceDurationResponse> price_duration(@Header("Authorization") String auth,
                                                @Field(Constants.AccessKey) String accesskey);
 
