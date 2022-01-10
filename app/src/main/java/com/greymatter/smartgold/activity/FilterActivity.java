@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.model.CategoryResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
+import com.greymatter.smartgold.retrofit.ApiConfig;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
 import com.greymatter.smartgold.utils.Constants;
 import com.greymatter.smartgold.utils.MyFunctions;
@@ -100,7 +101,7 @@ public class FilterActivity extends AppCompatActivity implements OnRangeSeekBarL
         MyFunctions.showLoading(FilterActivity.this);
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
 
-        Call<CategoryResponse> call = apiInterface.category();
+        Call<CategoryResponse> call = apiInterface.category(ApiConfig.SecurityKey,Constants.AccessKeyVal);
         call.enqueue(new Callback<CategoryResponse>() {
             @Override
             public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
@@ -126,7 +127,7 @@ public class FilterActivity extends AppCompatActivity implements OnRangeSeekBarL
             @Override
             public void onFailure(Call<CategoryResponse> call, Throwable t) {
                 MyFunctions.cancelLoading();
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),Constants.API_ERROR, Toast.LENGTH_SHORT).show();
             }
         });
     }

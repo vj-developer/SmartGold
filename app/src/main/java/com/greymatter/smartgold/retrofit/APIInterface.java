@@ -60,13 +60,16 @@ public interface APIInterface {
 
 
     @GET("banner-list.php")
-    Call<BannerListResponse> banner_list();
+    Call<BannerListResponse> banner_list(@Header("Authorization") String auth,
+                                         @Field(Constants.AccessKey) String accesskey);
 
     @GET("budget-range.php")
-    Call<BudgetRangeResponse> budget_range();
+    Call<BudgetRangeResponse> budget_range(@Header("Authorization") String auth,
+                                           @Field(Constants.AccessKey) String accesskey);
 
     @GET("categorylist.php")
-    Call<CategoryResponse> category();
+    Call<CategoryResponse> category(@Header("Authorization") String auth,
+                                    @Field(Constants.AccessKey) String accesskey);
 
     @FormUrlEncoded
     @POST("allproducts.php")
@@ -118,7 +121,8 @@ public interface APIInterface {
                                        @Field(Constants.PAID_AMT) String paid_amt);
 
     @GET("price-duration.php")
-    Call<PriceDurationResponse> price_duration();
+    Call<PriceDurationResponse> price_duration(@Header("Authorization") String auth,
+                                               @Field(Constants.AccessKey) String accesskey);
 
     @FormUrlEncoded
     @POST("smart-offers.php")

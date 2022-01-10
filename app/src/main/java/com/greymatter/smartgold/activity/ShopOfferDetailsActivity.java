@@ -140,7 +140,7 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
     private void getPriceDuration() {
 
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<PriceDurationResponse> call = apiInterface.price_duration();
+        Call<PriceDurationResponse> call = apiInterface.price_duration(ApiConfig.SecurityKey,Constants.AccessKeyVal);
 
         call.enqueue(new Callback<PriceDurationResponse>() {
             @Override
@@ -161,7 +161,7 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
 
             @Override
             public void onFailure(Call<PriceDurationResponse> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),Constants.API_ERROR, Toast.LENGTH_SHORT).show();
             }
         });
 

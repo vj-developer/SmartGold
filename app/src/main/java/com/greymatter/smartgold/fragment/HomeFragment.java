@@ -109,7 +109,6 @@ public class HomeFragment extends Fragment {
                 return false;
             }
         });
-
         return view;
     }
 
@@ -136,13 +135,12 @@ public class HomeFragment extends Fragment {
                 Log.d("PRODUCTRESPONSE",String.valueOf(t.getMessage()));
             }
         });
-
     }
 
     private void CategoryList() {
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
 
-        Call<CategoryResponse> call = apiInterface.category();
+        Call<CategoryResponse> call = apiInterface.category(ApiConfig.SecurityKey,Constants.AccessKeyVal);
         call.enqueue(new Callback<CategoryResponse>() {
             @Override
             public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
@@ -155,7 +153,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(Call<CategoryResponse> call, Throwable t) {
-                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), Constants.API_ERROR, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -172,7 +170,7 @@ public class HomeFragment extends Fragment {
     private void bannerSliderApi() {
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
 
-        Call<BannerListResponse> call = apiInterface.banner_list();
+        Call<BannerListResponse> call = apiInterface.banner_list(ApiConfig.SecurityKey,Constants.AccessKeyVal);
         call.enqueue(new Callback<BannerListResponse>() {
             @Override
             public void onResponse(Call<BannerListResponse> call, Response<BannerListResponse> response) {
@@ -189,7 +187,7 @@ public class HomeFragment extends Fragment {
             }
             @Override
             public void onFailure(Call<BannerListResponse> call, Throwable t) {
-                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), Constants.API_ERROR, Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -223,7 +223,7 @@ public class SmartBuyActivity extends AppCompatActivity {
 
         MyFunctions.showLoading(SmartBuyActivity.this);
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<BudgetRangeResponse> call = apiInterface.budget_range();
+        Call<BudgetRangeResponse> call = apiInterface.budget_range(ApiConfig.SecurityKey,Constants.AccessKeyVal);
 
         call.enqueue(new Callback<BudgetRangeResponse>() {
             @Override
