@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.greymatter.smartgold.BuildConfig;
 import com.greymatter.smartgold.activity.AddressActivity;
 import com.greymatter.smartgold.MainActivity;
 import com.greymatter.smartgold.R;
@@ -84,6 +85,26 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        root.findViewById(R.id.share).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shareAppLink();
+            }
+        });
         return root;
+    }
+
+    private void shareAppLink() {
+        try {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Smart Gold");
+            String shareMessage= "\nLet me recommend you this application\n\n";
+            shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID +"\n\n";
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+            startActivity(Intent.createChooser(shareIntent, "choose one"));
+        } catch(Exception e) {
+            //e.toString();
+        }
     }
 }
