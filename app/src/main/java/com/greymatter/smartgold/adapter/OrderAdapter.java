@@ -44,11 +44,13 @@ public class OrderAdapter extends RecyclerView.Adapter <OrderAdapter.ViewHolder>
         holder.order_id.setText(cart.getId());
         holder.product_price.setText(MyFunctions.ConvertToINR(cart.getDiscountedPrice()));
         holder.quantity.setText(cart.getQuantity());
-        if (cart.equals("1")){
+        holder.payment_status.setText(cart.getPaymentStatus());
+        if (cart.getBuyMethod().equals("1")){
             holder.method.setText("Pickup at store");
         }else {
             holder.method.setText("Delivery at Home");
         }
+
         Glide.with(holder.itemView)
                 .load(cart.getImage())
                 .fitCenter()
@@ -80,7 +82,7 @@ public class OrderAdapter extends RecyclerView.Adapter <OrderAdapter.ViewHolder>
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView product_name,product_price,quantity,method,order_id;
+        TextView product_name,product_price,quantity,method,order_id,payment_status;
         ImageView product_image;
 
         public ViewHolder(@NonNull View itemView) {
@@ -89,6 +91,7 @@ public class OrderAdapter extends RecyclerView.Adapter <OrderAdapter.ViewHolder>
             product_name = itemView.findViewById(R.id.product_name);
             product_image = itemView.findViewById(R.id.product_image);
             product_price = itemView.findViewById(R.id.product_price);
+            payment_status = itemView.findViewById(R.id.payment_status);
             quantity = itemView.findViewById(R.id.quantity);
             method = itemView.findViewById(R.id.method);
             order_id = itemView.findViewById(R.id.order_id);

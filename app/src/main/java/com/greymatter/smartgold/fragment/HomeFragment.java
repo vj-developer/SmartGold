@@ -98,7 +98,7 @@ public class HomeFragment extends Fragment {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    //do here your stuff f
+                    //do here your stuff
 
                     startActivity(new Intent(getActivity(), FilteredProductsActivity.class)
                             .putExtra(Constants.SEARCH_TERM, search_bar_et.getText().toString().trim())
@@ -113,11 +113,14 @@ public class HomeFragment extends Fragment {
     }
 
     private void ProductList() {
+        MyFunctions.showLoading(getActivity());
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
         Call<ProductListResponse> call = apiInterface.product(ApiConfig.SecurityKey,Constants.AccessKeyVal);
         call.enqueue(new Callback<ProductListResponse>() {
             @Override
             public void onResponse(Call<ProductListResponse> call, Response<ProductListResponse> response) {
+                MyFunctions.cancelLoading();
+
                 ProductListResponse productResponse = response.body();
                 if(productResponse.getSuccess()){
                     productAdapter = new ProductsAdapter(productResponse.getData(),getActivity());
@@ -131,6 +134,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ProductListResponse> call, Throwable t) {
+                MyFunctions.cancelLoading();
                 Toast.makeText(getActivity(), Constants.API_ERROR, Toast.LENGTH_SHORT).show();
                 Log.d("PRODUCTRESPONSE",String.valueOf(t.getMessage()));
             }

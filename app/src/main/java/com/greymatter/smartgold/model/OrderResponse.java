@@ -61,6 +61,9 @@ public class OrderResponse {
         @SerializedName("status")
         @Expose
         private String status;
+        @SerializedName("payment_status")
+        @Expose
+        private String PaymentStatus;
         @SerializedName("delivery_charges")
         @Expose
         private String deliveryCharges;
@@ -220,5 +223,12 @@ public class OrderResponse {
             this.isApproved = isApproved;
         }
 
+        public String getPaymentStatus() {
+            return PaymentStatus;
+        }
+
+        public void setPaymentStatus(String paymentStatus) {
+            PaymentStatus = paymentStatus;
+        }
     }
 }
