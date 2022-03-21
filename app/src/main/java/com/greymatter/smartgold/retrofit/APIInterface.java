@@ -106,7 +106,7 @@ public interface APIInterface {
 
 
     @FormUrlEncoded
-    @POST("productlist-seller.php")
+    @POST("categorylist-seller.php")
     Call<CategoryResponse> available_products(@Header("Authorization") String auth,
                                               @Field(Constants.AccessKey) String accesskey,
                                               @Field(Constants.SELLER_ID) String shop_id);
