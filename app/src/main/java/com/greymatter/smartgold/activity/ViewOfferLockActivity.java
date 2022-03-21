@@ -47,11 +47,13 @@ public class ViewOfferLockActivity extends AppCompatActivity {
     }
 
     private void OfferLockedList() {
+        MyFunctions.showLoading(ViewOfferLockActivity.this);
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
         Call<LockedOfferResponse> call = apiInterface.offer_locked(ApiConfig.SecurityKey,Constants.AccessKeyVal,user_id);
         call.enqueue(new Callback<LockedOfferResponse>() {
             @Override
             public void onResponse(Call<LockedOfferResponse> call, Response<LockedOfferResponse> response) {
+                MyFunctions.cancelLoading();
                 LockedOfferResponse lockedOfferResponse = response.body();
                 if(lockedOfferResponse.getSuccess()){
                     offerlockAdapter = new OfferLockAdapter(lockedOfferResponse.getData(),ViewOfferLockActivity.this);
@@ -62,8 +64,8 @@ public class ViewOfferLockActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<LockedOfferResponse> call, Throwable t) {
+                MyFunctions.cancelLoading();
                 Toast.makeText(ViewOfferLockActivity.this,Constants.API_ERROR, Toast.LENGTH_SHORT).show();
-
             }
         });
     }
