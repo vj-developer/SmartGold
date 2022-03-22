@@ -17,6 +17,7 @@ import com.greymatter.smartgold.model.PriceDurationResponse;
 import com.greymatter.smartgold.model.ProductListResponse;
 import com.greymatter.smartgold.model.RegisterResponse;
 import com.greymatter.smartgold.model.SmartOffersResponse;
+import com.greymatter.smartgold.model.StoreResponse;
 import com.greymatter.smartgold.utils.Constants;
 
 import retrofit2.Call;
@@ -75,6 +76,15 @@ public interface APIInterface {
     @POST("allproducts.php")
     Call<ProductListResponse> product(@Header("Authorization") String auth,
                                       @Field(Constants.AccessKey) String accesskey);
+
+    @FormUrlEncoded
+    @POST("getsellers.php")
+    Call<StoreResponse> getSellers(@Header("Authorization") String auth,
+                                   @Field(Constants.AccessKey) String accesskey,
+                                   @Field(Constants.LATITUDE) String latitude,
+                                   @Field(Constants.LONGITUDE) String longitude,
+                                   @Field(Constants.RANGE_TO) String range_to
+                                      );
 
     @FormUrlEncoded
     @POST("get-offer-lock-by-id.php")

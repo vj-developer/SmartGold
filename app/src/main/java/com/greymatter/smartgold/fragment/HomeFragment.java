@@ -1,8 +1,6 @@
 package com.greymatter.smartgold.fragment;
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,29 +11,25 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.greymatter.smartgold.activity.AddressActivity;
 import com.greymatter.smartgold.activity.FilterActivity;
 import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.activity.FilteredProductsActivity;
 import com.greymatter.smartgold.activity.NearByStoreActivity;
 import com.greymatter.smartgold.activity.SmartBuyActivity;
-import com.greymatter.smartgold.adapter.AddressAdapter;
 import com.greymatter.smartgold.adapter.CategoryAdapter;
 import com.greymatter.smartgold.adapter.ProductsAdapter;
+import com.greymatter.smartgold.adapter.StoreAdapter;
 import com.greymatter.smartgold.adapter.SliderAdapter;
-import com.greymatter.smartgold.model.AddressListResponse;
 import com.greymatter.smartgold.model.BannerListResponse;
 import com.greymatter.smartgold.model.CategoryResponse;
 import com.greymatter.smartgold.model.ProductListResponse;
 import com.greymatter.smartgold.model.SliderData;
+import com.greymatter.smartgold.model.StoreResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
 import com.greymatter.smartgold.retrofit.ApiConfig;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
@@ -54,10 +48,11 @@ public class HomeFragment extends Fragment {
     SliderView sliderView;
     ArrayList<SliderData> sliderDataArrayList;
     RecyclerView category_recycler;
-    RecyclerView product_recycler;
+    RecyclerView product_recycler,store_recycler;
     CategoryAdapter categoryAdapter;
     ProductsAdapter productAdapter;
     EditText search_bar_et;
+    StoreAdapter storeAdapter;
 
     public HomeFragment() {
     }
@@ -71,11 +66,13 @@ public class HomeFragment extends Fragment {
         sliderView = view.findViewById(R.id.banner_slider);
         category_recycler = view.findViewById(R.id.recyclerviewcategory);
         product_recycler = view.findViewById(R.id.recyclerviewproduct);
+        store_recycler = view.findViewById(R.id.store_recycler);
         search_bar_et = view.findViewById(R.id.search_bar_et);
 
         bannerSliderApi();
         CategoryList();
         ProductList();
+        getShopList();
 
 
         view.findViewById(R.id.filter_btn).setOnClickListener(new View.OnClickListener() {
@@ -118,6 +115,29 @@ public class HomeFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    private void getShopList() {
+        APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
+        Call<StoreResponse> call = apiInterface.getSellers(ApiConfig.SecurityKey,Constants.AccessKeyVal,null,null,null);
+        call.enqueue(new Callback<StoreResponse>() {
+            @Override
+            public void onResponse(Call<StoreResponse> call, Response<StoreResponse> response) {
+                StoreResponse productResponse = response.body();
+                if(productResponse.getSuccess()){
+                    storeAdapter = new StoreAdapter(productResponse.getData(),getActivity());
+                    store_recycler.setAdapter(storeAdapter);
+                }
+                else {
+                    Toast.makeText(getActivity(), productResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StoreResponse> call, Throwable t) {
+
+            }
+        });
     }
 
     private void ProductList() {
