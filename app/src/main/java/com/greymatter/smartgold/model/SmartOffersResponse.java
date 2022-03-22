@@ -39,6 +39,7 @@ public class SmartOffersResponse {
     public void setData(List<Datum> data) {
         this.data = data;
     }
+
     public class Datum {
 
         @SerializedName("nick_name")
@@ -71,6 +72,9 @@ public class SmartOffersResponse {
         @SerializedName("id")
         @Expose
         private String id;
+        @SerializedName("offer_details")
+        @Expose
+        private String offerDetails;
 
         public String getNickName() {
             return nickName;
@@ -150,6 +154,14 @@ public class SmartOffersResponse {
 
         public void setId(String id) {
             this.id = id;
+        }
+
+        public String getOfferDetails() {
+            return offerDetails;
+        }
+
+        public void setOfferDetails(String offerDetails) {
+            this.offerDetails = offerDetails;
         }
     }
 }

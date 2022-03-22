@@ -50,13 +50,14 @@
                 android:gravity="center"
                 android:layout_margin="12dp"
                 android:orientation="horizontal">
+
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:hint="Search for gold"
+                    android:hint="Search"
                     android:textColorHint="@color/primarydark"
                     app:startIconTint="@color/primarydark"
                     app:startIconDrawable="@drawable/search_icon">
@@ -115,18 +116,19 @@
                 android:textStyle="bold" />
 
             <RelativeLayout
+                android:layout_marginTop="10dp"
                 android:id="@+id/catehead"
-                android:layout_below="@+id/smartbuy_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/primarydark"
-                    android:textStyle="bold"
                     android:layout_marginStart="12dp"
+                    android:text="Shop by Category"
+                    android:textColor="@color/primarydark"
                     android:textSize="18dp"
-                    android:text="Shop by Category"/>
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 
@@ -140,19 +142,48 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/category_layout">
             </androidx.recyclerview.widget.RecyclerView>
+
             <RelativeLayout
-                android:id="@+id/producthead"
-                android:layout_below="@+id/recyclerviewcategory"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/primarydark"
-                    android:textStyle="bold"
                     android:layout_marginStart="12dp"
+                    android:text="Shop by Store"
+                    android:textColor="@color/primarydark"
                     android:textSize="18dp"
-                    android:text="All Products"/>
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/store_recycler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:spanCount="2"
+                tools:itemCount="2"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:listitem="@layout/store_item"/>
+
+            <RelativeLayout
+                android:id="@+id/producthead"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/recyclerviewcategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="All Products"
+                    android:textColor="@color/primarydark"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 

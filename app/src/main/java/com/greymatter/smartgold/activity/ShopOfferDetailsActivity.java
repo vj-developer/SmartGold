@@ -10,11 +10,13 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.adapter.CategoryAdapter;
 import com.greymatter.smartgold.model.CategoryResponse;
 import com.greymatter.smartgold.model.OfferLockResponse;
 import com.greymatter.smartgold.model.PriceDurationResponse;
+import com.greymatter.smartgold.model.SmartOffersResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
 import com.greymatter.smartgold.retrofit.ApiConfig;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
@@ -32,10 +34,11 @@ import retrofit2.Response;
 
 public class ShopOfferDetailsActivity extends AppCompatActivity implements PaymentResultListener {
 
-    TextView wastage,wastage_card_tv,amount_tv,day_tv,product_count,gram_price;
+    TextView wastage,wastage_card_tv,amount_tv,day_tv,product_count,gram_price,details;
     String amount_string,duration_day,shop_id,user_id,offer_id;
     RecyclerView available_products;
     CategoryAdapter categoryAdapter;
+    private SmartOffersResponse.Datum smartOffer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
         day_tv = findViewById(R.id.day_tv);
         product_count = findViewById(R.id.product_count);
         gram_price = findViewById(R.id.gram_price);
+        details = findViewById(R.id.details);
 
         duration_day = MyFunctions.getStringFromSharedPref(getApplicationContext(),Constants.SMART_LOCK_DAY,duration_day);
         amount_string = MyFunctions.getStringFromSharedPref(getApplicationContext(),Constants.SMART_LOCK_PRICE,amount_string);
@@ -59,13 +63,15 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
         shop_id = getIntent().getStringExtra(Constants.SELLER_ID);
         offer_id = getIntent().getStringExtra(Constants.OFFER_ID);
 
+        smartOffer = new Gson().fromJson(getIntent().getStringExtra(Constants.SMART_OFFER), SmartOffersResponse.Datum.class);
         getPriceDuration();
-        getAvailableProducts();
+        //getAvailableProducts();
 
 
         wastage.setText(". "+getIntent().getStringExtra(Constants.WASTAGE)+ "% wastage");
         wastage_card_tv.setText(getIntent().getStringExtra(Constants.WASTAGE)+ "% wastage");
         gram_price.setText(". "+Constants.PER_GRAM_PRICE +MyFunctions.ConvertToINR(getIntent().getStringExtra(Constants.GRAMPRICE)));
+        details.setText(smartOffer.getOfferDetails());
 
         findViewById(R.id.back_btn).setOnClickListener(new View.OnClickListener() {
             @Override

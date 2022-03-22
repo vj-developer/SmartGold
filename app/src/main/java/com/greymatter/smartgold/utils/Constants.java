@@ -77,6 +77,9 @@ public class Constants {
     public static final String AVAILABLE = "Available";
     public static final String CART_COUNT = "cart_count";
     public static final String API_ERROR = "Something went wrong,please try after sometime";
+    public static final String SMART_OFFER = "smart_offer";
+    public static final String RANGE_FROM = "range_from";
+    public static final String RANGE_TO = "range_to";
 
     /* 1- Pickup at store
        2- Delivery at Home */

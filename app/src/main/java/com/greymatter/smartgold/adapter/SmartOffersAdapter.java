@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
 import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.activity.ShopOfferDetailsActivity;
 import com.greymatter.smartgold.model.SmartOffersResponse;
@@ -50,6 +51,8 @@ public class SmartOffersAdapter extends RecyclerView.Adapter <SmartOffersAdapter
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String smartOffer = new Gson().toJson(shop);
+
                 Intent intent = new Intent(context, ShopOfferDetailsActivity.class);
                 intent.putExtra(Constants.NICKNAME,shop.getNickName());
                 intent.putExtra(Constants.GRAMPRICE,shop.getGramPrice());
@@ -58,6 +61,7 @@ public class SmartOffersAdapter extends RecyclerView.Adapter <SmartOffersAdapter
                 intent.putExtra(Constants.DISTANCE,shop.getDistance());
                 intent.putExtra(Constants.SELLER_ID,shop.getSeller_id());
                 intent.putExtra(Constants.OFFER_ID,shop.getId());
+                intent.putExtra(Constants.SMART_OFFER,smartOffer);
                 context.startActivity(intent);
             }
         });

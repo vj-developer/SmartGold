@@ -165,12 +165,20 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:text="Available Products"
+            android:text="Offer Details"
             android:textColor="@color/brown"
             android:textSize="18sp"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No Wastage"
+            android:textColor="@color/brown" />
+
         <androidx.recyclerview.widget.RecyclerView
+            android:visibility="gone"
             android:id="@+id/available_products"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -2,7 +2,6 @@ package com.greymatter.smartgold.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -32,20 +31,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import it.mirko.rangeseekbar.OnRangeSeekBarListener;
+import it.mirko.rangeseekbar.RangeSeekBar;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SmartBuyActivity extends AppCompatActivity {
+public class SmartBuyActivity extends AppCompatActivity implements OnRangeSeekBarListener {
 
     EditText address_et, area_et, city_et, pin_code_et;
     ArrayList<String> budgetRangeArray,budgetRangeIdArray;
     Spinner budgetArraySpinnner;
     private int ADDRESS_PICKER_REQUEST = 123;
-    TextView location_tv;
+    TextView location_tv,start_km,end_km;
     TextView address_name,address_tv,pincode;
     String latitude= "null",longitude = "null";
     String address , area, city, pin_code;
+    String from_km ="5", to_km ="200";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,9 @@ public class SmartBuyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_smart_buy);
 
         budgetArraySpinnner = findViewById(R.id.budget_spinner);
+        RangeSeekBar rangeSeekBar = findViewById(R.id.rangeSeekBar);
+        start_km = findViewById(R.id.start_km);
+        end_km = findViewById(R.id.end_km);
         address_name = findViewById(R.id.address_name);
         address_tv = findViewById(R.id.address_tv);
         pincode = findViewById(R.id.pincode_tv);
@@ -63,6 +68,7 @@ public class SmartBuyActivity extends AppCompatActivity {
         pin_code_et = findViewById(R.id.pincode);
 
         MapUtility.apiKey = getResources().getString(R.string.your_api_key);
+        rangeSeekBar.setOnRangeSeekBarListener(this);
 
         if (!latitude.equals("null")){
             try {
@@ -216,6 +222,8 @@ public class SmartBuyActivity extends AppCompatActivity {
         intent.putExtra(Constants.BUDGET_ID,budget_id);
         intent.putExtra(Constants.LONGITUDE,longitude);
         intent.putExtra(Constants.LATITUDE,latitude);
+        intent.putExtra(Constants.RANGE_FROM,from_km);
+        intent.putExtra(Constants.RANGE_TO,to_km);
         startActivity(intent);
     }
 
@@ -324,5 +332,16 @@ public class SmartBuyActivity extends AppCompatActivity {
             findViewById(R.id.guest_user_container).setVisibility(View.VISIBLE);
         }
     }
-    
+
+    @Override
+    public void onRangeValues(RangeSeekBar rangeSeekBar, int start, int end) {
+
+        //start price    default = 0
+        from_km = String.valueOf(start+5);
+        start_km.setText(from_km +"km");
+
+        //end price     default = 100
+        to_km = String.valueOf(end*2);
+        end_km.setText(to_km +"km");
+    }
 }
