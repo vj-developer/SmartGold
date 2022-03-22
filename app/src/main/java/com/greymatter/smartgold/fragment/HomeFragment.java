@@ -25,6 +25,7 @@ import com.greymatter.smartgold.activity.AddressActivity;
 import com.greymatter.smartgold.activity.FilterActivity;
 import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.activity.FilteredProductsActivity;
+import com.greymatter.smartgold.activity.NearByStoreActivity;
 import com.greymatter.smartgold.activity.SmartBuyActivity;
 import com.greymatter.smartgold.adapter.AddressAdapter;
 import com.greymatter.smartgold.adapter.CategoryAdapter;
@@ -90,6 +91,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SmartBuyActivity.class);
+                startActivity(intent);
+            }
+        });
+        view.findViewById(R.id.nearby_store).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), NearByStoreActivity.class);
                 startActivity(intent);
             }
         });

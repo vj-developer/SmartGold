@@ -4,7 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="resend_otp"><u>Resend OTP</u></string>
     <string name="signIn"><u>Sign In</u></string>
-    <string name="your_api_key">"AIzaSyAFCnGf6H7TjrwAhAhr_Zg6umPpoZBjhjg"</string>
+    <string name="your_api_key">"AIzaSyDXRUNEuXhkWGxiOtrvTSMc91H6L9PM-_M"</string>
 
     <string-array name="budget_array">
         <item>Upto 1 lakh</item>

@@ -169,6 +169,20 @@
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:listitem="@layout/store_item"/>
 
+            <Button
+                android:id="@+id/nearby_store"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/banner_slider"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="12dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Find Nearby Stores"
+                android:textAllCaps="true"
+                android:textColor="@color/brown_btn_txt_color"
+                android:textStyle="bold" />
+
             <RelativeLayout
                 android:id="@+id/producthead"
                 android:layout_marginTop="10dp"

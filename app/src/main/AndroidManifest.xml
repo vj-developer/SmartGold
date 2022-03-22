@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -18,7 +18,10 @@
         android:theme="@style/Theme.SmartGold"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".activity.FilteredProductsActivity"></activity>
+        <activity
+            android:name=".activity.NearByStoreActivity"
+            android:exported="false" />
+        <activity android:name=".activity.FilteredProductsActivity" />
         <activity android:name=".activity.OrderListActivity" />
         <activity android:name=".activity.OrderResultActivity" />
         <activity
@@ -85,13 +88,11 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <service
-            android:name=".fcm.MessagingService">
+        <service android:name=".fcm.MessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>
