@@ -133,7 +133,6 @@ public interface APIInterface {
                                             @Field(Constants.BUDGET_ID) String budget_range_id,
                                            @Field(Constants.LATITUDE) String latitude,
                                            @Field(Constants.LONGITUDE) String longitude,
-                                           @Field(Constants.RANGE_FROM) String range_from,
                                            @Field(Constants.RANGE_TO) String range_to) ;
 
     @FormUrlEncoded

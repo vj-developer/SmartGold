@@ -25,7 +25,7 @@ public class ShopListActivity extends AppCompatActivity {
 
     SmartOffersAdapter smartOffersAdapter;
     RecyclerView smartoffers_recycler;
-    String budget_id, latitude,longitude,range_from,range_to;
+    String budget_id, latitude,longitude,range_to;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,6 @@ public class ShopListActivity extends AppCompatActivity {
         budget_id = getIntent().getStringExtra(Constants.BUDGET_ID);
         latitude = getIntent().getStringExtra(Constants.LATITUDE);
         longitude = getIntent().getStringExtra(Constants.LONGITUDE);
-        range_from = getIntent().getStringExtra(Constants.RANGE_FROM);
         range_to = getIntent().getStringExtra(Constants.RANGE_TO);
 
 
@@ -55,7 +54,7 @@ public class ShopListActivity extends AppCompatActivity {
 
         MyFunctions.showLoading(ShopListActivity.this);
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<SmartOffersResponse> call = apiInterface.smart_offers(ApiConfig.SecurityKey,Constants.AccessKeyVal,budget_id,latitude,longitude,range_from,range_to);
+        Call<SmartOffersResponse> call = apiInterface.smart_offers(ApiConfig.SecurityKey,Constants.AccessKeyVal,budget_id,latitude,longitude,range_to);
         call.enqueue(new Callback<SmartOffersResponse>() {
             @Override
             public void onResponse(Call<SmartOffersResponse> call, Response<SmartOffersResponse> response) {

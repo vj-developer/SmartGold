@@ -1,7 +1,9 @@
 package com.greymatter.smartgold.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -15,6 +17,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.slider.LabelFormatter;
+import com.google.android.material.slider.Slider;
 import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.model.BudgetRangeResponse;
 import com.greymatter.smartgold.model.DefaultAddressResponse;
@@ -37,7 +41,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SmartBuyActivity extends AppCompatActivity implements OnRangeSeekBarListener {
+public class SmartBuyActivity extends AppCompatActivity {
 
     EditText address_et, area_et, city_et, pin_code_et;
     ArrayList<String> budgetRangeArray,budgetRangeIdArray;
@@ -47,7 +51,8 @@ public class SmartBuyActivity extends AppCompatActivity implements OnRangeSeekBa
     TextView address_name,address_tv,pincode;
     String latitude= "null",longitude = "null";
     String address , area, city, pin_code;
-    String from_km ="5", to_km ="200";
+    String to_km ="5";
+    Slider slider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +60,7 @@ public class SmartBuyActivity extends AppCompatActivity implements OnRangeSeekBa
         setContentView(R.layout.activity_smart_buy);
 
         budgetArraySpinnner = findViewById(R.id.budget_spinner);
-        RangeSeekBar rangeSeekBar = findViewById(R.id.rangeSeekBar);
+        slider = findViewById(R.id.slider);
         start_km = findViewById(R.id.start_km);
         end_km = findViewById(R.id.end_km);
         address_name = findViewById(R.id.address_name);
@@ -68,7 +73,24 @@ public class SmartBuyActivity extends AppCompatActivity implements OnRangeSeekBa
         pin_code_et = findViewById(R.id.pincode);
 
         MapUtility.apiKey = getResources().getString(R.string.your_api_key);
-        rangeSeekBar.setOnRangeSeekBarListener(this);
+
+        /*Range upto*/
+        slider.addOnChangeListener(new Slider.OnChangeListener() {
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
+                //end price     default = 200
+                to_km = String.valueOf(Math.round(value));
+                //end_km.setText(to_km +"km");
+            }
+        });
+        slider.setLabelFormatter(new LabelFormatter() {
+            @NonNull
+            @Override
+            public String getFormattedValue(float value) {
+                return Math.round(value)+"km";
+            }
+        });
 
         if (!latitude.equals("null")){
             try {
@@ -222,7 +244,6 @@ public class SmartBuyActivity extends AppCompatActivity implements OnRangeSeekBa
         intent.putExtra(Constants.BUDGET_ID,budget_id);
         intent.putExtra(Constants.LONGITUDE,longitude);
         intent.putExtra(Constants.LATITUDE,latitude);
-        intent.putExtra(Constants.RANGE_FROM,from_km);
         intent.putExtra(Constants.RANGE_TO,to_km);
         startActivity(intent);
     }
@@ -333,15 +354,4 @@ public class SmartBuyActivity extends AppCompatActivity implements OnRangeSeekBa
         }
     }
 
-    @Override
-    public void onRangeValues(RangeSeekBar rangeSeekBar, int start, int end) {
-
-        //start price    default = 0
-        from_km = String.valueOf(start+5);
-        start_km.setText(from_km +"km");
-
-        //end price     default = 100
-        to_km = String.valueOf(end*2);
-        end_km.setText(to_km +"km");
-    }
 }
