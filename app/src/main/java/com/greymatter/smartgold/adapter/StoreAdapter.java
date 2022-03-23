@@ -12,7 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.greymatter.smartgold.R;
+import com.greymatter.smartgold.activity.CategoryListActivity;
 import com.greymatter.smartgold.activity.ProductDetailActivity;
 import com.greymatter.smartgold.model.ProductListResponse;
 import com.greymatter.smartgold.model.StoreResponse;
@@ -39,19 +41,21 @@ public class StoreAdapter extends RecyclerView.Adapter <StoreAdapter.ViewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        StoreResponse.Datum products = data.get(position);
+        StoreResponse.Datum datum = data.get(position);
         //String add_position = address.getName();
 
-        holder.name.setText(products.getName());
+        holder.name.setText(datum.getName());
         Glide.with(holder.itemView)
-                .load(products.getLogo())
+                .load(datum.getLogo())
                 .fitCenter()
                 .into(holder.image);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String jsonString = new Gson().toJson(datum);
+                context.startActivity(new Intent(context, CategoryListActivity.class)
+                        .putExtra(Constants.STORE,jsonString));
             }
         });
     }

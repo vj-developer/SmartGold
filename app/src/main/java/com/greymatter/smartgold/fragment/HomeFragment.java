@@ -80,7 +80,6 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), FilterActivity.class);
                 startActivity(intent);
-
             }
         });
 
@@ -114,6 +113,7 @@ public class HomeFragment extends Fragment {
                 return false;
             }
         });
+
         return view;
     }
 

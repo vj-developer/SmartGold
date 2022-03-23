@@ -3,7 +3,6 @@ package com.greymatter.smartgold.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -121,7 +120,7 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
         MyFunctions.showLoading(ShopOfferDetailsActivity.this);
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
 
-        Call<CategoryResponse> call = apiInterface.available_products(ApiConfig.SecurityKey,Constants.AccessKeyVal,shop_id);
+        Call<CategoryResponse> call = apiInterface.available_category(ApiConfig.SecurityKey,Constants.AccessKeyVal,shop_id);
         call.enqueue(new Callback<CategoryResponse>() {
             @Override
             public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {

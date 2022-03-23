@@ -13,9 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.greymatter.smartgold.R;
-import com.greymatter.smartgold.activity.CategoryDetailActivity;
 import com.greymatter.smartgold.activity.ProductListActivity;
-import com.greymatter.smartgold.model.AddressListResponse;
 import com.greymatter.smartgold.model.CategoryResponse;
 import com.greymatter.smartgold.utils.Constants;
 

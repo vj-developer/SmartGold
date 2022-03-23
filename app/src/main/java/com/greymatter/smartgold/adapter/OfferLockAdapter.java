@@ -13,13 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.greymatter.smartgold.R;
-import com.greymatter.smartgold.activity.CategoryDetailActivity;
-import com.greymatter.smartgold.activity.ProductListActivity;
 import com.greymatter.smartgold.model.LockedOfferResponse;
-import com.greymatter.smartgold.model.OfferLockResponse;
-import com.greymatter.smartgold.utils.Constants;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;

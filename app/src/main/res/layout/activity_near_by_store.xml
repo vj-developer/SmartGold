@@ -38,36 +38,11 @@
                 android:textStyle="bold" />
 
             <ImageView
+                android:id="@+id/filter"
                 android:layout_width="65dp"
                 android:layout_height="65dp"
                 android:layout_gravity="center"
-                android:src="@drawable/logo" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/location_pick"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="24dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/location_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:text="Select Location"
-                android:textColor="@color/brown"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_baseline_edit_location_alt_24" />
-
+                android:src="@drawable/filter_icon" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -76,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             app:spanCount="2"
-            tools:itemCount="2"
+            tools:itemCount="4"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             tools:listitem="@layout/store_item"/>
 
