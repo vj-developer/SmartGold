@@ -132,7 +132,7 @@ public class NearByStoreActivity extends AppCompatActivity {
         bottomSheetDialog.findViewById(R.id.location_pick).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), LocationPickerActivity.class);
+                Intent i = new Intent(NearByStoreActivity.this, LocationPickerActivity.class);
                 startActivityForResult(i, ADDRESS_PICKER_REQUEST);
             }
         });
