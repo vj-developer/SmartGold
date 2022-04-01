@@ -33,6 +33,8 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.shivtechs.maplocationpicker.LocationPickerActivity;
+import com.shivtechs.maplocationpicker.MapUtility;
 
 import java.io.IOException;
 import java.util.List;
@@ -44,6 +46,7 @@ import retrofit2.Response;
 
 public class AddAddressActivity extends AppCompatActivity {
 
+    private static final int ADDRESS_PICKER_REQUEST = 12;
     EditText user_name_et,address_et, address_optional_et, area_et, city_et, pin_code_et;
     Button add_address;
     String user_name, address, address_optional , area, city, pin_code;
@@ -63,6 +66,16 @@ public class AddAddressActivity extends AppCompatActivity {
         city_et = findViewById(R.id.city);
         pin_code_et = findViewById(R.id.pincode);
         add_address = findViewById(R.id.add_address_btn);
+
+        MapUtility.apiKey = getResources().getString(R.string.your_api_key);
+
+        findViewById(R.id.select_location).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(AddAddressActivity.this, LocationPickerActivity.class);
+                startActivityForResult(i, ADDRESS_PICKER_REQUEST);
+            }
+        });
 
         findViewById(R.id.current_location).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -230,4 +243,39 @@ public class AddAddressActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == ADDRESS_PICKER_REQUEST) {
+            try {
+                if (data != null && data.getStringExtra(MapUtility.ADDRESS) != null) {
+                    // String address = data.getStringExtra(MapUtility.ADDRESS);
+                    double currentLatitude = data.getDoubleExtra(MapUtility.LATITUDE, 0.0);
+                    double currentLongitude = data.getDoubleExtra(MapUtility.LONGITUDE, 0.0);
+                    Bundle completeAddress =data.getBundleExtra("fullAddress");
+                    /* data in completeAddress bundle
+                    "fulladdress"
+                    "city"
+                    "state"
+                    "postalcode"
+                    "country"
+                    "addressline1"
+                    "addressline2"
+                     */
+
+                    getAddressFromLatLng(currentLatitude,currentLongitude);
+                    latitude = String.valueOf(currentLatitude);
+                    longitude = String.valueOf(currentLongitude);
+
+                    MyFunctions.saveStringToSharedPref(getApplicationContext(), Constants.LATITUDE,latitude);
+                    MyFunctions.saveStringToSharedPref(getApplicationContext(),Constants.LONGITUDE,longitude);
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
 }

@@ -17,17 +17,21 @@
             android:layout_height="55dp"
             android:layout_gravity="center"
             android:src="@drawable/backbtn" />
+
         <TextView
             android:id="@+id/product_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/backbtn"
+            android:layout_toLeftOf="@id/cart_rl"
+            android:text="Classic ring"
+            android:gravity="center"
+            android:layout_centerInParent="true"
             android:textColor="@color/brown"
-            android:layout_centerVertical="true"
-            android:textSize="20dp"
-            android:layout_centerHorizontal="true"
-            android:text="Classic ring"/>
+            android:textSize="20dp" />
 
         <RelativeLayout
+            android:id="@+id/cart_rl"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentEnd="true">
@@ -73,6 +77,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
                 android:src="@drawable/logo"/>
+
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="*Weight and Price may vary subject to the stock available."
+                android:textColor="@color/primarydark" />
 
             <View
                 android:layout_width="match_parent"

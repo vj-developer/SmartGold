@@ -71,6 +71,7 @@ public class NearByStoreActivity extends AppCompatActivity {
     }
 
     private void getShopList() {
+        data.clear();
         MyFunctions.showLoading(NearByStoreActivity.this);
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
         Call<StoreResponse> call = apiInterface.getSellers(ApiConfig.SecurityKey,Constants.AccessKeyVal,latitude,longitude,range_to);
@@ -80,13 +81,12 @@ public class NearByStoreActivity extends AppCompatActivity {
                 MyFunctions.cancelLoading();
                 StoreResponse productResponse = response.body();
                 if(productResponse.getSuccess()){
-                    data.clear();
                     data.addAll(productResponse.getData());
-                    storeAdapter.notifyDataSetChanged();
                 }
                 else {
                     Toast.makeText(getApplicationContext(), productResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 }
+                storeAdapter.notifyDataSetChanged();
             }
 
             @Override
