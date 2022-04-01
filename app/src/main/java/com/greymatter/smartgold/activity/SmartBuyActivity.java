@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.google.android.material.slider.LabelFormatter;
 import com.google.android.material.slider.Slider;
+import com.google.gson.JsonObject;
 import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.model.BudgetRangeResponse;
 import com.greymatter.smartgold.model.DefaultAddressResponse;
@@ -29,6 +30,8 @@ import com.greymatter.smartgold.utils.Constants;
 import com.greymatter.smartgold.utils.MyFunctions;
 import com.shivtechs.maplocationpicker.LocationPickerActivity;
 import com.shivtechs.maplocationpicker.MapUtility;
+
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;

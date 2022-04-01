@@ -76,13 +76,14 @@
 
 
                     <TextView
+                        android:id="@+id/gold_rate"
                         android:layout_weight="1"
                         android:textSize="18sp"
                         android:gravity="right|center_vertical"
                         android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="Market price\n₹5,081 + 3% GST"/>
+                        tools:text="Market price\n₹5,081 + GST"/>
 
                 </LinearLayout>
 

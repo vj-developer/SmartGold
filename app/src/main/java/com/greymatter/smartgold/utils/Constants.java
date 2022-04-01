@@ -81,6 +81,7 @@ public class Constants {
     public static final String RANGE_FROM = "range_from";
     public static final String RANGE_TO = "range_to";
     public static final String STORE = "store";
+    public static final String GOLD_RATE = "gold_rate";
 
     /* 1- Pickup at store
        2- Delivery at Home */
