@@ -26,7 +26,7 @@ public class FilteredProductsActivity extends AppCompatActivity {
 
     RecyclerView product_recycler;
     ProductsAdapter productAdapter;
-    String from_price,to_price,order_by,category_id;
+    String from_price,to_price,order_by,category_id,gender,weight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,8 @@ public class FilteredProductsActivity extends AppCompatActivity {
             from_price = getIntent().getStringExtra(Constants.FROM_PRICE_RANGE);
             to_price = getIntent().getStringExtra(Constants.TO_PRICE_RANGE);
             order_by = getIntent().getStringExtra(Constants.ORDER_BY);
+            gender = getIntent().getStringExtra(Constants.GENDER);
+            weight = getIntent().getStringExtra(Constants.WEIGHT);
 
             filterProducts();
 
@@ -107,7 +109,7 @@ public class FilteredProductsActivity extends AppCompatActivity {
     private void filterProducts() {
         MyFunctions.showLoading(FilteredProductsActivity.this);
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<ProductListResponse> call = apiInterface.filter_products(ApiConfig.SecurityKey,Constants.AccessKeyVal,from_price,to_price,order_by,category_id);
+        Call<ProductListResponse> call = apiInterface.filter_products(ApiConfig.SecurityKey,Constants.AccessKeyVal,from_price,to_price,order_by,category_id,gender,weight);
         call.enqueue(new Callback<ProductListResponse>() {
             @Override
             public void onResponse(Call<ProductListResponse> call, Response<ProductListResponse> response) {

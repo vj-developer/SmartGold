@@ -105,7 +105,9 @@ public interface APIInterface {
                                               @Field(Constants.FROM_PRICE_RANGE) String from_price_range,
                                               @Field(Constants.TO_PRICE_RANGE) String to_price_range,
                                               @Field(Constants.ORDER_BY) String sort,
-                                              @Field(Constants.CATEGORY_ID) String category_id);
+                                              @Field(Constants.CATEGORY_ID) String category_id,
+                                              @Field(Constants.GENDER) String gender,
+                                              @Field(Constants.WEIGHT) String weight);
 
     @FormUrlEncoded
     @POST("search_products.php")
@@ -118,6 +120,12 @@ public interface APIInterface {
     @FormUrlEncoded
     @POST("categorylist-seller.php")
     Call<CategoryResponse> available_category(@Header("Authorization") String auth,
+                                              @Field(Constants.AccessKey) String accesskey,
+                                              @Field(Constants.SELLER_ID) String shop_id);
+
+    @FormUrlEncoded
+    @POST("productlist-seller.php")
+    Call<ProductListResponse> productByStore(@Header("Authorization") String auth,
                                               @Field(Constants.AccessKey) String accesskey,
                                               @Field(Constants.SELLER_ID) String shop_id);
 

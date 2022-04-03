@@ -82,6 +82,10 @@ public class Constants {
     public static final String RANGE_TO = "range_to";
     public static final String STORE = "store";
     public static final String GOLD_RATE = "gold_rate";
+    public static final String CATEGORY_WISE = "category_wise";
+    public static final String SCREEN_TYPE = "screen_type";
+    public static final String GENDER = "gender";
+    public static final String WEIGHT = "weight";
 
     /* 1- Pickup at store
        2- Delivery at Home */

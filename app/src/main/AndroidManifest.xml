@@ -7,7 +7,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <uses-feature android:name="android.hardware.location.network" android:required="false" />
+    <uses-feature android:name="android.hardware.location.gps" android:required="false"  />
 
     <application
         android:allowBackup="true"
@@ -21,9 +25,15 @@
         <activity
             android:name=".activity.NearByStoreActivity"
             android:exported="false" />
-        <activity android:name=".activity.FilteredProductsActivity" />
-        <activity android:name=".activity.OrderListActivity" />
-        <activity android:name=".activity.OrderResultActivity" />
+        <activity
+            android:name=".activity.FilteredProductsActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".activity.OrderListActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".activity.OrderResultActivity"
+            android:exported="true"/>
         <activity
             android:name=".activity.ViewOfferLockActivity"
             android:exported="false" />
@@ -33,13 +43,21 @@
         <activity
             android:name=".activity.CategoryListActivity"
             android:exported="true" />
-        <activity android:name=".activity.CartActivity" />
+        <activity
+            android:name=".activity.CartActivity"
+            android:exported="true"/>
         <activity
             android:name=".activity.CheckoutActivity"
             android:exported="true" />
-        <activity android:name=".activity.ProductDetailActivity" />
-        <activity android:name=".activity.SmartBuyActivity" />
-        <activity android:name=".activity.OfferLockResultActivity" />
+        <activity
+            android:name=".activity.ProductDetailActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".activity.SmartBuyActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".activity.OfferLockResultActivity"
+            android:exported="true"/>
         <activity
             android:name=".activity.FilterActivity"
             android:exported="true" />
@@ -79,16 +97,37 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"/>
+
+        <activity
+            android:name="com.adevinta.leku.LocationPickerActivity"
+            android:label="@string/leku_title_activity_location_picker"
+            android:windowSoftInputMode="adjustPan"
+            android:parentActivityName=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/leku_searchable" />
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
 
         <meta-data
+            android:exported="true"
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/your_api_key" />
         <meta-data
+            android:exported="true"
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <service android:name=".fcm.MessagingService">
+        <service android:name=".fcm.MessagingService"
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

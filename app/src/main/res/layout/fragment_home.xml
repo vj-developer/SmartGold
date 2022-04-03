@@ -179,7 +179,7 @@
                 android:layout_margin="12dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:text="Find Nearby Stores"
+                android:text="Find Stores"
                 android:textAllCaps="true"
                 android:textColor="@color/brown_btn_txt_color"
                 android:textStyle="bold" />

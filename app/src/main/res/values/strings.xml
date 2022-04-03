@@ -44,18 +44,23 @@
         <item>Anklet</item>
     </string-array>
 
+    <string-array name="gender_array">
+        <item>Female</item>
+        <item>Male</item>
+    </string-array>
+
     <string-array name="sort_array">
         <item>Price: Low to High</item>
         <item>Price: High to Low</item>
     </string-array>
 
     <string-array name="filter_weight_array">
-        <item>1 gram to 4 grams</item>
-        <item>4 grams to 8 grams</item>
-        <item>8 grams to 16 grams</item>
-        <item>16 grams to 32 grams</item>
-        <item>32 grams - 64 grams</item>
-        <item>64 grams and above</item>
+        <item>1 gm to 4 gm</item>
+        <item>4 gm to 8 gm</item>
+        <item>8 gm to 16 gm</item>
+        <item>16 gm to 32 gm</item>
+        <item>32 gm to 64 gm</item>
+        <item>64 gm and above</item>
     </string-array>
 
 </resources>

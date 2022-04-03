@@ -1,11 +1,19 @@
 package com.greymatter.smartgold.fragment;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -16,6 +24,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.greymatter.smartgold.activity.AddAddressActivity;
 import com.greymatter.smartgold.activity.FilterActivity;
 import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.activity.FilteredProductsActivity;
@@ -35,9 +44,16 @@ import com.greymatter.smartgold.retrofit.ApiConfig;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
 import com.greymatter.smartgold.utils.Constants;
 import com.greymatter.smartgold.utils.MyFunctions;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.smarteist.autoimageslider.SliderView;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -53,6 +69,9 @@ public class HomeFragment extends Fragment {
     ProductsAdapter productAdapter;
     EditText search_bar_et;
     StoreAdapter storeAdapter;
+    LocationManager locationManager;
+    String latitude, longitude;
+    String TAG = "Home";
 
     public HomeFragment() {
     }
@@ -72,8 +91,6 @@ public class HomeFragment extends Fragment {
         bannerSliderApi();
         CategoryList();
         ProductList();
-        getShopList();
-
 
         view.findViewById(R.id.filter_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +107,7 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
         view.findViewById(R.id.nearby_store).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,12 +132,74 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        checkLocationPermission();
+
         return view;
+    }
+
+    private void checkLocationPermission() {
+        Dexter.withContext(getActivity()).withPermissions(Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION).withListener(new MultiplePermissionsListener() {
+            @Override
+            public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                if (multiplePermissionsReport.areAllPermissionsGranted()){
+                    try {
+                        getCurrentLocation();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+
+            }
+        }).check();
+    }
+
+    private void getCurrentLocation() throws IOException {
+        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            OnGPS();
+        } else {
+            @SuppressLint("MissingPermission")
+            Location locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            if (locationGPS != null) {
+                double lat = locationGPS.getLatitude();
+                double longi = locationGPS.getLongitude();
+                latitude = String.valueOf(lat);
+                longitude = String.valueOf(longi);
+                Log.d(TAG,"Your Location: " + "\n" + "Latitude: " + latitude + "\n" + "Longitude: " + longitude);
+                getShopList();
+            } else {
+                Toast.makeText(getActivity(), "Unable to find location.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void OnGPS() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage("Enable GPS").
+                setCancelable(false).
+                setPositiveButton("Yes", new  DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }}).
+                setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     private void getShopList() {
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<StoreResponse> call = apiInterface.getSellers(ApiConfig.SecurityKey,Constants.AccessKeyVal,null,null,null);
+        Call<StoreResponse> call = apiInterface.getSellers(ApiConfig.SecurityKey,Constants.AccessKeyVal,latitude,longitude,"200");
         call.enqueue(new Callback<StoreResponse>() {
             @Override
             public void onResponse(Call<StoreResponse> call, Response<StoreResponse> response) {
@@ -127,9 +207,6 @@ public class HomeFragment extends Fragment {
                 if(productResponse.getSuccess()){
                     storeAdapter = new StoreAdapter(productResponse.getData(),getActivity());
                     store_recycler.setAdapter(storeAdapter);
-                }
-                else {
-                    Toast.makeText(getActivity(), productResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 

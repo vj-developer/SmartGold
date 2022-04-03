@@ -56,13 +56,16 @@ public class MyFunctions {
 
     public static void showLoading(Context context) {
         dialog = new Dialog(context);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.viewload);
-        dialog.setCancelable(false);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        ImageView load = dialog.findViewById(R.id.loadgif);
-        Glide.with(context).asGif().load(R.raw.load).into(load);
-        dialog.show();
+
+        if (!dialog.isShowing()){
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.viewload);
+            dialog.setCancelable(false);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            ImageView load = dialog.findViewById(R.id.loadgif);
+            Glide.with(context).asGif().load(R.raw.load).into(load);
+            dialog.show();
+        }
 //        progressDialog = new ProgressDialog(context);
 //        progressDialog.setTitle(Constants.LOADING);
 //        progressDialog.setCancelable(false);

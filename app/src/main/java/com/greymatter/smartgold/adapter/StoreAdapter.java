@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.activity.CategoryListActivity;
 import com.greymatter.smartgold.activity.ProductDetailActivity;
+import com.greymatter.smartgold.activity.ProductListActivity;
 import com.greymatter.smartgold.model.ProductListResponse;
 import com.greymatter.smartgold.model.StoreResponse;
 import com.greymatter.smartgold.utils.Constants;
@@ -44,7 +45,7 @@ public class StoreAdapter extends RecyclerView.Adapter <StoreAdapter.ViewHolder>
         StoreResponse.Datum datum = data.get(position);
         //String add_position = address.getName();
 
-        holder.name.setText(datum.getName());
+        holder.name.setText(datum.getStoreName());
         Glide.with(holder.itemView)
                 .load(datum.getLogo())
                 .fitCenter()
@@ -54,8 +55,10 @@ public class StoreAdapter extends RecyclerView.Adapter <StoreAdapter.ViewHolder>
             @Override
             public void onClick(View v) {
                 String jsonString = new Gson().toJson(datum);
-                context.startActivity(new Intent(context, CategoryListActivity.class)
-                        .putExtra(Constants.STORE,jsonString));
+                context.startActivity(new Intent(context, ProductListActivity.class)
+                        .putExtra(Constants.STORE,jsonString)
+                        .putExtra(Constants.SCREEN_TYPE,Constants.STORE)
+                );
             }
         });
     }
@@ -63,6 +66,11 @@ public class StoreAdapter extends RecyclerView.Adapter <StoreAdapter.ViewHolder>
     @Override
     public int getItemCount() {
         return data.size();
+    }
+
+    public void filterByName(List<StoreResponse.Datum> stores) {
+        this.data = stores;
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

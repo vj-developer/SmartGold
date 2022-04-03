@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Nearby Stores"
+                android:text="Find Stores"
                 android:layout_gravity="center"
                 android:textAlignment="center"
                 android:textColor="@color/brown"
@@ -44,6 +44,23 @@
                 android:layout_gravity="center"
                 android:src="@drawable/filter_icon" />
         </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:hint="Search"
+            android:textColorHint="@color/primarydark"
+            app:startIconTint="@color/primarydark"
+            app:startIconDrawable="@drawable/search_icon">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/search_bar_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:singleLine="true"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/store_recycler"

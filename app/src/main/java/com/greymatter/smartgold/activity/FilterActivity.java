@@ -33,7 +33,7 @@ import retrofit2.Response;
 public class FilterActivity extends AppCompatActivity implements OnRangeSeekBarListener {
 
     TextView start_price,end_price;
-    Spinner category_spinner,sort_spinner;
+    Spinner category_spinner,sort_spinner,gender_spinner,weight_spinner;
     ArrayList<String> categoryArray,categoryIdArray;
     String from_price="0",to_price="50000";
 
@@ -47,6 +47,8 @@ public class FilterActivity extends AppCompatActivity implements OnRangeSeekBarL
         end_price = findViewById(R.id.end_price);
         category_spinner = findViewById(R.id.category_spinner);
         sort_spinner = findViewById(R.id.sort_spinner);
+        gender_spinner = findViewById(R.id.gender_spinner);
+        weight_spinner = findViewById(R.id.weight_spinner);
 
         rangeSeekBar.setOnRangeSeekBarListener(this);
 
@@ -90,6 +92,8 @@ public class FilterActivity extends AppCompatActivity implements OnRangeSeekBarL
                         .putExtra(Constants.TO_PRICE_RANGE, to_price)
                         .putExtra(Constants.ORDER_BY,order_by )
                         .putExtra(Constants.SEARCH_TERM,"null" )
+                        .putExtra(Constants.GENDER,gender_spinner.getSelectedItem().toString())
+                        .putExtra(Constants.WEIGHT,weight_spinner.getSelectedItem().toString())
                 );
 
 
