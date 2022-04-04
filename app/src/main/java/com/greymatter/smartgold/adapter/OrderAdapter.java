@@ -1,6 +1,7 @@
 package com.greymatter.smartgold.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.greymatter.smartgold.R;
+import com.greymatter.smartgold.activity.ProductDetailActivity;
 import com.greymatter.smartgold.model.CartListResponse;
 import com.greymatter.smartgold.model.OrderResponse;
 import com.greymatter.smartgold.utils.Constants;
@@ -56,22 +58,14 @@ public class OrderAdapter extends RecyclerView.Adapter <OrderAdapter.ViewHolder>
                 .fitCenter()
                 .into(holder.product_image);
 
-/*
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ProductDetailActivity.class);
-                intent.putExtra(Constants.PRODUCT_NAME,cart.getName());
-                intent.putExtra(Constants.PRODUCT_ID,cart.getId());
-                intent.putExtra(Constants.PRICE,cart.getPrice());
-                intent.putExtra(Constants.DESCRIPTION,cart.getDescription());
-                intent.putExtra(Constants.IMGURL,cart.getImage());
-                intent.putExtra(Constants.DISCOUNT_PRICE,cart.getDiscountedPrice());
+                intent.putExtra(Constants.PRODUCT_ID,cart.getProductId());
                 context.startActivity(intent);
-
             }
         });
-*/
 
     }
 

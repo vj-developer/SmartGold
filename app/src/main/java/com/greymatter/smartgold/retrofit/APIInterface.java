@@ -15,6 +15,7 @@ import com.greymatter.smartgold.model.OfferLockResponse;
 import com.greymatter.smartgold.model.OrderResponse;
 import com.greymatter.smartgold.model.PriceDurationResponse;
 import com.greymatter.smartgold.model.ProductListResponse;
+import com.greymatter.smartgold.model.ProductResponse;
 import com.greymatter.smartgold.model.RegisterResponse;
 import com.greymatter.smartgold.model.SmartOffersResponse;
 import com.greymatter.smartgold.model.StoreResponse;
@@ -207,4 +208,11 @@ public interface APIInterface {
     Call<OrderResponse> order_list(@Header("Authorization") String auth,
                                    @Field(Constants.AccessKey) String accesskey,
                                    @Field(Constants.USERID) String user_id);
+
+    @FormUrlEncoded
+    @POST("get-products-by-id.php")
+    Call<ProductResponse> getProductDetails(@Header("Authorization") String auth,
+                                            @Field(Constants.AccessKey) String accesskey,
+                                            @Field(Constants.PRODUCT_ID) String product_id);
+
 }

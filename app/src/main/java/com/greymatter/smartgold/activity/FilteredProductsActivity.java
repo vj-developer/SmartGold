@@ -109,7 +109,7 @@ public class FilteredProductsActivity extends AppCompatActivity {
     private void filterProducts() {
         MyFunctions.showLoading(FilteredProductsActivity.this);
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<ProductListResponse> call = apiInterface.filter_products(ApiConfig.SecurityKey,Constants.AccessKeyVal,from_price,to_price,order_by,category_id,gender,weight);
+        Call<ProductListResponse> call = apiInterface.filter_products(ApiConfig.SecurityKey,Constants.AccessKeyVal,from_price,to_price,order_by,category_id,gender,"");
         call.enqueue(new Callback<ProductListResponse>() {
             @Override
             public void onResponse(Call<ProductListResponse> call, Response<ProductListResponse> response) {

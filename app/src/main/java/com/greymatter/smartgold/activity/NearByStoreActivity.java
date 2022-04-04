@@ -243,8 +243,8 @@ public class NearByStoreActivity extends AppCompatActivity {
             }
 
             if (requestCode == MAP_BUTTON_REQUEST_CODE) {
-                double currentLatitude = data.getDoubleExtra(LATITUDE, 0.0);
-                double currentLongitude = data.getDoubleExtra(LONGITUDE, 0.0);
+                double currentLatitude = data.getDoubleExtra("latitude", 0.0);
+                double currentLongitude = data.getDoubleExtra("longitude", 0.0);
 
                 location_tv.setText(data.getStringExtra("location_address"));
 

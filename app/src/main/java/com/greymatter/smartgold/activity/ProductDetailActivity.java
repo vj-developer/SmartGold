@@ -16,6 +16,7 @@ import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.model.AddAddressResponse;
 import com.greymatter.smartgold.model.AddToCartResponse;
+import com.greymatter.smartgold.model.ProductResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
 import com.greymatter.smartgold.retrofit.ApiConfig;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
@@ -30,7 +31,7 @@ import static android.content.ContentValues.TAG;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
-    TextView pname,pprice,pdescription,product_title,discounted_price,total_price,shop_name_tv,cart_count;
+    TextView pname,pprice,pdescription,product_title,discounted_price,total_price,shop_name_tv,cart_count,gender,gram;
     ImageView imageView,backbtn;
     String namestr,pricestr,descstr,imagestr,discounted_price_str,product_id,shop_name;
     ElegantNumberButton elegantNumberButton;
@@ -41,13 +42,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
 
-        namestr = getIntent().getStringExtra(Constants.PRODUCT_NAME);
         product_id = getIntent().getStringExtra(Constants.PRODUCT_ID);
-        pricestr = getIntent().getStringExtra(Constants.PRICE);
-        descstr = getIntent().getStringExtra(Constants.DESCRIPTION);
-        imagestr = getIntent().getStringExtra(Constants.IMGURL);
-        discounted_price_str = getIntent().getStringExtra(Constants.DISCOUNT_PRICE);
-        shop_name = getIntent().getStringExtra(Constants.SHOP_NAME);
 
         pname = findViewById(R.id.product_name);
         product_title = findViewById(R.id.product_title);
@@ -60,6 +55,9 @@ public class ProductDetailActivity extends AppCompatActivity {
         total_price = findViewById(R.id.total_price);
         shop_name_tv = findViewById(R.id.shop_name_tv);
         cart_count = findViewById(R.id.cart_count);
+        gender = findViewById(R.id.gender);
+        gram = findViewById(R.id.gram);
+
 
         /*Cart count*/
         int count = Integer.parseInt(MyFunctions.getStringFromSharedPref(getApplicationContext(),Constants.CART_COUNT,"0"));
@@ -73,22 +71,11 @@ public class ProductDetailActivity extends AppCompatActivity {
             }
         });
 
-        pname.setText(namestr);
-        product_title.setText(namestr);
-        pprice.setText(MyFunctions.ConvertToINR(pricestr));
-        discounted_price.setText(MyFunctions.ConvertToINR(discounted_price_str));
-        shop_name_tv.setText(shop_name);
+        getProductDetails();
 
         //striked text
         pprice.setPaintFlags(pprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
-        pdescription.setText(descstr);
-        Glide.with(this)
-                .load(imagestr)
-                .fitCenter()
-                .into(imageView);
-
-        calculateTotal();
         elegantNumberButton.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
             @Override
             public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
@@ -122,6 +109,67 @@ public class ProductDetailActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),CartActivity.class));
             }
         });
+    }
+
+    private void getProductDetails() {
+        MyFunctions.showLoading(ProductDetailActivity.this);
+
+        APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
+        Call<ProductResponse> call = apiInterface.getProductDetails(ApiConfig.SecurityKey,Constants.AccessKeyVal,product_id);
+        call.enqueue(new Callback<ProductResponse>() {
+            @Override
+            public void onResponse(Call<ProductResponse> call, Response<ProductResponse> response) {
+                MyFunctions.cancelLoading();
+
+                if (response.isSuccessful()){
+
+                    ProductResponse body = response.body();
+                    if(body.getSuccess()){
+                        namestr = body.getData().get(0).getName();
+                        pricestr = body.getData().get(0).getPrice();
+                        descstr = body.getData().get(0).getDescription();
+                        imagestr = body.getData().get(0).getImage();
+                        discounted_price_str = body.getData().get(0).getDiscountedPrice();
+                        shop_name = body.getData().get(0).getStoreName();
+
+                        updateView(body);
+                    }else {
+                        Toast.makeText(getApplicationContext(), Constants.API_ERROR , Toast.LENGTH_SHORT).show();
+                    }
+
+                }else {
+                    Toast.makeText(getApplicationContext(), response.message(), Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ProductResponse> call, Throwable t) {
+                MyFunctions.cancelLoading();
+                Toast.makeText(getApplicationContext(), Constants.API_ERROR , Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void updateView(ProductResponse body) {
+
+        pname.setText(namestr);
+        product_title.setText(namestr);
+        pprice.setText(MyFunctions.ConvertToINR(pricestr));
+        discounted_price.setText(MyFunctions.ConvertToINR(discounted_price_str));
+        shop_name_tv.setText(shop_name);
+
+        pdescription.setText(descstr);
+        Glide.with(this)
+                .load(imagestr)
+                .fitCenter()
+                .into(imageView);
+
+        gender.setText(body.getData().get(0).getGender());
+        gram.setText(body.getData().get(0).getWeight()+" gm");
+
+        calculateTotal();
+
     }
 
     private void addToCart() {

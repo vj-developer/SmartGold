@@ -25,9 +25,7 @@ import retrofit2.Response;
 
 public class CategoryListActivity extends AppCompatActivity {
 
-    String store_id;
     TextView store_name;
-    StoreResponse.Datum storeResponse;
     CategoryAdapter categoryAdapter;
     RecyclerView category_recycler;
 
@@ -39,12 +37,7 @@ public class CategoryListActivity extends AppCompatActivity {
         store_name = findViewById(R.id.store_name);
         category_recycler = findViewById(R.id.category_recycler);
 
-        storeResponse = new Gson().fromJson(getIntent().getStringExtra(Constants.STORE),StoreResponse.Datum.class);
-
-        store_id = storeResponse.getId();
-        store_name.setText(storeResponse.getStoreName());
-
-        getAvailableCategory();
+        categoryList();
 
         findViewById(R.id.back_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,16 +48,13 @@ public class CategoryListActivity extends AppCompatActivity {
 
     }
 
-    private void getAvailableCategory() {
-
-        MyFunctions.showLoading(CategoryListActivity.this);
+    private void categoryList() {
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
 
-        Call<CategoryResponse> call = apiInterface.available_category(ApiConfig.SecurityKey,Constants.AccessKeyVal,store_id);
+        Call<CategoryResponse> call = apiInterface.category(ApiConfig.SecurityKey,Constants.AccessKeyVal);
         call.enqueue(new Callback<CategoryResponse>() {
             @Override
             public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
-                MyFunctions.cancelLoading();
                 CategoryResponse categoryResponse = response.body();
                 if(categoryResponse.getSuccess()){
                     categoryAdapter = new CategoryAdapter(categoryResponse.getData(),CategoryListActivity.this);
@@ -74,8 +64,7 @@ public class CategoryListActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<CategoryResponse> call, Throwable t) {
-                MyFunctions.cancelLoading();
-                Toast.makeText(getApplicationContext(), Constants.API_ERROR, Toast.LENGTH_SHORT).show();
+                Toast.makeText(CategoryListActivity.this, Constants.API_ERROR, Toast.LENGTH_SHORT).show();
             }
         });
     }

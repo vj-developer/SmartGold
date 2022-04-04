@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:hint="Search"
+                    android:hint="Search products"
                     android:textColorHint="@color/primarydark"
                     app:startIconTint="@color/primarydark"
                     app:startIconDrawable="@drawable/search_icon">
@@ -115,13 +115,14 @@
                 android:textColor="@color/brown_btn_txt_color"
                 android:textStyle="bold" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_marginTop="10dp"
                 android:id="@+id/catehead"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
@@ -130,7 +131,17 @@
                     android:textSize="18dp"
                     android:textStyle="bold" />
 
-            </RelativeLayout>
+                <TextView
+                    android:id="@+id/view_more_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="View More+ "
+                    android:paddingRight="5dp"
+                    android:textColor="@color/brown"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerviewcategory"

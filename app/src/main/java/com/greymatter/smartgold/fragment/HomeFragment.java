@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.greymatter.smartgold.activity.AddAddressActivity;
+import com.greymatter.smartgold.activity.CategoryListActivity;
 import com.greymatter.smartgold.activity.FilterActivity;
 import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.activity.FilteredProductsActivity;
@@ -112,6 +113,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), NearByStoreActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        view.findViewById(R.id.view_more_category).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CategoryListActivity.class);
                 startActivity(intent);
             }
         });
