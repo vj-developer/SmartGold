@@ -46,6 +46,8 @@
             android:layout_margin="20dp"
             android:hint="Mobile Number"
             app:startIconContentDescription=""
+            android:textColorHint="@color/primarydark"
+            app:startIconTint="@color/primarydark"
             app:startIconDrawable="@drawable/ic_baseline_phone_24">
 
             <com.google.android.material.textfield.TextInputEditText

@@ -39,6 +39,7 @@ public class RegisterResponse {
     public void setData(List<Datum> data) {
         this.data = data;
     }
+
     public static class Datum{
         @SerializedName("id")
         @Expose

@@ -215,4 +215,11 @@ public interface APIInterface {
                                             @Field(Constants.AccessKey) String accesskey,
                                             @Field(Constants.PRODUCT_ID) String product_id);
 
+    @FormUrlEncoded
+    @POST("update_profile.php")
+    Call<RegisterResponse> updateProfile(@Header("Authorization") String auth,
+                                     @Field(Constants.AccessKey) String accesskey,
+                                     @Field(Constants.USERID) String user_id,
+                                     @Field(Constants.NAME) String name,
+                                     @Field(Constants.EMAIL) String email);
 }

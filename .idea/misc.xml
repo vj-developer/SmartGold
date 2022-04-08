@@ -6,13 +6,17 @@
         <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/activity_add_address.xml" value="0.2" />
         <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/activity_cart.xml" value="0.2" />
         <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/activity_category_detail.xml" value="0.2" />
+        <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/activity_edit_profile.xml" value="0.2" />
         <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/activity_filter.xml" value="0.2" />
         <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/activity_filtered_products.xml" value="0.2" />
         <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/activity_near_by_store.xml" value="0.2" />
         <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/activity_near_by_stores.xml" value="0.2" />
+        <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/activity_otp.xml" value="0.2" />
         <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/activity_product_detail.xml" value="0.2" />
         <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/activity_shop_list.xml" value="0.2" />
         <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/activity_shop_offer_details.xml" value="0.2" />
+        <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/activity_signin.xml" value="0.2" />
+        <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/activity_signup.xml" value="0.2" />
         <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/activity_smart_buy.xml" value="0.2" />
         <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/activity_smart_gold_locked.xml" value="0.2" />
         <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/bottom_sheet_dialog.xml" value="0.2" />
