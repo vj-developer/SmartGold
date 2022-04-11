@@ -181,7 +181,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="8dp"
                         android:layout_marginVertical="3dp"
-                        android:text="5gm"
+                        android:text="Gross weight 5gm"
                         android:textColor="@color/primary" />
 
                 </androidx.cardview.widget.CardView>

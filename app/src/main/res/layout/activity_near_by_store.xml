@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:hint="Search"
+            android:hint="Search by store name"
             android:textColorHint="@color/primarydark"
             app:startIconTint="@color/primarydark"
             app:startIconDrawable="@drawable/search_icon">

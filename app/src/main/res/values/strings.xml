@@ -48,6 +48,7 @@
         <item>Female</item>
         <item>Male</item>
         <item>Unisex</item>
+        <item>Kids</item>
     </string-array>
 
     <string-array name="sort_array">

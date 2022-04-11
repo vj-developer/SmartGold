@@ -166,7 +166,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                 .into(imageView);
 
         gender.setText(body.getData().get(0).getGender());
-        gram.setText(body.getData().get(0).getWeight()+" gm");
+        gram.setText("Gross weight "+body.getData().get(0).getWeight()+"gm");
 
         calculateTotal();
 
