@@ -115,4 +115,13 @@ public class ProfileFragment extends Fragment {
             //e.toString();
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        try{
+            user_name.setText(MyFunctions.getStringFromSharedPref(getActivity(), Constants.NAME,""));
+            user_num.setText(MyFunctions.getStringFromSharedPref(getActivity(), Constants.MOBILE,""));
+        }catch (Exception e){e.printStackTrace();}
+    }
 }
