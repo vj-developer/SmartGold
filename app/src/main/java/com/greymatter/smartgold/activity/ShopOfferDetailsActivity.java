@@ -53,12 +53,6 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
         gram_price = findViewById(R.id.gram_price);
         details = findViewById(R.id.details);
 
-        duration_day = MyFunctions.getStringFromSharedPref(getApplicationContext(),Constants.SMART_LOCK_DAY,duration_day);
-        amount_string = MyFunctions.getStringFromSharedPref(getApplicationContext(),Constants.SMART_LOCK_PRICE,amount_string);
-
-        amount_tv.setText(Constants.LOCK_PRICE_INSTRUCTION+amount_string);
-        day_tv.setText(Constants.LOCK_DURATION_INSTRUCTION+duration_day+" days");
-
         shop_id = getIntent().getStringExtra(Constants.SELLER_ID);
         offer_id = getIntent().getStringExtra(Constants.OFFER_ID);
 
@@ -69,8 +63,10 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
 
         wastage.setText(". "+getIntent().getStringExtra(Constants.WASTAGE)+ "% wastage");
         wastage_card_tv.setText(getIntent().getStringExtra(Constants.WASTAGE)+ "% wastage");
-        gram_price.setText(". "+Constants.PER_GRAM_PRICE +MyFunctions.ConvertToINR(getIntent().getStringExtra(Constants.GRAMPRICE)));
+        gram_price.setText(". "+MyFunctions.ConvertToINR(getIntent().getStringExtra(Constants.GRAMPRICE))+" Discount per gram");
         details.setText(smartOffer.getOfferDetails());
+        product_count.setText(". "+smartOffer.getTotal_products()+Constants.AVAILABLE_PRODUCT_COUNT);
+
 
         findViewById(R.id.back_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +99,7 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
         try {
             object.put("name","Smart Gold");
             object.put("description","Lock your smart offer");
-            object.put("theme:colour","#F2CF8D");
+            object.put("theme.color","#F2CF8D");
             object.put("currency","INR");
             object.put("amount",amount);
             object.put("prefill.contact",MyFunctions.getStringFromSharedPref(ShopOfferDetailsActivity.this,Constants.MOBILE," "));
@@ -143,13 +139,14 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
     }
 
     private void getPriceDuration() {
-
+        MyFunctions.showLoading(ShopOfferDetailsActivity.this);
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
         Call<PriceDurationResponse> call = apiInterface.price_duration(ApiConfig.SecurityKey,Constants.AccessKeyVal);
 
         call.enqueue(new Callback<PriceDurationResponse>() {
             @Override
             public void onResponse(Call<PriceDurationResponse> call, Response<PriceDurationResponse> response) {
+                MyFunctions.cancelLoading();
                 PriceDurationResponse priceDurationResponse = response.body();
 
                 if(priceDurationResponse.getSuccess()){
@@ -158,14 +155,20 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
                     duration_day = priceDurationResponse.getData().getDays();
                     amount_string = priceDurationResponse.getData().getPrice();
 
-                    MyFunctions.saveStringToSharedPref(ShopOfferDetailsActivity.this,Constants.SMART_LOCK_DAY,duration_day);
-                    MyFunctions.saveStringToSharedPref(ShopOfferDetailsActivity.this,Constants.SMART_LOCK_PRICE,amount_string);
+                    amount_tv.setText(Constants.LOCK_PRICE_INSTRUCTION+amount_string);
+                    if (Integer.parseInt(duration_day) > 1){
+                        day_tv.setText(Constants.LOCK_DURATION_INSTRUCTION+duration_day+" days");
+                    }else {
+                        day_tv.setText(Constants.LOCK_DURATION_INSTRUCTION+duration_day+" day");
+                    }
+
                 }
 
             }
 
             @Override
             public void onFailure(Call<PriceDurationResponse> call, Throwable t) {
+                MyFunctions.cancelLoading();
                 Toast.makeText(getApplicationContext(),Constants.API_ERROR, Toast.LENGTH_SHORT).show();
             }
         });

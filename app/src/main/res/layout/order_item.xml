@@ -104,6 +104,13 @@
                     android:text="Payment Completed"
                     android:textColor="@color/primarydark" />
 
+                <TextView
+                    android:id="@+id/order_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Payment Completed"
+                    android:textColor="@color/primarydark" />
+
 
             </LinearLayout>
 

@@ -54,6 +54,12 @@ public class SmartOffersResponse {
         @SerializedName("wastage")
         @Expose
         private String wastage;
+        @SerializedName("total_locked")
+        @Expose
+        private int total_locked;
+        @SerializedName("total_products")
+        @Expose
+        private int total_products;
         @SerializedName("max_locked")
         @Expose
         private String maxLocked;
@@ -162,6 +168,22 @@ public class SmartOffersResponse {
 
         public void setOfferDetails(String offerDetails) {
             this.offerDetails = offerDetails;
+        }
+
+        public int getTotal_locked() {
+            return total_locked;
+        }
+
+        public void setTotal_locked(int total_locked) {
+            this.total_locked = total_locked;
+        }
+
+        public int getTotal_products() {
+            return total_products;
+        }
+
+        public void setTotal_products(int total_products) {
+            this.total_products = total_products;
         }
     }
 }

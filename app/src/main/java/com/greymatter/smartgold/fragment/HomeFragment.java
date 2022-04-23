@@ -182,7 +182,7 @@ public class HomeFragment extends Fragment {
                 Log.d(TAG,"Your Location: " + "\n" + "Latitude: " + latitude + "\n" + "Longitude: " + longitude);
                 getShopList();
             } else {
-                Toast.makeText(getActivity(), "Unable to find location.", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "Unable to find location.", Toast.LENGTH_SHORT).show();
             }
         }
     }

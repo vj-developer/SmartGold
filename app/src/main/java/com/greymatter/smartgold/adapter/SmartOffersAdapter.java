@@ -39,9 +39,9 @@ public class SmartOffersAdapter extends RecyclerView.Adapter <SmartOffersAdapter
     public void onBindViewHolder(@NonNull SmartOffersAdapter.ViewHolder holder, int position) {
         SmartOffersResponse.Datum shop = smartOffer.get(position);
         String wastage = shop.getWastage() + "% wastage";
-        String members_locked = shop.getMaxLocked() + " locked";
+        String members_locked = shop.getTotal_locked() + " locked";
         String distance = "Near "+shop.getDistance() + " km";
-        String gram_price = Constants.PER_GRAM_PRICE+MyFunctions.ConvertToINR(shop.getGramPrice());
+        String gram_price = MyFunctions.ConvertToINR(shop.getGramPrice()) + " Discount per gram";
         holder.shopNickName.setText(shop.getNickName());
         holder.gram_price.setText(gram_price);
         holder.wastage.setText(wastage);

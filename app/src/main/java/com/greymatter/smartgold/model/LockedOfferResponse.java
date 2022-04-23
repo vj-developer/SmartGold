@@ -88,6 +88,15 @@ public class LockedOfferResponse {
         @SerializedName("valid_date")
         @Expose
         private String validTill;
+        @SerializedName("gram_price")
+        @Expose
+        private String gram_price;
+        @SerializedName("wastage")
+        @Expose
+        private String wastage;
+        @SerializedName("status")
+        @Expose
+        private String status;
 
         public String getId() {
             return id;
@@ -207,6 +216,30 @@ public class LockedOfferResponse {
 
         public void setValidTill(String validTill) {
             this.validTill = validTill;
+        }
+
+        public String getGram_price() {
+            return gram_price;
+        }
+
+        public void setGram_price(String gram_price) {
+            this.gram_price = gram_price;
+        }
+
+        public String getWastage() {
+            return wastage;
+        }
+
+        public void setWastage(String wastage) {
+            this.wastage = wastage;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
         }
     }
 

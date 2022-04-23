@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.greymatter.smartgold">
+    package="com.greymatter.smartgold" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -9,7 +9,11 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
     <uses-feature
         android:name="android.hardware.location.network"
         android:required="false" />
@@ -25,7 +29,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartGold"
         android:usesCleartextTraffic="true"
-        tools:replace="android:theme">
+        tools:replace="android:theme" >
+        <activity
+            android:name=".activity.ScanQRActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.EditProfileActivity"
             android:exported="false" />
@@ -97,7 +104,7 @@
             android:exported="true" />
         <activity
             android:name=".activity.SplashActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -112,7 +119,7 @@
             android:exported="true"
             android:label="@string/leku_title_activity_location_picker"
             android:parentActivityName=".MainActivity"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan" >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -136,7 +143,7 @@
 
         <service
             android:name=".fcm.MessagingService"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

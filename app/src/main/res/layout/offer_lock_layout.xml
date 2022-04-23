@@ -158,6 +158,89 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="10dp"
+            android:weightSum="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="0.4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textColor="@color/textdark"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:text="Offer Details"/>
+
+            <TextView
+                android:layout_weight="0.02"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textdark"
+                android:textStyle="bold"
+                android:text=""/>
+
+            <TextView
+                android:layout_weight="0.6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textdark"
+                tools:text=""/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/gram_offer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Rs. 500 less per gram"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/textdark" />
+
+        <TextView
+            android:id="@+id/wastage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5% wastage"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="@color/textdark" />
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:weightSum="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="0.4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textColor="@color/textdark"
+                android:textStyle="bold"
+                android:text="Order Status"/>
+
+            <TextView
+                android:layout_weight="0.02"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textdark"
+                android:textStyle="bold"
+                android:text=":"/>
+
+            <TextView
+                android:layout_weight="0.6"
+                android:id="@+id/order_status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textdark"
+                tools:text="Claimed"/>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

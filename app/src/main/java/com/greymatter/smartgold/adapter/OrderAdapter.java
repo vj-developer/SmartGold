@@ -45,8 +45,9 @@ public class OrderAdapter extends RecyclerView.Adapter <OrderAdapter.ViewHolder>
         holder.product_name.setText(cart.getName());
         holder.order_id.setText(cart.getId());
         holder.product_price.setText(MyFunctions.ConvertToINR(cart.getDiscountedPrice()));
-        holder.quantity.setText(cart.getQuantity());
-        holder.payment_status.setText(cart.getPaymentStatus());
+        holder.quantity.setText("Quantity : "+cart.getQuantity());
+        holder.payment_status.setText("Payment Status : "+cart.getPaymentStatus());
+        holder.order_status.setText("Order Status : "+cart.getStatus());
         if (cart.getBuyMethod().equals("1")){
             holder.method.setText("Pickup at store");
         }else {
@@ -76,7 +77,7 @@ public class OrderAdapter extends RecyclerView.Adapter <OrderAdapter.ViewHolder>
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView product_name,product_price,quantity,method,order_id,payment_status;
+        TextView product_name,product_price,quantity,method,order_id,payment_status,order_status;
         ImageView product_image;
 
         public ViewHolder(@NonNull View itemView) {
@@ -86,6 +87,7 @@ public class OrderAdapter extends RecyclerView.Adapter <OrderAdapter.ViewHolder>
             product_image = itemView.findViewById(R.id.product_image);
             product_price = itemView.findViewById(R.id.product_price);
             payment_status = itemView.findViewById(R.id.payment_status);
+            order_status = itemView.findViewById(R.id.order_status);
             quantity = itemView.findViewById(R.id.quantity);
             method = itemView.findViewById(R.id.method);
             order_id = itemView.findViewById(R.id.order_id);

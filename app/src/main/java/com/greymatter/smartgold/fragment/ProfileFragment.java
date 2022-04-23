@@ -1,10 +1,10 @@
 package com.greymatter.smartgold.fragment;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +12,19 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.greymatter.smartgold.BuildConfig;
-import com.greymatter.smartgold.activity.AddressActivity;
 import com.greymatter.smartgold.MainActivity;
 import com.greymatter.smartgold.R;
+import com.greymatter.smartgold.activity.AddressActivity;
 import com.greymatter.smartgold.activity.EditProfileActivity;
 import com.greymatter.smartgold.activity.OrderListActivity;
+import com.greymatter.smartgold.activity.ScanQRActivity;
 import com.greymatter.smartgold.activity.SigninActivity;
 import com.greymatter.smartgold.activity.ViewOfferLockActivity;
 import com.greymatter.smartgold.utils.Constants;
@@ -99,8 +105,32 @@ public class ProfileFragment extends Fragment {
                 shareAppLink();
             }
         });
+        root.findViewById(R.id.scan).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //scanQR();
+                if (checkPermission(Manifest.permission.CAMERA,123)){
+                    Intent intent = new Intent(getActivity(), ScanQRActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
         return root;
     }
+
+    // Function to check and request permission
+    public boolean checkPermission(String permission, int requestCode) {
+        // Checking if permission is not granted
+        if (ContextCompat.checkSelfPermission(getActivity(), permission) == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[] { permission }, requestCode);
+        }
+        else {
+            //Toast.makeText(getActivity(), "Permission already granted", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return false;
+    }
+
 
     private void shareAppLink() {
         try {
@@ -123,5 +153,11 @@ public class ProfileFragment extends Fragment {
             user_name.setText(MyFunctions.getStringFromSharedPref(getActivity(), Constants.NAME,""));
             user_num.setText(MyFunctions.getStringFromSharedPref(getActivity(), Constants.MOBILE,""));
         }catch (Exception e){e.printStackTrace();}
+    }
+
+    private void openUrl(String link) {
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(link));
+        startActivity(i);
     }
 }

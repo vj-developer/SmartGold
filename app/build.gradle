@@ -55,7 +55,8 @@ dependencies {
         exclude group: 'androidx.appcompat'
     }
 
-    implementation 'com.razorpay:checkout:1.6.18'
+    implementation 'com.razorpay:checkout:1.6.19'
+    implementation 'com.github.yuriy-budiyev:code-scanner:2.1.2'
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
     implementation 'com.github.Mirkoddd:Range-SeekBar:1.0.9'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'

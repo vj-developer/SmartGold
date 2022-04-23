@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.model.LockedOfferResponse;
+import com.greymatter.smartgold.utils.Constants;
+import com.greymatter.smartgold.utils.MyFunctions;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -46,7 +48,14 @@ public class OfferLockAdapter extends RecyclerView.Adapter <OfferLockAdapter.Vie
         holder.offer_lock_id.setText(offerlock.getId());
         holder.valid_date.setText(offerlock.getValidTill());
         holder.shop_name_tv.setText(offerlock.getStoreName());
-        holder.shop_address_tv.setText(offerlock.getStreet() +",\n"+offerlock.getCity()+" - "+offerlock.getPincode());
+        holder.shop_address_tv.setText(offerlock.getStreet());
+
+        String wastage = offerlock.getWastage() + "% wastage";
+        String gram_price = MyFunctions.ConvertToINR(offerlock.getGram_price()) + " Discount per gram";
+        holder.gram_price.setText(gram_price);
+        holder.wastage.setText(wastage);
+
+        holder.order_status.setText(offerlock.getStatus());
 
         holder.call.setOnClickListener(v -> makePhoneCall(offerlock.getMobile()));
         holder.location.setOnClickListener(v -> openLocation(offerlock.getLatitude(),offerlock.getLongitude()));
@@ -87,7 +96,7 @@ public class OfferLockAdapter extends RecyclerView.Adapter <OfferLockAdapter.Vie
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView offer_lock_id,valid_date,shop_name_tv,shop_address_tv;
+        TextView offer_lock_id,valid_date,shop_name_tv,shop_address_tv,gram_price,wastage,order_status;
         ImageView call,location;
 
         public ViewHolder(@NonNull View itemView) {
@@ -96,6 +105,9 @@ public class OfferLockAdapter extends RecyclerView.Adapter <OfferLockAdapter.Vie
             valid_date = itemView.findViewById(R.id.valid_date);
             shop_name_tv = itemView.findViewById(R.id.shop_name_tv);
             shop_address_tv = itemView.findViewById(R.id.shop_address_tv);
+            gram_price = itemView.findViewById(R.id.gram_offer);
+            wastage = itemView.findViewById(R.id.wastage);
+            order_status = itemView.findViewById(R.id.order_status);
             call = itemView.findViewById(R.id.call);
             location = itemView.findViewById(R.id.location);
 
