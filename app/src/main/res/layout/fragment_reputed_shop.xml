@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Rs. 500 less per gram"
+                android:text="Discount price per gram: ₹200"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="@color/textdark" />
 
@@ -47,7 +47,7 @@
                 android:id="@+id/wastage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5% wastage"
+                android:text="Discount on wastage: 1%"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="@color/textdark" />
 

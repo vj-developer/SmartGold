@@ -33,8 +33,8 @@ import retrofit2.Response;
 
 public class ShopOfferDetailsActivity extends AppCompatActivity implements PaymentResultListener {
 
-    TextView wastage,wastage_card_tv,amount_tv,day_tv,product_count,gram_price,details;
-    String amount_string,duration_day,shop_id,user_id,offer_id;
+    TextView wastage,wastage_card_tv,amount_tv,day_tv,product_count,gram_price,details,price_card_tv;
+    String amount_string,duration_day,shop_id,user_id,offer_id,gram_price_str,wastage_str;
     RecyclerView available_products;
     CategoryAdapter categoryAdapter;
     private SmartOffersResponse.Datum smartOffer;
@@ -46,6 +46,7 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
 
         wastage = findViewById(R.id.wastage);
         wastage_card_tv = findViewById(R.id.wastage_card_tv);
+        price_card_tv = findViewById(R.id.price_card_tv);
         available_products = findViewById(R.id.available_products);
         amount_tv = findViewById(R.id.amount_tv);
         day_tv = findViewById(R.id.day_tv);
@@ -55,17 +56,28 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
 
         shop_id = getIntent().getStringExtra(Constants.SELLER_ID);
         offer_id = getIntent().getStringExtra(Constants.OFFER_ID);
+        gram_price_str = getIntent().getStringExtra(Constants.GRAMPRICE);
+        wastage_str = getIntent().getStringExtra(Constants.WASTAGE);
 
         smartOffer = new Gson().fromJson(getIntent().getStringExtra(Constants.SMART_OFFER), SmartOffersResponse.Datum.class);
         getPriceDuration();
         //getAvailableProducts();
 
 
-        wastage.setText(". "+getIntent().getStringExtra(Constants.WASTAGE)+ "% wastage");
-        wastage_card_tv.setText(getIntent().getStringExtra(Constants.WASTAGE)+ "% wastage");
-        gram_price.setText(". "+MyFunctions.ConvertToINR(getIntent().getStringExtra(Constants.GRAMPRICE))+" Discount per gram");
+        wastage_card_tv.setText(wastage_str+ "% on wastage");
+        price_card_tv.setText(MyFunctions.ConvertToINR(gram_price_str)+ " per gram");
         details.setText(smartOffer.getOfferDetails());
+
+        /*Set points*/
         product_count.setText(". "+smartOffer.getTotal_products()+Constants.AVAILABLE_PRODUCT_COUNT);
+        String gram_price_formated = ". Discount price per gram: "+ MyFunctions.ConvertToINR(gram_price_str);
+        String wastage_formated = ". Discount on wastage: "+wastage_str + "%";
+
+        gram_price.setText(gram_price_formated);
+        wastage.setText(wastage_formated);
+
+        gram_price.setVisibility(gram_price_str.equals("0") ? View.GONE:View.VISIBLE);
+        wastage.setVisibility(wastage_str.equals("0") ? View.GONE:View.VISIBLE);
 
 
         findViewById(R.id.back_btn).setOnClickListener(new View.OnClickListener() {

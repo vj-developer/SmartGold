@@ -59,7 +59,7 @@
             android:id="@+id/product_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=". 9  Products in this offer"
+            android:text=". 9  Products in this store"
             android:textColor="@color/brown" />
 
         <TextView
@@ -118,10 +118,29 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <LinearLayout
+        <GridLayout
+            android:columnCount="2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp">
+
+                <TextView
+                    android:id="@+id/price_card_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginVertical="3dp"
+                    android:text="₹200 per gram"
+                    android:textColor="@color/primary" />
+
+            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
@@ -158,7 +177,7 @@
 
             </androidx.cardview.widget.CardView>
 
-        </LinearLayout>
+        </GridLayout>
 
         <TextView
             android:layout_width="match_parent"

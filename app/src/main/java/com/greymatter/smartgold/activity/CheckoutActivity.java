@@ -68,10 +68,12 @@ public class CheckoutActivity extends AppCompatActivity implements PaymentResult
                 if (isChecked) {
                     method = "1";
                     checkout();
+                    findViewById(R.id.address_container).setVisibility(View.GONE);
                 }
                 else {
                     method ="2";
                     checkout();
+                    findViewById(R.id.address_container).setVisibility(View.VISIBLE);
                 }
             }
         });
