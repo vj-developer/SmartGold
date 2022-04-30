@@ -1,10 +1,13 @@
 package com.greymatter.smartgold.activity;
 
+import static com.shivtechs.maplocationpicker.MapUtility.LATITUDE;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -21,6 +24,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.adevinta.leku.LocationPickerActivity;
 import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.model.AddAddressResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
@@ -33,7 +37,6 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-import com.shivtechs.maplocationpicker.LocationPickerActivity;
 import com.shivtechs.maplocationpicker.MapUtility;
 
 import java.io.IOException;
@@ -47,6 +50,7 @@ import retrofit2.Response;
 public class AddAddressActivity extends AppCompatActivity {
 
     private static final int ADDRESS_PICKER_REQUEST = 12;
+    private static final int MAP_BUTTON_REQUEST_CODE = 1;
     EditText user_name_et,address_et, address_optional_et, area_et, city_et, pin_code_et;
     Button add_address;
     String user_name, address, address_optional , area, city, pin_code;
@@ -69,11 +73,19 @@ public class AddAddressActivity extends AppCompatActivity {
 
         MapUtility.apiKey = getResources().getString(R.string.your_api_key);
 
+        checkLocationPermission();
+
         findViewById(R.id.select_location).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(AddAddressActivity.this, LocationPickerActivity.class);
-                startActivityForResult(i, ADDRESS_PICKER_REQUEST);
+                /*Intent i = new Intent(AddAddressActivity.this, LocationPickerActivity.class);
+                startActivityForResult(i, ADDRESS_PICKER_REQUEST);*/
+                Intent i = new LocationPickerActivity.Builder()
+                        .withGooglePlacesApiKey(getResources().getString(R.string.your_api_key))
+                        .withLegacyLayout()
+                        .withGeolocApiKey(getResources().getString(R.string.your_api_key))
+                        .build(AddAddressActivity.this);
+                startActivityForResult(i,MAP_BUTTON_REQUEST_CODE);
             }
         });
 
@@ -144,7 +156,7 @@ public class AddAddressActivity extends AppCompatActivity {
                 Log.d(TAG,"Your Location: " + "\n" + "Latitude: " + latitude + "\n" + "Longitude: " + longitude);
                 getAddressFromLatLng(lat,longi);
             } else {
-                Toast.makeText(this, "Unable to find location.", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Unable to find location.", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -275,6 +287,29 @@ public class AddAddressActivity extends AppCompatActivity {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+        }
+
+        if (resultCode == Activity.RESULT_OK && data != null) {
+
+            if (requestCode == MAP_BUTTON_REQUEST_CODE) {
+                double currentLatitude = data.getDoubleExtra("latitude", 0.0);
+                double currentLongitude = data.getDoubleExtra("longitude", 0.0);
+
+                try {
+                    getAddressFromLatLng(currentLatitude,currentLongitude);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                latitude = String.valueOf(currentLatitude);
+                longitude = String.valueOf(currentLongitude);
+
+                MyFunctions.saveStringToSharedPref(getApplicationContext(), Constants.LATITUDE,latitude);
+                MyFunctions.saveStringToSharedPref(getApplicationContext(),Constants.LONGITUDE,longitude);
+            }
+        }
+        if (resultCode == Activity.RESULT_CANCELED) {
+            Log.d("RESULT****", "CANCELLED");
         }
     }
 

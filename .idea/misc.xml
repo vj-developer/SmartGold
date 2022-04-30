@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/activity_add_address.xml" value="0.2" />
+        <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/activity_address.xml" value="0.2" />
         <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/activity_cart.xml" value="0.2" />
         <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/activity_category_detail.xml" value="0.2" />
         <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/activity_checkout.xml" value="0.2" />
@@ -25,7 +26,7 @@
         <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/bottom_sheet_dialog.xml" value="0.2" />
         <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/category_layout.xml" value="0.2" />
         <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/fragment_home.xml" value="0.2" />
-        <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
+        <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
         <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/fragment_reputed_shop.xml" value="0.2" />
         <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/fragment_smartbuy.xml" value="0.2" />
         <entry key="..\:/Android_Projects/SmartGold/app/src/main/res/layout/offer_lock_layout.xml" value="0.2" />

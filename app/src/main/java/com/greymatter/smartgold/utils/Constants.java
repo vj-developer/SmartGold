@@ -86,6 +86,7 @@ public class Constants {
     public static final String SCREEN_TYPE = "screen_type";
     public static final String GENDER = "gender";
     public static final String WEIGHT = "weight";
+    public static final String ALL_PRODUCTS = "all_products";
 
     /* 1- Pickup at store
        2- Delivery at Home */

@@ -117,6 +117,7 @@
                 android:layout_height="wrap_content"
                 android:valueFrom="5"
                 android:stepSize="5"
+                android:value="100"
                 android:valueTo="200"/>
         </LinearLayout>
 
@@ -208,6 +209,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
+                android:visibility="gone"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -226,6 +228,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:visibility="gone"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -244,6 +247,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:visibility="gone"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -262,6 +266,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:visibility="gone"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -279,32 +284,32 @@
                     android:maxLength="6"
                     android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/location_pick"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="24dp"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/location_tv"
+            <LinearLayout
+                android:id="@+id/location_pick"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:text="Select Location"
-                android:textColor="@color/brown"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:layout_margin="24dp"
+                android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_baseline_edit_location_alt_24" />
+                <TextView
+                    android:id="@+id/location_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:text="Select Location"
+                    android:textColor="@color/brown"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_edit_location_alt_24" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

@@ -1,13 +1,21 @@
 package com.greymatter.smartgold.activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,6 +25,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adevinta.leku.LocationPickerActivity;
 import com.google.android.material.slider.LabelFormatter;
 import com.google.android.material.slider.Slider;
 import com.google.gson.JsonObject;
@@ -28,7 +37,11 @@ import com.greymatter.smartgold.retrofit.ApiConfig;
 import com.greymatter.smartgold.retrofit.RetrofitBuilder;
 import com.greymatter.smartgold.utils.Constants;
 import com.greymatter.smartgold.utils.MyFunctions;
-import com.shivtechs.maplocationpicker.LocationPickerActivity;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.shivtechs.maplocationpicker.MapUtility;
 
 import org.json.JSONObject;
@@ -46,15 +59,17 @@ import retrofit2.Response;
 
 public class SmartBuyActivity extends AppCompatActivity {
 
+    private static final String TAG = "SmartBuy";
     EditText address_et, area_et, city_et, pin_code_et;
     ArrayList<String> budgetRangeArray,budgetRangeIdArray;
     Spinner budgetArraySpinnner;
     private int ADDRESS_PICKER_REQUEST = 123;
+    private static final int MAP_BUTTON_REQUEST_CODE = 1;
     TextView location_tv,start_km,end_km;
     TextView address_name,address_tv,pincode;
     String latitude= "null",longitude = "null";
     String address , area, city, pin_code;
-    String to_km ="5";
+    String to_km ="100";
     Slider slider;
 
     @Override
@@ -95,13 +110,6 @@ public class SmartBuyActivity extends AppCompatActivity {
             }
         });
 
-        if (!latitude.equals("null")){
-            try {
-                getAddressFromLatLng(latitude,longitude);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
 
         findViewById(R.id.budget_gram_apply_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +117,7 @@ public class SmartBuyActivity extends AppCompatActivity {
                 if (MyFunctions.getBooleanFromSharedPref(getApplicationContext(),Constants.ISLOGGEDIN,false)){
                     openShopList();
                 }else {
-                    address = address_et.getText().toString().trim();
+                    /*address = address_et.getText().toString().trim();
                     area = area_et.getText().toString().trim();
                     city = city_et.getText().toString().trim();
                     pin_code = pin_code_et.getText().toString().trim();
@@ -120,7 +128,10 @@ public class SmartBuyActivity extends AppCompatActivity {
                         getLatLngFromAddress(formated_address);
 
                         openShopList();
-                    }
+                    }*/
+                    if (latitude.equals("null"))
+                        Toast.makeText(SmartBuyActivity.this, "Please! Select your location", Toast.LENGTH_SHORT).show();
+                    else openShopList();
                 }
             }
         });
@@ -141,8 +152,12 @@ public class SmartBuyActivity extends AppCompatActivity {
         findViewById(R.id.location_pick).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), LocationPickerActivity.class);
-                startActivityForResult(i, ADDRESS_PICKER_REQUEST);
+                Intent i = new LocationPickerActivity.Builder()
+                        .withGooglePlacesApiKey(getResources().getString(R.string.your_api_key))
+                        .withLegacyLayout()
+                        .withGeolocApiKey(getResources().getString(R.string.your_api_key))
+                        .build(SmartBuyActivity.this);
+                startActivityForResult(i,MAP_BUTTON_REQUEST_CODE);
             }
         });
 
@@ -289,36 +304,26 @@ public class SmartBuyActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == ADDRESS_PICKER_REQUEST) {
-            try {
-                if (data != null && data.getStringExtra(MapUtility.ADDRESS) != null) {
-                    // String address = data.getStringExtra(MapUtility.ADDRESS);
-                    double currentLatitude = data.getDoubleExtra(MapUtility.LATITUDE, 0.0);
-                    double currentLongitude = data.getDoubleExtra(MapUtility.LONGITUDE, 0.0);
-                    Bundle completeAddress =data.getBundleExtra("fullAddress");
-                    /* data in completeAddress bundle
-                    "fulladdress"
-                    "city"
-                    "state"
-                    "postalcode"
-                    "country"
-                    "addressline1"
-                    "addressline2"
-                     */
+        if (resultCode == Activity.RESULT_OK && data != null) {
 
-                    location_tv.setText(new StringBuilder().append
-                            (completeAddress.getString("city")).append(" - ").append
-                            (completeAddress.getString("postalcode")).toString());
+            if (requestCode == MAP_BUTTON_REQUEST_CODE) {
+                double currentLatitude = data.getDoubleExtra("latitude", 0.0);
+                double currentLongitude = data.getDoubleExtra("longitude", 0.0);
 
-                    latitude = String.valueOf(currentLatitude);
-                    longitude = String.valueOf(currentLongitude);
-
-                    MyFunctions.saveStringToSharedPref(getApplicationContext(),Constants.LATITUDE,latitude);
-                    MyFunctions.saveStringToSharedPref(getApplicationContext(),Constants.LONGITUDE,longitude);
+                latitude = String.valueOf(currentLatitude);
+                longitude = String.valueOf(currentLongitude);
+                try {
+                    getAddressFromLatLng(latitude,longitude);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            } catch (Exception ex) {
-                ex.printStackTrace();
+
+                MyFunctions.saveStringToSharedPref(getApplicationContext(), Constants.LATITUDE,latitude);
+                MyFunctions.saveStringToSharedPref(getApplicationContext(),Constants.LONGITUDE,longitude);
             }
+        }
+        if (resultCode == Activity.RESULT_CANCELED) {
+            Log.d("RESULT****", "CANCELLED");
         }
     }
 
@@ -332,6 +337,7 @@ public class SmartBuyActivity extends AppCompatActivity {
 
         String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
         String city = addresses.get(0).getLocality();
+        String area = addresses.get(0).getSubLocality();
         String state = addresses.get(0).getAdminArea();
         String country = addresses.get(0).getCountryName();
         String postalCode = addresses.get(0).getPostalCode();
@@ -341,6 +347,10 @@ public class SmartBuyActivity extends AppCompatActivity {
                 (city).append(" - ").append
                 (postalCode).toString());
 
+        address_et.setText(knownName);
+        area_et.setText(area);
+        city_et.setText(city);
+        pin_code_et.setText(postalCode);
     }
 
     @Override
@@ -352,9 +362,82 @@ public class SmartBuyActivity extends AppCompatActivity {
             findViewById(R.id.address_container).setVisibility(View.VISIBLE);
             findViewById(R.id.guest_user_container).setVisibility(View.GONE);
         }else {
+            latitude = MyFunctions.getStringFromSharedPref(getApplicationContext(), Constants.LATITUDE,latitude);
+            longitude = MyFunctions.getStringFromSharedPref(getApplicationContext(),Constants.LONGITUDE,longitude);
+            //checkLocationPermission();
+            if (!latitude.equals("null")){
+                try {
+                    getAddressFromLatLng(latitude,longitude);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
             findViewById(R.id.address_container).setVisibility(View.GONE);
             findViewById(R.id.guest_user_container).setVisibility(View.VISIBLE);
         }
+    }
+
+    private void checkLocationPermission() {
+        Dexter.withContext(SmartBuyActivity.this).withPermissions(Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION).withListener(new MultiplePermissionsListener() {
+            @Override
+            public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+                if (multiplePermissionsReport.areAllPermissionsGranted()){
+                    try {
+                        getCurrentLocation();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+
+            }
+        }).check();
+    }
+
+    private void getCurrentLocation() throws IOException {
+        LocationManager locationManager;
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            OnGPS();
+        } else {
+            @SuppressLint("MissingPermission")
+            Location locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            if (locationGPS != null) {
+                double lat = locationGPS.getLatitude();
+                double longi = locationGPS.getLongitude();
+                latitude = String.valueOf(lat);
+                longitude = String.valueOf(longi);
+                getAddressFromLatLng(latitude,longitude);
+                Log.d(TAG,"Your Location: " + "\n" + "Latitude: " + latitude + "\n" + "Longitude: " + longitude);
+                //getShopList();
+            } else {
+                //Toast.makeText(getActivity(), "Unable to find location.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void OnGPS() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(SmartBuyActivity.this);
+        builder.setMessage("Enable GPS").
+                setCancelable(false).
+                setPositiveButton("Yes", new  DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }}).
+                setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
 }

@@ -1,6 +1,7 @@
 package com.greymatter.smartgold.fragment;
 
 import android.Manifest;
+import android.content.ClipDescription;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -53,18 +54,27 @@ public class ProfileFragment extends Fragment {
 
 
         if (!MyFunctions.getBooleanFromSharedPref(getActivity(),Constants.ISLOGGEDIN, false)){
-            Intent intent = new Intent(getActivity(), SigninActivity.class);
+            /*Intent intent = new Intent(getActivity(), SigninActivity.class);
             startActivity(intent);
-            getActivity().finish();
-        }
+            getActivity().finish();*/
 
-        user_name.setText(MyFunctions.getStringFromSharedPref(getActivity(), Constants.NAME,""));
-        user_num.setText(MyFunctions.getStringFromSharedPref(getActivity(), Constants.MOBILE,""));
+            root.findViewById(R.id.edit).setVisibility(View.GONE);
+            root.findViewById(R.id.signout_btn).setVisibility(View.GONE);
+            root.findViewById(R.id.user_container).setVisibility(View.GONE);
+            root.findViewById(R.id.login).setVisibility(View.VISIBLE);
+            root.findViewById(R.id.guest_container).setVisibility(View.VISIBLE);
+        }else {
+            root.findViewById(R.id.edit).setVisibility(View.VISIBLE);
+            root.findViewById(R.id.signout_btn).setVisibility(View.VISIBLE);
+            root.findViewById(R.id.user_container).setVisibility(View.VISIBLE);
+            root.findViewById(R.id.login).setVisibility(View.GONE);
+            root.findViewById(R.id.guest_container).setVisibility(View.GONE);
+        }
 
         sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyFunctions.saveBooleanToSharedPref(getActivity(),Constants.ISLOGGEDIN, false);
+                MyFunctions.logout(getActivity());
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
                 getActivity().finish();
@@ -77,6 +87,7 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
         root.findViewById(R.id.add).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,7 +95,6 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
         root.findViewById(R.id.order).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,7 +115,20 @@ public class ProfileFragment extends Fragment {
                 shareAppLink();
             }
         });
-        root.findViewById(R.id.scan).setOnClickListener(new View.OnClickListener() {
+        root.findViewById(R.id.feedback).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendFeedbackMail();
+            }
+        });
+
+        root.findViewById(R.id.guest_share).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shareAppLink();
+            }
+        });
+        root.findViewById(R.id.guest_scan).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //scanQR();
@@ -115,7 +138,32 @@ public class ProfileFragment extends Fragment {
                 }
             }
         });
+        root.findViewById(R.id.guest_feedback).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendFeedbackMail();
+            }
+        });
+
+        root.findViewById(R.id.login).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SigninActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+
         return root;
+    }
+
+    private void sendFeedbackMail() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType(ClipDescription.MIMETYPE_TEXT_PLAIN);
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"smartgoldsupport@gmail.com"});
+        intent.putExtra(android.content.Intent.EXTRA_SUBJECT,"SmartGold Feedback");
+        intent.putExtra(android.content.Intent.EXTRA_TEXT, "Description");
+        startActivity(Intent.createChooser(intent,"Send Email"));
     }
 
     // Function to check and request permission
@@ -150,7 +198,7 @@ public class ProfileFragment extends Fragment {
     public void onResume() {
         super.onResume();
         try{
-            user_name.setText(MyFunctions.getStringFromSharedPref(getActivity(), Constants.NAME,""));
+            user_name.setText(MyFunctions.getStringFromSharedPref(getActivity(), Constants.NAME,"Guest User"));
             user_num.setText(MyFunctions.getStringFromSharedPref(getActivity(), Constants.MOBILE,""));
         }catch (Exception e){e.printStackTrace();}
     }

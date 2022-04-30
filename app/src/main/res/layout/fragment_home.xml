@@ -154,12 +154,13 @@
                 tools:listitem="@layout/category_layout">
             </androidx.recyclerview.widget.RecyclerView>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
@@ -168,7 +169,8 @@
                     android:textSize="18dp"
                     android:textStyle="bold" />
 
-            </RelativeLayout>
+
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/store_recycler"
@@ -195,7 +197,7 @@
                 android:textColor="@color/brown_btn_txt_color"
                 android:textStyle="bold" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/producthead"
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/recyclerviewcategory"
@@ -203,6 +205,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
@@ -211,7 +214,17 @@
                     android:textSize="18dp"
                     android:textStyle="bold" />
 
-            </RelativeLayout>
+                <TextView
+                    android:id="@+id/view_more_products"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="View More+ "
+                    android:paddingRight="5dp"
+                    android:textColor="@color/brown"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerviewproduct"

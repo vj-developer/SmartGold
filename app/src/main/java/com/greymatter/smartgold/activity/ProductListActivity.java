@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,7 +47,11 @@ public class ProductListActivity extends AppCompatActivity {
             category_name = getIntent().getStringExtra(Constants.CATEGORY_NAME);
             CategoryTitle.setText(category_name);
             productListByCategory();
-        }else {
+        }else if (type.equals(Constants.ALL_PRODUCTS)){
+            CategoryTitle.setText("All Products");
+            ProductList();
+        }
+        else {
             storeResponse = new Gson().fromJson(getIntent().getStringExtra(Constants.STORE), StoreResponse.Datum.class);
             CategoryTitle.setText(storeResponse.getStoreName());
             productListByStore();
@@ -56,6 +61,38 @@ public class ProductListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onBackPressed();
+            }
+        });
+    }
+
+    private void ProductList() {
+        MyFunctions.showLoading(ProductListActivity.this);
+        APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
+        Call<ProductListResponse> call = apiInterface.product(ApiConfig.SecurityKey,Constants.AccessKeyVal);
+        call.enqueue(new Callback<ProductListResponse>() {
+            @Override
+            public void onResponse(Call<ProductListResponse> call, Response<ProductListResponse> response) {
+                MyFunctions.cancelLoading();
+
+                ProductListResponse productResponse = response.body();
+                if(productResponse.getSuccess()){
+                    productAdapter = new ProductsAdapter(productResponse.getData(),ProductListActivity.this);
+                    product_recycler.setAdapter(productAdapter);
+
+                    findViewById(R.id.order_empty).setVisibility(View.GONE);
+                    product_recycler.setVisibility(View.VISIBLE);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), productResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ProductListResponse> call, Throwable t) {
+                MyFunctions.cancelLoading();
+                Toast.makeText(getApplicationContext(), Constants.API_ERROR, Toast.LENGTH_SHORT).show();
+                Log.d("PRODUCTRESPONSE",String.valueOf(t.getMessage()));
             }
         });
     }

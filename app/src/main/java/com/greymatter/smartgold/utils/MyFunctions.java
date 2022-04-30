@@ -114,4 +114,8 @@ public class MyFunctions {
         return null;
     }
 
+    public static void logout(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MySharedPref",MODE_PRIVATE);
+        sharedPreferences.edit().clear().apply();
+    }
 }

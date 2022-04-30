@@ -24,7 +24,9 @@ import com.greymatter.smartgold.retrofit.RetrofitBuilder;
 import com.greymatter.smartgold.utils.Constants;
 import com.greymatter.smartgold.utils.MyFunctions;
 import com.razorpay.Checkout;
+import com.razorpay.PaymentData;
 import com.razorpay.PaymentResultListener;
+import com.razorpay.PaymentResultWithDataListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,7 +37,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CheckoutActivity extends AppCompatActivity implements PaymentResultListener {
+public class CheckoutActivity extends AppCompatActivity implements PaymentResultWithDataListener {
 
     private static final String TAG = "Checkout";
     RadioButton pickup_at_store,delivery_at_home;
@@ -247,20 +249,19 @@ public class CheckoutActivity extends AppCompatActivity implements PaymentResult
     @Override
     protected void onResume() {
         super.onResume();
-
         getDefaultAddress();
     }
 
     @Override
-    public void onPaymentSuccess(String s) {
+    public void onPaymentSuccess(String s, PaymentData paymentData) {
         placeOrder(true);
     }
 
     @Override
-    public void onPaymentError(int i, String s) {
-        //Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+    public void onPaymentError(int i, String s, PaymentData paymentData) {
         Intent intent = new Intent(this, OfferLockResultActivity.class);
         intent.putExtra(Constants.PAYMENT,Constants.FAIL);
         startActivity(intent);
     }
+
 }

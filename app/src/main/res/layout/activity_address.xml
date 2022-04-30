@@ -39,6 +39,17 @@
             android:src="@drawable/logo" />
     </LinearLayout>
 
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/top"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="No Address found"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/address_recycleview"
         android:layout_width="match_parent"

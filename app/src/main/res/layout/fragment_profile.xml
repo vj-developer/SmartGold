@@ -73,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Kamal Alipour"
+                    android:text="Guest User"
                     android:textColor="@color/brown"
                     android:textSize="22sp"
                     android:textStyle="bold" />
@@ -82,24 +82,29 @@
                     android:id="@+id/user_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="+01 000 00 00"
+                    tools:text="+01 000 00 00"
                     android:textColor="@color/brown"
                     android:textSize="16sp" />
             </LinearLayout>
 
             <ImageView
-                android:layout_alignParentRight="true"
                 android:id="@+id/edit"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_margin="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 android:src="@drawable/useredit_solid" />
 
         </RelativeLayout>
 
     </LinearLayout>
 
+    <!--User container-->
     <LinearLayout
+        android:id="@+id/user_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/profileseg"
@@ -128,11 +133,12 @@
                 android:layout_gravity="center"
                 android:src="@drawable/chevronleft_solid" />
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="45dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="45dp"
             android:layout_marginBottom="10dp"
             android:background="@color/brown" />
@@ -159,13 +165,14 @@
                 android:layout_gravity="center"
                 android:src="@drawable/chevronleft_solid" />
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="45dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="45dp"
+            android:layout_marginBottom="10dp"
             android:background="@color/brown" />
 
         <LinearLayout
@@ -190,23 +197,24 @@
                 android:layout_gravity="center"
                 android:src="@drawable/chevronleft_solid" />
         </LinearLayout>
+
         <View
-            android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="45dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="45dp"
+            android:layout_marginBottom="10dp"
             android:background="@color/brown" />
 
         <LinearLayout
-            android:visibility="gone"
             android:id="@+id/msg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -222,14 +230,15 @@
                 android:layout_gravity="center"
                 android:src="@drawable/chevronleft_solid" />
         </LinearLayout>
+
         <View
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="45dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="45dp"
-            android:background="@color/brown" />
+            android:background="@color/brown"
+            android:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/share"
@@ -253,11 +262,12 @@
                 android:layout_gravity="center"
                 android:src="@drawable/chevronleft_solid" />
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="45dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="45dp"
             android:layout_marginBottom="10dp"
             android:background="@color/brown" />
@@ -288,8 +298,149 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="45dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="45dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/brown" />
+
+        <!--Send Feedback-->
+        <LinearLayout
+            android:id="@+id/feedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="Send Feedback"
+                android:textColor="@color/brown"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:src="@drawable/chevronleft_solid" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="45dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/brown" />
+
+
+    </LinearLayout>
+
+    <!--Guest container-->
+    <LinearLayout
+        android:id="@+id/guest_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profileseg"
+        android:layout_marginTop="25dp"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <!--Share-->
+        <LinearLayout
+            android:id="@+id/guest_share"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="Share"
+                android:textColor="@color/brown"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:src="@drawable/chevronleft_solid" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="45dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/brown" />
+
+        <!--Qr Scan-->
+        <LinearLayout
+            android:id="@+id/guest_scan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="Scan &amp; Pay"
+                android:textColor="@color/brown"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:src="@drawable/chevronleft_solid" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="45dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/brown" />
+
+        <!--Send Feedback-->
+        <LinearLayout
+            android:id="@+id/guest_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="Send Feedback"
+                android:textColor="@color/brown"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:src="@drawable/chevronleft_solid" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="45dp"
             android:layout_marginBottom="10dp"
             android:background="@color/brown" />
@@ -302,11 +453,32 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
         android:backgroundTint="@color/red"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:text="Sign out"
         android:textAllCaps="true" />
+
+    <Button
+        android:id="@+id/login"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/red"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="Proceed to Login"
+        android:textAllCaps="true" />
+
 
 </RelativeLayout>
