@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:text="Jp Mart"
                 android:gravity="center"
-                android:textColor="@color/brown" />
+                android:textColor="@color/brown_txt" />
 
         </LinearLayout>
 
