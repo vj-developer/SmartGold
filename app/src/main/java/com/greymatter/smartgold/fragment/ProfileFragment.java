@@ -160,7 +160,7 @@ public class ProfileFragment extends Fragment {
     private void sendFeedbackMail() {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType(ClipDescription.MIMETYPE_TEXT_PLAIN);
-        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"smartgoldsupport@gmail.com"});
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{Constants.CONTACT_MAIL});
         intent.putExtra(android.content.Intent.EXTRA_SUBJECT,"SmartGold Feedback");
         intent.putExtra(android.content.Intent.EXTRA_TEXT, "Description");
         startActivity(Intent.createChooser(intent,"Send Email"));

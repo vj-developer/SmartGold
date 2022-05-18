@@ -13,10 +13,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
 import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.activity.AddressActivity;
 import com.greymatter.smartgold.activity.CartActivity;
+import com.greymatter.smartgold.activity.EditAddressActivity;
 import com.greymatter.smartgold.activity.ProductDetailActivity;
+import com.greymatter.smartgold.activity.ShopOfferDetailsActivity;
 import com.greymatter.smartgold.model.AddToCartResponse;
 import com.greymatter.smartgold.model.AddressListResponse;
 import com.greymatter.smartgold.retrofit.APIInterface;
@@ -67,6 +70,16 @@ public class AddressAdapter extends RecyclerView.Adapter <AddressAdapter.ViewHol
                 if (!address.getDefault_address().equals(Constants.TRUE)) makeAddressDefault(address.getId());
             }
         });
+
+        holder.edit_address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String toJson = new Gson().toJson(address);
+                Intent intent = new Intent(context, EditAddressActivity.class);
+                intent.putExtra(Constants.ADDRESS,toJson);
+                context.startActivity(intent);
+            }
+        });
     }
 
     private void makeAddressDefault(String id) {
@@ -110,13 +123,14 @@ public class AddressAdapter extends RecyclerView.Adapter <AddressAdapter.ViewHol
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView pincode, add_heading, address;
-        ImageView primary_address;
+        ImageView primary_address,edit_address;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
            pincode = itemView.findViewById(R.id.pincode);
            add_heading = itemView.findViewById(R.id.address_heading);
            address = itemView.findViewById(R.id.address);
+           edit_address = itemView.findViewById(R.id.edit_address);
            primary_address = itemView.findViewById(R.id.primary_address);
         }
     }

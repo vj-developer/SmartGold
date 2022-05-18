@@ -44,6 +44,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/search_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,6 +69,41 @@
                         android:imeOptions="actionDone"
                         android:singleLine="true"/>
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <!--<ImageView
+                    android:paddingTop="8dp"
+                    android:id="@+id/filter_btn"
+                    android:layout_margin="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/filter_icon"
+                    android:layout_gravity="center"
+                    />-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="12dp"
+                android:orientation="horizontal">
+
+                <AutoCompleteTextView
+                    android:paddingStart="5dp"
+                    android:id="@+id/autocompleteTextView"
+                    android:layout_width="0dp"
+                    android:hint="Search Products"
+                    android:background="@drawable/et_bg"
+                    android:drawableStart="@drawable/search_icon"
+                    android:drawableTint="@color/primarydark"
+                    android:drawablePadding="10dp"
+                    android:textColorHint="@color/primarydark"
+                    android:layout_weight="1"
+                    android:layout_height="50dp"
+                    android:singleLine="true"
+                    android:imeOptions="actionDone"
+                    />
 
                 <ImageView
                     android:paddingTop="8dp"

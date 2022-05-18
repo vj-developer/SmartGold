@@ -106,7 +106,7 @@ public class SmartBuyActivity extends AppCompatActivity {
             @NonNull
             @Override
             public String getFormattedValue(float value) {
-                return Math.round(value)+"km";
+                return Math.round(value)+" km";
             }
         });
 

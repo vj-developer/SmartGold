@@ -87,6 +87,7 @@ public class Constants {
     public static final String GENDER = "gender";
     public static final String WEIGHT = "weight";
     public static final String ALL_PRODUCTS = "all_products";
+    public static final String CONTACT_MAIL = "customerservice@smartgoldmart.com";
 
     /* 1- Pickup at store
        2- Delivery at Home */

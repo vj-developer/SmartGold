@@ -7,9 +7,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -66,6 +72,15 @@ public class MainActivity extends AppCompatActivity {
 
         setFragment(0);
 
+        getCartCount();
+    }
+
+    private void getCartCount() {
+        /*Cart count*/
+        int count = Integer.parseInt(MyFunctions.getStringFromSharedPref(getApplicationContext(),Constants.CART_COUNT,"0"));
+        if (count > 0) {
+            tabLayout.getTabAt(2).getOrCreateBadge().setNumber(count);
+        }
     }
 
     @Override

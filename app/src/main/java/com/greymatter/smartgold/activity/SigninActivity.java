@@ -3,6 +3,7 @@ package com.greymatter.smartgold.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.ClipDescription;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -53,6 +54,13 @@ public class SigninActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SigninActivity.this, SignupActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.sendFeedback).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendFeedbackMail();
             }
         });
     }
@@ -107,4 +115,14 @@ public class SigninActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
         finish();
     }
+
+    private void sendFeedbackMail() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType(ClipDescription.MIMETYPE_TEXT_PLAIN);
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{Constants.CONTACT_MAIL});
+        intent.putExtra(android.content.Intent.EXTRA_SUBJECT,"SmartGold Feedback");
+        intent.putExtra(android.content.Intent.EXTRA_TEXT, "Description");
+        startActivity(Intent.createChooser(intent,"Send Email"));
+    }
+
 }

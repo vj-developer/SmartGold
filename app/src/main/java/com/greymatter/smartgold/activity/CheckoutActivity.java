@@ -152,6 +152,9 @@ public class CheckoutActivity extends AppCompatActivity implements PaymentResult
                 if (response.isSuccessful()){
                     CheckoutResponse checkoutResponse = response.body();
                     if(checkoutResponse.getSuccess()){
+
+                        MyFunctions.saveStringToSharedPref(getApplicationContext(),Constants.CART_COUNT,"0");
+
                         startActivity(new Intent(getApplicationContext(),OrderResultActivity.class).putExtra(Constants.STATUS,Constants.SUCCESS));
                         finish();
                     }

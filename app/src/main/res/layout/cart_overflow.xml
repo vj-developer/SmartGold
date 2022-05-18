@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/counterPanel"
+    android:layout_width="32dp"
+    android:layout_height="32dp"
+    android:background="@drawable/shoppingbag_solid"> <!-- Notication Icon -->
+
+    <TextView
+        android:layout_gravity="top|end"
+        android:gravity="center"
+        android:background="@drawable/ic_tool_cart"
+        android:id="@+id/count"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:textSize="12sp"
+        android:layout_marginLeft="5dp"
+        android:textColor="#FFFFFF"/>
+
+</FrameLayout>

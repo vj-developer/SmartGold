@@ -59,10 +59,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         gram = findViewById(R.id.gram);
 
 
-        /*Cart count*/
-        int count = Integer.parseInt(MyFunctions.getStringFromSharedPref(getApplicationContext(),Constants.CART_COUNT,"0"));
-        if (count > 0 ) cart_count.setText(count+"");
-        else cart_count.setVisibility(View.GONE);
+
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,6 +106,15 @@ public class ProductDetailActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),CartActivity.class));
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        /*Cart count*/
+        int count = Integer.parseInt(MyFunctions.getStringFromSharedPref(getApplicationContext(),Constants.CART_COUNT,"0"));
+        if (count > 0 ) cart_count.setText(count+"");
+        else cart_count.setVisibility(View.GONE);
     }
 
     private void getProductDetails() {

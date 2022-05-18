@@ -29,7 +29,7 @@
                 android:id="@+id/start_km"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5kms"
+                android:text="5 kms"
                 android:textColor="@color/primary"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -43,7 +43,7 @@
                 android:id="@+id/end_km"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="200kms"
+                android:text="200 kms"
                 android:textColor="@color/primary"
                 android:textSize="20sp"
                 android:textStyle="bold" />

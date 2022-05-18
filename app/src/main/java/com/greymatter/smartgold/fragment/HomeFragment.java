@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -20,6 +21,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -74,6 +77,7 @@ public class HomeFragment extends Fragment {
     LocationManager locationManager;
     String latitude, longitude;
     String TAG = "Home";
+    AutoCompleteTextView autocompleteTextView;
 
     public HomeFragment() {
     }
@@ -89,6 +93,7 @@ public class HomeFragment extends Fragment {
         product_recycler = view.findViewById(R.id.recyclerviewproduct);
         store_recycler = view.findViewById(R.id.store_recycler);
         search_bar_et = view.findViewById(R.id.search_bar_et);
+        autocompleteTextView = view.findViewById(R.id.autocompleteTextView);
 
         bannerSliderApi();
         CategoryList();
@@ -142,6 +147,22 @@ public class HomeFragment extends Fragment {
 
                     startActivity(new Intent(getActivity(), FilteredProductsActivity.class)
                             .putExtra(Constants.SEARCH_TERM, search_bar_et.getText().toString().trim())
+                    );
+
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        autocompleteTextView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_DONE) {
+                    //do here your stuff
+
+                    startActivity(new Intent(getActivity(), FilteredProductsActivity.class)
+                            .putExtra(Constants.SEARCH_TERM, autocompleteTextView.getText().toString().trim())
                     );
 
                     return true;
@@ -248,6 +269,21 @@ public class HomeFragment extends Fragment {
                 if(productResponse.getSuccess()){
                     productAdapter = new ProductsAdapter(productResponse.getData(),getActivity());
                     product_recycler.setAdapter(productAdapter);
+
+                    /*Auto complete*/
+                    List<String> product_names = new ArrayList<>();
+                    for (int i=0;i<productResponse.getData().size();i++){
+                        product_names.add(productResponse.getData().get(i).getName());
+                    }
+
+                    // Create the object of ArrayAdapter with String
+                    // which hold the data as the list item.
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.select_dialog_item, product_names);
+                    // Give the suggestion after 1 words.
+                    autocompleteTextView.setThreshold(1);
+                    // Set the adapter for data as a list
+                    autocompleteTextView.setAdapter(adapter);
+                    autocompleteTextView.setTextColor(Color.BLACK);
                 }
                 else {
                     Toast.makeText(getActivity(), productResponse.getMessage(), Toast.LENGTH_SHORT).show();

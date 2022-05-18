@@ -55,6 +55,19 @@ public interface APIInterface {
                                          @Field(Constants.PINCODE) String pincode);
 
     @FormUrlEncoded
+    @POST("edit-address.php")
+    Call<AddAddressResponse> edit_address(@Header("Authorization") String auth,
+                                         @Field(Constants.AccessKey) String accesskey,
+                                         @Field(Constants.ADDRESS_ID) String address_id,
+                                         @Field(Constants.USERID) String user_id,
+                                         @Field(Constants.NAME) String name,
+                                         @Field(Constants.ADDRESS) String address,
+                                         @Field(Constants.LANDMARK) String landmark,
+                                         @Field(Constants.CITY) String city,
+                                         @Field(Constants.AREA) String area,
+                                         @Field(Constants.PINCODE) String pincode);
+
+    @FormUrlEncoded
     @POST("address-list.php")
     Call<AddressListResponse> address_list(@Header("Authorization") String auth,
                                            @Field(Constants.AccessKey) String accesskey,
