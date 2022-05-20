@@ -32,7 +32,6 @@ public class AddressActivity extends AppCompatActivity {
         setContentView(R.layout.activity_address);
 
         address_recycler = findViewById(R.id.address_recycleview);
-        addressListApi();
 
         findViewById(R.id.back_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,5 +71,11 @@ public class AddressActivity extends AppCompatActivity {
         Intent intent = new Intent(AddressActivity.this, AddAddressActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        addressListApi();
     }
 }
