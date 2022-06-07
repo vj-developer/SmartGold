@@ -35,7 +35,7 @@ public class FilterActivity extends AppCompatActivity implements OnRangeSeekBarL
     TextView start_price,end_price;
     Spinner category_spinner,sort_spinner,gender_spinner,weight_spinner;
     ArrayList<String> categoryArray,categoryIdArray;
-    String from_price="0",to_price="50000";
+    String from_price="50000",to_price="1000000";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +51,9 @@ public class FilterActivity extends AppCompatActivity implements OnRangeSeekBarL
         weight_spinner = findViewById(R.id.weight_spinner);
 
         rangeSeekBar.setOnRangeSeekBarListener(this);
-
-        /*rangeSeekBar.setStartProgress(20); // default is 0
-        rangeSeekBar.setEndProgress(80); // default is 50*/
+        rangeSeekBar.setMinDifference(5);
+        rangeSeekBar.setStartProgress(5); // default is 0
+        rangeSeekBar.setEndProgress(100); // default is 50*/
 
         CategoryList();
 
@@ -145,13 +145,13 @@ public class FilterActivity extends AppCompatActivity implements OnRangeSeekBarL
         format.setCurrency(Currency.getInstance(Constants.INR));
 
         //start price    default = 0
-        from_price = String.valueOf(start*1000);
-        String sp = format.format(start*1000);
+        from_price = String.valueOf(start*10000);
+        String sp = format.format(start*10000);
         start_price.setText(sp);
 
         //end price     default = 100
-        to_price = String.valueOf(end*1000);
-        String ep = format.format(end*1000);
+        to_price = String.valueOf(end*10000);
+        String ep = format.format(end*10000);
         end_price.setText(ep);
 
     }

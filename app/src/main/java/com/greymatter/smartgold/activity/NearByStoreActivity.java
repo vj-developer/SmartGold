@@ -1,15 +1,11 @@
 package com.greymatter.smartgold.activity;
 
-import static com.shivtechs.maplocationpicker.MapUtility.ADDRESS;
 import static com.shivtechs.maplocationpicker.MapUtility.LATITUDE;
-import static com.shivtechs.maplocationpicker.MapUtility.LONGITUDE;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.location.Address;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -48,7 +44,7 @@ public class NearByStoreActivity extends AppCompatActivity {
     private static final int MAP_BUTTON_REQUEST_CODE = 1;
     TextView location_tv;
     private final int ADDRESS_PICKER_REQUEST = 123;
-    String latitude= null,longitude = null,range_to=null,address;
+    String latitude= null,longitude = null,range_to="5",address;
     StoreAdapter storeAdapter;
     List<StoreResponse.Datum> data = new ArrayList<>();
     RecyclerView store_recycler;
@@ -81,7 +77,7 @@ public class NearByStoreActivity extends AppCompatActivity {
             }
         });
 
-        getShopList();
+        getShopList(null);
 
         search_bar_et.addTextChangedListener(new TextWatcher() {
             @Override
@@ -111,11 +107,11 @@ public class NearByStoreActivity extends AppCompatActivity {
         storeAdapter.filterByName(stores);
     }
 
-    private void getShopList() {
+    private void getShopList(String range_to) {
         data.clear();
         MyFunctions.showLoading(NearByStoreActivity.this);
         APIInterface apiInterface = RetrofitBuilder.getClient().create(APIInterface.class);
-        Call<StoreResponse> call = apiInterface.getSellers(ApiConfig.SecurityKey,Constants.AccessKeyVal,latitude,longitude,range_to);
+        Call<StoreResponse> call = apiInterface.getSellers(ApiConfig.SecurityKey,Constants.AccessKeyVal,latitude,longitude, range_to);
         call.enqueue(new Callback<StoreResponse>() {
             @Override
             public void onResponse(Call<StoreResponse> call, Response<StoreResponse> response) {
@@ -148,7 +144,7 @@ public class NearByStoreActivity extends AppCompatActivity {
         if (latitude!=null){
             location_tv.setText(address);
         }
-        if (range_to!=null){
+        if (!range_to.equals("5")){
             slider.setValue(Float.parseFloat(range_to));
         }
 
@@ -162,6 +158,7 @@ public class NearByStoreActivity extends AppCompatActivity {
                 //end_km.setText(to_km +"km");
             }
         });
+
         slider.setLabelFormatter(new LabelFormatter() {
             @NonNull
             @Override
@@ -193,7 +190,7 @@ public class NearByStoreActivity extends AppCompatActivity {
                     Toast.makeText(NearByStoreActivity.this, "Select your location", Toast.LENGTH_SHORT).show();
                 }else {
                     bottomSheetDialog.dismiss();
-                    getShopList();
+                    getShopList(range_to);
                 }
 
             }

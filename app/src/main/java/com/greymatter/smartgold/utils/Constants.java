@@ -5,7 +5,7 @@ public class Constants {
     public static final String ISLOGGEDIN = "isLoggedin";
     public static final String MOBILE = "mobile";
     //public static final String BASE_URL = "http://test.booksbear.in/api-firebase/";
-    public static final String BASE_URL = "http://smartgold.blazeaisolutions.com/api/";
+    public static final String BASE_URL = "https://smartgold.blazeaisolutions.com/api/";
     //public static final String BASE_URL = "http://192.168.43.122/smartgold/api/";
     public static final String JWT_KEY = "12345678";
     public static final String AUTHORIZATION = "Authorization";
@@ -87,7 +87,9 @@ public class Constants {
     public static final String GENDER = "gender";
     public static final String WEIGHT = "weight";
     public static final String ALL_PRODUCTS = "all_products";
-    public static final String CONTACT_MAIL = "customerservice@smartgoldmart.com";
+    public static final String CONTACT_MAIL = "CustomerService@SmartGoldmart.com";
+    public static final String EMAIL_SUBJECT = "SmartGold Feedback";
+    public static final String EMAIL_BODY = "";
 
     /* 1- Pickup at store
        2- Delivery at Home */

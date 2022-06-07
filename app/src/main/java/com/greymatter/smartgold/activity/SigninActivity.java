@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.ClipDescription;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -117,12 +118,10 @@ public class SigninActivity extends AppCompatActivity {
     }
 
     private void sendFeedbackMail() {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType(ClipDescription.MIMETYPE_TEXT_PLAIN);
-        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{Constants.CONTACT_MAIL});
-        intent.putExtra(android.content.Intent.EXTRA_SUBJECT,"SmartGold Feedback");
-        intent.putExtra(android.content.Intent.EXTRA_TEXT, "Description");
-        startActivity(Intent.createChooser(intent,"Send Email"));
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        Uri data = Uri.parse("mailto:"+Constants.CONTACT_MAIL+"?subject=" + Uri.encode(Constants.EMAIL_SUBJECT) + "&body=" + Uri.encode(Constants.EMAIL_BODY));
+        intent.setData(data);
+        startActivity(intent);
     }
 
 }

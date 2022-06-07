@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.greymatter.smartgold.MainActivity;
 import com.greymatter.smartgold.R;
 import com.greymatter.smartgold.activity.CartActivity;
 import com.greymatter.smartgold.activity.CheckoutActivity;
@@ -65,7 +66,6 @@ public class CartFragment extends Fragment {
             @Override
             public void quantityChanged(String product_id, String quantity) {
                 addToCart(product_id,quantity);
-                Log.d(Tag,quantity);
             }
 
             @Override
@@ -120,7 +120,7 @@ public class CartFragment extends Fragment {
                         cart_container.setVisibility(View.GONE);
                     }
                     MyFunctions.saveStringToSharedPref(getActivity(),Constants.CART_COUNT,cartArrayList.size()+"");
-
+                    ((MainActivity) getActivity()).getCartCount();
                 }else {
                     Toast.makeText(getActivity(), response.message(), Toast.LENGTH_SHORT).show();
                 }

@@ -128,16 +128,6 @@ public class ProfileFragment extends Fragment {
                 shareAppLink();
             }
         });
-        root.findViewById(R.id.guest_scan).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //scanQR();
-                if (checkPermission(Manifest.permission.CAMERA,123)){
-                    Intent intent = new Intent(getActivity(), ScanQRActivity.class);
-                    startActivity(intent);
-                }
-            }
-        });
         root.findViewById(R.id.guest_feedback).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,12 +148,10 @@ public class ProfileFragment extends Fragment {
     }
 
     private void sendFeedbackMail() {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType(ClipDescription.MIMETYPE_TEXT_PLAIN);
-        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{Constants.CONTACT_MAIL});
-        intent.putExtra(android.content.Intent.EXTRA_SUBJECT,"SmartGold Feedback");
-        intent.putExtra(android.content.Intent.EXTRA_TEXT, "Description");
-        startActivity(Intent.createChooser(intent,"Send Email"));
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        Uri data = Uri.parse("mailto:"+Constants.CONTACT_MAIL+"?subject=" + Uri.encode(Constants.EMAIL_SUBJECT) + "&body=" + Uri.encode(Constants.EMAIL_BODY));
+        intent.setData(data);
+        startActivity(intent);
     }
 
     // Function to check and request permission

@@ -20,8 +20,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.Currency;
+import java.util.Locale;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -81,7 +84,15 @@ public class MyFunctions {
         NumberFormat format = NumberFormat.getCurrencyInstance();
         format.setMaximumFractionDigits(0);
         format.setCurrency(Currency.getInstance(Constants.INR));
-        return format.format(Integer.parseInt(price));
+        return format.format(Double.parseDouble(price));
+
+        /*Locale locale = new Locale("en","IN");
+        DecimalFormat format = (DecimalFormat) DecimalFormat.getCurrencyInstance(locale);
+        DecimalFormatSymbols dfs = DecimalFormatSymbols.getInstance(locale);
+        dfs.setCurrencySymbol("\u20B9");
+        format.setDecimalFormatSymbols(dfs);
+        double amount = Double.parseDouble(price);
+        return format.format(amount);*/
     }
 
     public static String getResponseFromUrl(String url) {

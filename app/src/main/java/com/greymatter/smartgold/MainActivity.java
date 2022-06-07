@@ -72,10 +72,9 @@ public class MainActivity extends AppCompatActivity {
 
         setFragment(0);
 
-        getCartCount();
     }
 
-    private void getCartCount() {
+    public void getCartCount() {
         /*Cart count*/
         int count = Integer.parseInt(MyFunctions.getStringFromSharedPref(getApplicationContext(),Constants.CART_COUNT,"0"));
         if (count > 0) {
@@ -108,6 +107,11 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getCartCount();
+    }
 }
 
 
