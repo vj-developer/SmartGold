@@ -42,7 +42,8 @@ public class Constants {
     public static final String OFFER_ID = "offer_id";
     public static final String PAID_AMT = "paid_amt";
     public static final String LOCK_PRICE_INSTRUCTION = "Lock the price by paying price Rs: ";
-    public static final String LOCK_DURATION_INSTRUCTION = "Items can be locked for ";
+    public static final String THIS_OFFER_CAN_BE_LOCKED_UNTIL = "This offer can be locked until ";
+    public static final String THIS_OFFER_CAN_BE_CLAIMED_UNTIL = "The offer can be claimed until ";
     public static final String AVAILABLE_PRODUCT_COUNT = " Products available in this store";
     public static final String REF_ID = "ref_id";
     public static final String STORE_NAME = "store_name";

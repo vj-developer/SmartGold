@@ -176,6 +176,10 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         calculateTotal();
 
+        if (body.getData().get(0).getName().toLowerCase().contains("bangle") || body.getData().get(0).getName().toLowerCase().contains("ring")){
+
+        }
+
     }
 
     private void addToCart() {

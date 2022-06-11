@@ -102,6 +102,14 @@
             android:textColor="@color/primarydark" />
 
         <TextView
+            android:id="@+id/claimed_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Items can be locked for 7 days"
+            android:textColor="@color/primarydark" />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"

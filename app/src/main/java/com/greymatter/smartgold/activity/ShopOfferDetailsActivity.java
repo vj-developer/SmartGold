@@ -33,7 +33,7 @@ import retrofit2.Response;
 
 public class ShopOfferDetailsActivity extends AppCompatActivity implements PaymentResultListener {
 
-    TextView wastage,wastage_card_tv,amount_tv,day_tv,product_count,gram_price,details,price_card_tv;
+    TextView wastage,wastage_card_tv,amount_tv,day_tv,claimed_tv,product_count,gram_price,details,price_card_tv;
     String amount_string,duration_day,shop_id,user_id,offer_id,gram_price_str,wastage_str;
     RecyclerView available_products;
     CategoryAdapter categoryAdapter;
@@ -50,6 +50,7 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
         available_products = findViewById(R.id.available_products);
         amount_tv = findViewById(R.id.amount_tv);
         day_tv = findViewById(R.id.day_tv);
+        claimed_tv = findViewById(R.id.claimed_tv);
         product_count = findViewById(R.id.product_count);
         gram_price = findViewById(R.id.gram_price);
         details = findViewById(R.id.details);
@@ -79,6 +80,7 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
         gram_price.setVisibility(gram_price_str.equals("0") ? View.GONE:View.VISIBLE);
         wastage.setVisibility(wastage_str.equals("0") ? View.GONE:View.VISIBLE);
 
+        claimed_tv.setText(Constants.THIS_OFFER_CAN_BE_CLAIMED_UNTIL + smartOffer.getValidDate());
 
         findViewById(R.id.back_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,9 +171,9 @@ public class ShopOfferDetailsActivity extends AppCompatActivity implements Payme
 
                     amount_tv.setText(Constants.LOCK_PRICE_INSTRUCTION+amount_string);
                     if (Integer.parseInt(duration_day) > 1){
-                        day_tv.setText(Constants.LOCK_DURATION_INSTRUCTION+duration_day+" days");
+                        day_tv.setText(Constants.THIS_OFFER_CAN_BE_LOCKED_UNTIL +duration_day+" days");
                     }else {
-                        day_tv.setText(Constants.LOCK_DURATION_INSTRUCTION+duration_day+" day");
+                        day_tv.setText(Constants.THIS_OFFER_CAN_BE_LOCKED_UNTIL +duration_day+" day");
                     }
 
                 }

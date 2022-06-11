@@ -47,7 +47,7 @@
                 android:id="@+id/wastage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Discount on wastage: 1%"
+                android:text="Discount on Making Charges: 1%"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="@color/textdark" />
 

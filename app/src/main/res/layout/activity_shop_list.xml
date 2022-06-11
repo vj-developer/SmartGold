@@ -48,7 +48,7 @@
             android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Selected Offer from a shop nearby..."
+            android:text="Available offers from nearby shops..."
             android:textColor="@color/brown"
             android:textSize="20sp"
             android:textStyle="bold"/>
